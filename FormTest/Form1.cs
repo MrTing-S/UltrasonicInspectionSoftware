@@ -106,8 +106,8 @@
         {
             Thread threadGlobalConfig = new Thread(()=> {
                 DLL.NetModulDll.SendCmdRepeatFreq(2);//设置重复频率
-                DLL.NetModulDll.SendCmdPhaseCompose(0);//设置相控合成开关
-                DLL.NetModulDll.SendCmdSampleDepth(30); 
+                //DLL.NetModulDll.SendCmdPhaseCompose(0);//设置相控合成开关
+                //DLL.NetModulDll.SendCmdSampleDepth(30); 
             });
             threadGlobalConfig.IsBackground = true;
             threadGlobalConfig.Start();
