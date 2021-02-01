@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnDraw = new System.Windows.Forms.Button();
             this.chartControl1 = new MyChartControl.ChartControl();
             this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine();
             this.btnTest = new System.Windows.Forms.Button();
@@ -89,6 +88,10 @@
             this.textBoxRange = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBoxDataTpye = new System.Windows.Forms.ComboBox();
+            this.comboBoxChanNum = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigitalGian)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAnalogGain)).BeginInit();
@@ -104,24 +107,12 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnDraw
-            // 
-            this.btnDraw.BackColor = System.Drawing.Color.Transparent;
-            this.btnDraw.Location = new System.Drawing.Point(532, 313);
-            this.btnDraw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDraw.Name = "btnDraw";
-            this.btnDraw.Size = new System.Drawing.Size(97, 38);
-            this.btnDraw.TabIndex = 3;
-            this.btnDraw.Text = "绘制";
-            this.btnDraw.UseVisualStyleBackColor = false;
-            this.btnDraw.Click += new System.EventHandler(this.btnDraw_Click);
-            // 
             // chartControl1
             // 
-            this.chartControl1.Location = new System.Drawing.Point(43, 30);
+            this.chartControl1.Location = new System.Drawing.Point(43, 44);
             this.chartControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chartControl1.Name = "chartControl1";
-            this.chartControl1.Size = new System.Drawing.Size(586, 321);
+            this.chartControl1.Size = new System.Drawing.Size(586, 307);
             this.chartControl1.TabIndex = 4;
             // 
             // skinEngine1
@@ -630,7 +621,7 @@
             "射频波"});
             this.comboBoxWaveType.Location = new System.Drawing.Point(712, 364);
             this.comboBoxWaveType.Name = "comboBoxWaveType";
-            this.comboBoxWaveType.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxWaveType.Size = new System.Drawing.Size(79, 23);
             this.comboBoxWaveType.TabIndex = 56;
             this.comboBoxWaveType.Text = "射频波";
             this.comboBoxWaveType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -640,9 +631,9 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(632, 367);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(67, 15);
+            this.label20.Size = new System.Drawing.Size(82, 15);
             this.label20.TabIndex = 56;
-            this.label20.Text = "检波方式";
+            this.label20.Text = "检波方式：";
             // 
             // label21
             // 
@@ -697,16 +688,66 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "操作界面";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(806, 367);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(82, 15);
+            this.label23.TabIndex = 62;
+            this.label23.Text = "数据类型：";
+            // 
+            // comboBoxDataTpye
+            // 
+            this.comboBoxDataTpye.FormattingEnabled = true;
+            this.comboBoxDataTpye.Items.AddRange(new object[] {
+            "采样数据",
+            "原始数据"});
+            this.comboBoxDataTpye.Location = new System.Drawing.Point(886, 364);
+            this.comboBoxDataTpye.Name = "comboBoxDataTpye";
+            this.comboBoxDataTpye.Size = new System.Drawing.Size(95, 23);
+            this.comboBoxDataTpye.TabIndex = 63;
+            this.comboBoxDataTpye.Text = "采样数据";
+            this.comboBoxDataTpye.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataTpye_SelectedIndexChanged);
+            // 
+            // comboBoxChanNum
+            // 
+            this.comboBoxChanNum.FormattingEnabled = true;
+            this.comboBoxChanNum.Items.AddRange(new object[] {
+            "通道1",
+            "通道2",
+            "通道3",
+            "通道4"});
+            this.comboBoxChanNum.Location = new System.Drawing.Point(124, 12);
+            this.comboBoxChanNum.Name = "comboBoxChanNum";
+            this.comboBoxChanNum.Size = new System.Drawing.Size(77, 23);
+            this.comboBoxChanNum.TabIndex = 65;
+            this.comboBoxChanNum.Text = "通道1";
+            this.comboBoxChanNum.SelectedIndexChanged += new System.EventHandler(this.comboBoxChanNum_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(44, 15);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(82, 15);
+            this.label24.TabIndex = 64;
+            this.label24.Text = "通道数目：";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 510);
+            this.Controls.Add(this.comboBoxChanNum);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.comboBoxWaveType);
+            this.Controls.Add(this.comboBoxDataTpye);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.textBoxRange);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.comboBoxWaveType);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.textBoxDigital);
             this.Controls.Add(this.label19);
@@ -719,7 +760,6 @@
             this.Controls.Add(this.textBoxFixNumber);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.trackBarFixNumber);
-            this.Controls.Add(this.btnDraw);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxAveNumber);
             this.Controls.Add(this.label13);
@@ -776,7 +816,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnDraw;
         private MyChartControl.ChartControl chartControl1;
         private Sunisoft.IrisSkin.SkinEngine skinEngine1;
         private System.Windows.Forms.Button btnTest;
@@ -836,6 +875,10 @@
         private System.Windows.Forms.TextBox textBoxRange;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBoxDataTpye;
+        private System.Windows.Forms.ComboBox comboBoxChanNum;
+        private System.Windows.Forms.Label label24;
     }
 }
 

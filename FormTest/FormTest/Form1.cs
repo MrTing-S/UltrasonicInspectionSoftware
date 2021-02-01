@@ -15,9 +15,11 @@
         ushort pConnectNo = 4;//客户端连接数目
         ushort[] m_pChannelOneBuf = new ushort[300];//波形数据指针
         ushort[] m_pChannelOneValueBuf = new ushort[300];//波谷指针
-        int[] m_pChannelOneOriBuf = new int[2000];
+        byte[] m_pChannelOneOriBuf = new byte[2000];//原始波形数组
         ushort[] dataBuf = new ushort[300];//储存数组 
         double [] dataDraw = new double[300];//绘图数组 
+        double[] oriDataDraw = new double[2000];//初始波形数组
+        int ChanNum;
 
 
         public Form1()
@@ -28,9 +30,12 @@
             this.chartControl1.ChartYSizeZoomIn(201,50);
 
             this.comboBoxWaveType.SelectedIndex = 3;
+            this.comboBoxDataTpye.SelectedIndex = 0;
 
             this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine((System.ComponentModel.Component)(this));
             this.skinEngine1.SkinFile = Application.StartupPath + "//DeepCyan.ssk";//读取皮肤文件路径
+
+            this.ChanNum = this.comboBoxChanNum.SelectedIndex;
         }
 
         private void btnDraw_Click(object sender, EventArgs e)
@@ -41,14 +46,7 @@
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DLL.NetModulDll.MyReadData(dataBuf, 0,1);
-            }
-            catch (Exception message)
-            {
-                MessageBox.Show(message.Message);
-            }
+            Console.WriteLine(m_pChannelOneOriBuf[1000]);
 
         }
 
@@ -78,7 +76,10 @@
                   Console.WriteLine("GetConnectStatus运行:" + DLL.NetModulDll.GetConnectStatus(ref pConnectNo).ToString());
                   DLL.NetModulDll.MyInitParam();
                   Console.WriteLine("参数下发完成");
-                  DLL.NetModulDll.MyBindingData(0);
+                  for (int i = 0; i < 4; i++)
+                  {
+                      DLL.NetModulDll.MyBindingData(i);
+                  }
                   Console.WriteLine("通道1数据绑定完成");
               }
               );
@@ -118,6 +119,7 @@
         private void btnStartCollect_Click(object sender, EventArgs e)
         {
             DLL.NetModulDll.SendCmdSampleStart();
+            timer1.Start();
         }
         private void butStopCollect_Click(object sender, EventArgs e)
         {
@@ -164,7 +166,8 @@
         {
             try
             {
-                DLL.NetModulDll.MyReadData(dataBuf, 0, 1);
+                DLL.NetModulDll.MyReadData(dataBuf, ChanNum , 1);
+                DLL.NetModulDll.MyReadOridata(m_pChannelOneOriBuf, ChanNum);
             }
             catch (Exception message)
             {
@@ -175,7 +178,19 @@
             {
                 dataDraw[i] = Convert.ToDouble(dataBuf[i]);
             }
-            this.chartControl1.ChartData =dataDraw;
+            for (int i = 0; i < 2000; i++)
+            {
+                oriDataDraw[i] = Convert.ToDouble(m_pChannelOneOriBuf[i]);
+            }
+            if (this.comboBoxDataTpye.SelectedIndex == 0)
+            {
+                this.chartControl1.ChartData = dataDraw;
+            }
+            if (this.comboBoxDataTpye.SelectedIndex == 1)
+            {
+                this.chartControl1.ChartData = oriDataDraw;
+            }
+
             this.chartControl1.DrawLine();
         }
 
@@ -187,21 +202,21 @@
 
         private void trackBarDigitalGian_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             this.textBoxDigitalGainValue.Text = (this.trackBarDigitalGian.Value/10).ToString();
             DLL.NetModulDll.SendCmdDB1((uint)this.trackBarDigitalGian.Value);
         }
 
         private void trackBarAnalogGain_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             this.textBoxAnalogGainValue.Text = (this.trackBarAnalogGain.Value/10).ToString();
             DLL.NetModulDll.SendCmdDB2((uint)this.trackBarAnalogGain.Value);
         }
 
         private void trackBarSignFreqRatio_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             this.textBoxSignFreqRatio.Text = (Convert.ToDouble(this.trackBarSignFreqRatio.Value) / 10).ToString();
             DLL.NetModulDll.SendCmdSignFreqRatio((uint)this.trackBarSignFreqRatio.Value * 100000);
         }
@@ -233,14 +248,14 @@
 
         private void trackBarSendCmdDelayCount_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdDelayCount((uint)this.trackBarSendCmdDelayCount.Value*100);
             this.textBoxDelayCount.Text = this.trackBarSendCmdDelayCount.Value.ToString();
         }
 
         private void trackBarPulNumber_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdPulNumber((uint)(this.trackBarPulNumber.Value+1));
             this.textBoxPulNumber.Text = (this.trackBarPulNumber.Value+1).ToString();
 
@@ -248,40 +263,41 @@
 
         private void trackBarAveNumber_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdAveNumber((uint)this.trackBarAveNumber.Value);
             this.textBoxAveNumber.Text = Math.Pow(2, (double)(this.trackBarAveNumber.Value)).ToString();
         }
 
         private void trackBarFixNumber_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdFixNumber((uint)this.trackBarFixNumber.Value);
             this.textBoxFixNumber.Text =(this.trackBarFixNumber.Value+1).ToString();
         }
 
         private void trackBarHighVoltage_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdHighVoltage((uint)this.trackBarHighVoltage.Value);
             this.textBoxHighVoltage.Text = (300+50*this.trackBarHighVoltage.Value ).ToString();
         }
 
         private void trackBarDigital_Scroll(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdDigital((uint)(this.trackBarDigital.Value));
             this.textBoxDigital.Text = this.trackBarDigital.Value.ToString();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(0);
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.SendCmdWaveType((uint)this.comboBoxWaveType.SelectedIndex);
         }
 
         private void trackBarRange_Scroll(object sender, EventArgs e)
         {
+            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
             DLL.NetModulDll.setRange(this.trackBarRange.Value);
             this.textBoxRange.Text = this.trackBarRange.Value.ToString();
         }
@@ -289,6 +305,26 @@
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxDataTpye_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.comboBoxDataTpye.SelectedIndex == 0)
+            {
+                chartControl1.ChartXSizeZoomIn(300);
+                //chartControl1.ChartYSizeZoomIn(201, 50);
+            }
+
+            if (this.comboBoxDataTpye.SelectedIndex == 1)
+            {
+                chartControl1.ChartXSizeZoomIn(2000);
+                //chartControl1.ChartYSizeZoomIn(201, 50);
+            }
+        }
+
+        private void comboBoxChanNum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ChanNum = this.comboBoxChanNum.SelectedIndex;
         }
     }
 }

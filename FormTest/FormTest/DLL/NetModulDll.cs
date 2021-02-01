@@ -260,7 +260,7 @@ namespace FormTest.DLL
         /// <param name="dataBuff">接收数组</param>
         /// <param name="iChan">通道数</param>
         [DllImport("m_NetMdule.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern void MyReadOridata(int[] dataBuff, int iChan);
+        internal static extern void MyReadOridata(byte [] dataBuff, int iChan);
         #endregion
     }
 }
