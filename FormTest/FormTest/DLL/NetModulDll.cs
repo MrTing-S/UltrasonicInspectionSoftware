@@ -9,6 +9,21 @@ namespace FormTest.DLL
 {
     public class NetModulDll
     {
+        #region 初始化函数
+        /// <summary>
+        /// 初始化参数
+        /// </summary>
+        [DllImport("NetModulDll.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void InitParam();
+
+        /// <summary>
+        /// 初始化参数传递
+        /// </summary>
+        [DllImport("NetModulDll.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void InitSendParam();
+
+        #endregion
+
         #region 针对单通道函数
 
         /// <summary>
@@ -188,7 +203,7 @@ namespace FormTest.DLL
         /// <param name="pWaveDataBuf">动态波形指针,unsigned short m_pChannelBuf[通道数][采样点数]</param>
         /// <param name="pWaveValueBuf">波谷指针  unsigned short m_pDestBuf[通道数][采样点数]</param>
         [DllImport("NetModulDll.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static unsafe extern void RealWave(int clientChan, int*[] pWaveDataBuf, int*[] pWaveValueBuf);
+        internal static unsafe extern void RealWave(int clientChan, int** pWaveDataBuf, int** pWaveValueBuf);
 
         /// <summary>
         /// 获取原始波形
@@ -221,10 +236,31 @@ namespace FormTest.DLL
 
         #endregion
 
-        [DllImport("testDll.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern unsafe int dllname(int*[] a,int row,int column);
+        #region dll二次调用
 
-        [DllImport("testDll.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern unsafe int dllNamePointer(ref ushort a);
+        [DllImport("m_NetMdule.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void  MyInitParam();
+
+        [DllImport("m_NetMdule.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void MyBindingData(int clientChan);
+
+        /// <summary>
+        /// 读取处理后的波形数据
+        /// </summary>
+        /// <param name="dataBuff">接受数组</param>
+        /// <param name="iChan">通道数</param>
+        /// <param name="bufftype">1为波形数据，2为波谷数据</param>
+        /// <returns></returns>
+        [DllImport("m_NetMdule.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern bool MyReadData(ushort[] dataBuff, int iChan, int bufftype);
+
+        /// <summary>
+        /// 读取原始的波形数据
+        /// </summary>
+        /// <param name="dataBuff">接收数组</param>
+        /// <param name="iChan">通道数</param>
+        [DllImport("m_NetMdule.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void MyReadOridata(int[] dataBuff, int iChan);
+        #endregion
     }
 }
