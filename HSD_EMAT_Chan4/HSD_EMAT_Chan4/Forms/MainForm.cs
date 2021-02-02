@@ -1,4 +1,4 @@
-﻿namespace FormTest
+﻿namespace HSD_EMAT_Chan4.Forms
 {
     using Sunisoft.IrisSkin;
     using System;

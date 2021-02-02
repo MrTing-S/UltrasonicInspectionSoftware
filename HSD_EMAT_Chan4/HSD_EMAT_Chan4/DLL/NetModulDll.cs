@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-
-namespace FormTest.DLL
+﻿namespace HSD_EMAT_Chan4.DLL
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Runtime.InteropServices;
+
     public class NetModulDll
     {
         #region 初始化函数

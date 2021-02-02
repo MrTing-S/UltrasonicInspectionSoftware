@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace FormTest
+using
+    HSD_EMAT_Chan4.Forms;
+namespace HSD_EMAT_Chan4
 {
     static class Program
     {

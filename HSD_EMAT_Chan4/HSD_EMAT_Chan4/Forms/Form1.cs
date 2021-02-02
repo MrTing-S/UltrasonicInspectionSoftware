@@ -1,4 +1,4 @@
-﻿namespace FormTest
+﻿namespace HSD_EMAT_Chan4.Forms
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,8 @@
     using System.Threading;
     public partial class Form1:Form
     {
+
+
         ushort pConnectNo = 4;//客户端连接数目
         ushort[] m_pChannelOneBuf = new ushort[300];//波形数据指针
         ushort[] m_pChannelOneValueBuf = new ushort[300];//波谷指针
@@ -25,6 +27,9 @@
         public Form1()
         {
             InitializeComponent();
+            this.ControlBox = false;//不显示控制控件
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.chartControl1.ChartInit();
             this.chartControl1.ChartXSizeZoomIn(300);
             this.chartControl1.ChartYSizeZoomIn(201,50);

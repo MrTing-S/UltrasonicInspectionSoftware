@@ -1,4 +1,4 @@
-﻿namespace FormTest.Models
+﻿namespace HSD_EMAT_Chan4.Models
 {
     using System;
     using System.Collections.Generic;
