@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormTest", "FormTest.csproj", "{59C226B4-2292-4138-84E7-5691CC205B1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSD_EMAT_Chan4", "HSD_EMAT_Chan4.csproj", "{59C226B4-2292-4138-84E7-5691CC205B1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

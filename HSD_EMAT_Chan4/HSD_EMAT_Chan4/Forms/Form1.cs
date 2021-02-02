@@ -46,8 +46,7 @@
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(m_pChannelOneOriBuf[1000]);
-
+            this.Hide();
         }
 
         internal static IntPtr ArrayToIntptr(byte[] source)

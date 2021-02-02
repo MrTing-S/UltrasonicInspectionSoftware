@@ -310,8 +310,8 @@
             this.aboutAToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(992, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1323, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1136,7 +1136,7 @@
             this.toolStripButtonAlarmSoundSwitch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(992, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1323, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
@@ -1247,7 +1247,7 @@
             this.toolStripComboBoxChannel.DropDownWidth = 75;
             this.toolStripComboBoxChannel.IntegralHeight = false;
             this.toolStripComboBoxChannel.Name = "toolStripComboBoxChannel";
-            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(60, 25);
+            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(79, 25);
             this.toolStripComboBoxChannel.Tag = "Channel";
             this.toolStripComboBoxChannel.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxChannel_SelectedIndexChanged);
             this.toolStripComboBoxChannel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxChannel_KeyDown);
@@ -1451,16 +1451,16 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 666);
+            this.ClientSize = new System.Drawing.Size(1323, 832);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -2013,8 +2013,14 @@
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitToolStripStatus();
+
             objForm1.MdiParent = this;
+            objForm1.Size = new Size(200, this.Height- this.toolStrip1.Bottom- menuStrip1.Bottom);
+
+            objForm1.Dock = DockStyle.Right;
+            
             objForm1.Show();
+            
         }
 
         private void InitToolStripStatus()
