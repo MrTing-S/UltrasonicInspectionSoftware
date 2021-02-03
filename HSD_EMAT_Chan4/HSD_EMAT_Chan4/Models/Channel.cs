@@ -8,11 +8,11 @@
 
     public class Channel
     {
-        public ChanneParam channeParam;
+        public ChannelParam channeParam;
         public ushort[] wavaData = new ushort[300];//波形数据指针
         public ushort[] troughWaveData = new ushort[300];//波谷数据数组
         public byte[] oriWaveData = new byte[2000];//原始波形数组
-        public Channel(ChanneParam  inputChanneParam)
+        public Channel(ChannelParam  inputChanneParam)
         {
             this.channeParam = inputChanneParam;
         }

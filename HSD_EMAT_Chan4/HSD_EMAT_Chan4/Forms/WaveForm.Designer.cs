@@ -52,6 +52,6 @@
 
         #endregion
 
-        private MyChartControl.ChartControl chartControl1;
+        public MyChartControl.ChartControl chartControl1;
     }
 }

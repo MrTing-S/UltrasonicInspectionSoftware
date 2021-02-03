@@ -9,8 +9,20 @@ using HSD_EMAT_Chan4.Models;
 
 namespace HSD_EMAT_Chan4.DLL
 {
-    public static class FormLayout
+    public static class FormLayoutOption
     {
+        public static  void InitAllForms(MainForm mainForm)
+        {
+            AllForms.m_MainForm = mainForm;
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                AlllChannels.m_ChannelParams[i] = new ChannelParam();
+                AlllChannels.m_Channels[i] = new Channel(AlllChannels.m_ChannelParams[i]);
+                AllForms.m_WaveForms[i] = new WaveForm();
+            }
+            AllForms.m_ParamSetForm = new ParamSetForm();
+        }
+
         static public  void UpDateFormLayOut(FormView.WaveFromViewType waveFromViewType)
         {
             switch (waveFromViewType.ToString())

@@ -75,8 +75,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DLL\FireWallHandle.cs" />
-    <Compile Include="DLL\FormLayout.cs" />
+    <Compile Include="DLL\FormLayoutOption.cs" />
+    <Compile Include="DLL\Funcations.cs" />
     <Compile Include="DLL\NetModulDll.cs" />
+    <Compile Include="DLL\NetModuleHelper.cs" />
+    <Compile Include="DLL\ParamOption.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +102,9 @@
       <DependentUpon>WaveForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AllForms.cs" />
+    <Compile Include="Models\AlllChannels.cs" />
     <Compile Include="Models\Channel.cs" />
-    <Compile Include="Models\ChanneParam.cs" />
+    <Compile Include="Models\ChannelParam.cs" />
     <Compile Include="Models\FormView.cs" />
     <Compile Include="Models\HSD_EMAT.cs" />
     <Compile Include="Program.cs" />

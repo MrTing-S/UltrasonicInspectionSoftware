@@ -114,7 +114,7 @@
             this.trackBarDigital.Maximum = 100;
             this.trackBarDigital.Name = "trackBarDigital";
             this.trackBarDigital.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarDigital.Size = new System.Drawing.Size(45, 113);
+            this.trackBarDigital.Size = new System.Drawing.Size(56, 113);
             this.trackBarDigital.TabIndex = 91;
             this.trackBarDigital.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -152,7 +152,7 @@
             this.trackBarHighVoltage.Maximum = 4;
             this.trackBarHighVoltage.Name = "trackBarHighVoltage";
             this.trackBarHighVoltage.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarHighVoltage.Size = new System.Drawing.Size(45, 113);
+            this.trackBarHighVoltage.Size = new System.Drawing.Size(56, 113);
             this.trackBarHighVoltage.TabIndex = 87;
             this.trackBarHighVoltage.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -189,7 +189,7 @@
             this.trackBarFixNumber.Maximum = 15;
             this.trackBarFixNumber.Name = "trackBarFixNumber";
             this.trackBarFixNumber.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarFixNumber.Size = new System.Drawing.Size(45, 113);
+            this.trackBarFixNumber.Size = new System.Drawing.Size(56, 113);
             this.trackBarFixNumber.TabIndex = 83;
             this.trackBarFixNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -226,7 +226,7 @@
             this.trackBarAveNumber.Maximum = 4;
             this.trackBarAveNumber.Name = "trackBarAveNumber";
             this.trackBarAveNumber.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarAveNumber.Size = new System.Drawing.Size(45, 113);
+            this.trackBarAveNumber.Size = new System.Drawing.Size(56, 113);
             this.trackBarAveNumber.TabIndex = 79;
             this.trackBarAveNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -263,7 +263,7 @@
             this.trackBarPulNumber.Maximum = 3;
             this.trackBarPulNumber.Name = "trackBarPulNumber";
             this.trackBarPulNumber.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarPulNumber.Size = new System.Drawing.Size(45, 113);
+            this.trackBarPulNumber.Size = new System.Drawing.Size(56, 113);
             this.trackBarPulNumber.TabIndex = 75;
             this.trackBarPulNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -273,7 +273,7 @@
             this.trackBarSendCmdDelayCount.Maximum = 100;
             this.trackBarSendCmdDelayCount.Name = "trackBarSendCmdDelayCount";
             this.trackBarSendCmdDelayCount.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarSendCmdDelayCount.Size = new System.Drawing.Size(45, 113);
+            this.trackBarSendCmdDelayCount.Size = new System.Drawing.Size(56, 113);
             this.trackBarSendCmdDelayCount.TabIndex = 74;
             this.trackBarSendCmdDelayCount.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -309,7 +309,7 @@
             this.trackBarRepeatFreq.Maximum = 4;
             this.trackBarRepeatFreq.Name = "trackBarRepeatFreq";
             this.trackBarRepeatFreq.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarRepeatFreq.Size = new System.Drawing.Size(45, 113);
+            this.trackBarRepeatFreq.Size = new System.Drawing.Size(56, 113);
             this.trackBarRepeatFreq.TabIndex = 70;
             this.trackBarRepeatFreq.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -425,7 +425,7 @@
             this.trackBarSignFreqRatio.Minimum = 40;
             this.trackBarSignFreqRatio.Name = "trackBarSignFreqRatio";
             this.trackBarSignFreqRatio.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarSignFreqRatio.Size = new System.Drawing.Size(45, 113);
+            this.trackBarSignFreqRatio.Size = new System.Drawing.Size(56, 113);
             this.trackBarSignFreqRatio.TabIndex = 57;
             this.trackBarSignFreqRatio.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarSignFreqRatio.Value = 40;
@@ -436,7 +436,7 @@
             this.trackBarAnalogGain.Maximum = 400;
             this.trackBarAnalogGain.Name = "trackBarAnalogGain";
             this.trackBarAnalogGain.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarAnalogGain.Size = new System.Drawing.Size(45, 113);
+            this.trackBarAnalogGain.Size = new System.Drawing.Size(56, 113);
             this.trackBarAnalogGain.TabIndex = 56;
             this.trackBarAnalogGain.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -446,15 +446,16 @@
             this.trackBarDigitalGian.Maximum = 400;
             this.trackBarDigitalGian.Name = "trackBarDigitalGian";
             this.trackBarDigitalGian.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarDigitalGian.Size = new System.Drawing.Size(45, 113);
+            this.trackBarDigitalGian.Size = new System.Drawing.Size(56, 113);
             this.trackBarDigitalGian.TabIndex = 55;
             this.trackBarDigitalGian.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarDigitalGian.Scroll += new System.EventHandler(this.trackBarDigitalGian_Scroll);
             // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 432);
+            this.ClientSize = new System.Drawing.Size(382, 561);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.textBoxDigital);
             this.Controls.Add(this.label19);

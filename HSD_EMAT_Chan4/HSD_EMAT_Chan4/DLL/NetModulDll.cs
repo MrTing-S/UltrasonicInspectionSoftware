@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using System.Runtime.InteropServices;
 
-    public class NetModulDll
+    public static  class NetModulDll
     {
         #region 初始化函数
         /// <summary>
