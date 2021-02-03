@@ -13,6 +13,8 @@
     using System.Text;
     using System.Threading;
     using System.Windows.Forms;
+    using HSD_EMAT_Chan4.DLL;
+    using HSD_EMAT_Chan4.Models;
 
     public class MainForm : Form
     {
@@ -88,7 +90,7 @@
         private ToolStripMenuItem menuItemToolsOptions;
         private ToolStripMenuItem MenuItemTU;
         private ToolStripMenuItem menuItemWaveformForm;
-        private MenuStrip menuStrip1;
+        public  MenuStrip menuStrip1;
         public int[] nBaseline;
         public int[] nRectifyReject;
        /// private File3201.FileType OpenFileType;
@@ -101,7 +103,7 @@
         private SkinEngine skinEngine1;
         private ToolStripMenuItem TemperatureVelToolStripMenuItem;
         private int tmp;
-        private ToolStrip toolStrip1;
+        public  ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButtonAlarmSoundSwitch;
         private ToolStripButton toolStripButtonCalc;
@@ -151,11 +153,13 @@
         private ToolStripMenuItem 显示DToolStripMenuItem;
         #endregion
 
-        Form1 objForm1 = new Form1();
+        
         public MainForm()
         {
             InitializeComponent();
             this.skinEngine1.SkinFile = Application.StartupPath + "//DeepCyan.ssk";//读取皮肤文件路径
+
+
         }
 
         private void InitializeComponent()
@@ -1581,17 +1585,17 @@
 
         private void menuItemScanForm_Click(object sender, EventArgs e)
         {
-             
+
         }
 
         private void menuItemScanViewType1_Click(object sender, EventArgs e)
         {
-             
+
         }
 
         private void menuItemScanViewType2_Click(object sender, EventArgs e)
         {
-             
+            FormLayout.UpDateFormLayOut(FormView.WaveFromViewType.type2);
         }
 
         private void menuItemScanViewType3_Click(object sender, EventArgs e)
@@ -2013,14 +2017,9 @@
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitToolStripStatus();
+            InitAllForms();
 
-            objForm1.MdiParent = this;
-            objForm1.Size = new Size(200, this.Height- this.toolStrip1.Bottom- menuStrip1.Bottom);
-
-            objForm1.Dock = DockStyle.Right;
-            
-            objForm1.Show();
-            
+            FormLayout.UpDateFormLayOut(FormView.WaveFromViewType.type2);
         }
 
         private void InitToolStripStatus()
@@ -2050,6 +2049,17 @@
             //    this.toolStripComboBoxChannel.Items.Add(i + 1);
             //}
             //this.toolStripComboBoxChannel.SelectedIndex = 0;
+        }
+
+        private void InitAllForms()
+        {
+            AllForms.m_MainForm = this;
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                AllForms.m_WaveForms[i] =new WaveForm();
+            }
+            AllForms.m_ParamSetForm = new ParamSetForm();
+
         }
 
     }
