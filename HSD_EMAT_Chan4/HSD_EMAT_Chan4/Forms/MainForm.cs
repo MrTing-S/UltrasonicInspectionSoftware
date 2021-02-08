@@ -453,7 +453,7 @@
             // menuItemChannelParameter
             // 
             this.menuItemChannelParameter.Name = "menuItemChannelParameter";
-            this.menuItemChannelParameter.Size = new System.Drawing.Size(224, 26);
+            this.menuItemChannelParameter.Size = new System.Drawing.Size(153, 26);
             this.menuItemChannelParameter.Tag = "Parameter(&P)...";
             this.menuItemChannelParameter.Text = "参数(&P)...";
             this.menuItemChannelParameter.Click += new System.EventHandler(this.menuItemChannelParameter_Click);
@@ -461,7 +461,7 @@
             // menuItemFreezeAllChannel
             // 
             this.menuItemFreezeAllChannel.Name = "menuItemFreezeAllChannel";
-            this.menuItemFreezeAllChannel.Size = new System.Drawing.Size(224, 26);
+            this.menuItemFreezeAllChannel.Size = new System.Drawing.Size(153, 26);
             this.menuItemFreezeAllChannel.Tag = "Freeze";
             this.menuItemFreezeAllChannel.Text = "冻结";
             this.menuItemFreezeAllChannel.Click += new System.EventHandler(this.menuItemFreezeAllChannel_Click);
@@ -472,7 +472,7 @@
             this.menuItemChannelWorkEnable,
             this.menuItemChannelWorkDisable});
             this.menuItemChannelWork.Name = "menuItemChannelWork";
-            this.menuItemChannelWork.Size = new System.Drawing.Size(224, 26);
+            this.menuItemChannelWork.Size = new System.Drawing.Size(153, 26);
             this.menuItemChannelWork.Tag = "MenuItemChannelWork";
             this.menuItemChannelWork.Text = "通道工作";
             // 
@@ -497,7 +497,7 @@
             // menuItemMaxWaveDataSave
             // 
             this.menuItemMaxWaveDataSave.Name = "menuItemMaxWaveDataSave";
-            this.menuItemMaxWaveDataSave.Size = new System.Drawing.Size(224, 26);
+            this.menuItemMaxWaveDataSave.Size = new System.Drawing.Size(153, 26);
             this.menuItemMaxWaveDataSave.Tag = "MenuItemMaxDataMemory";
             this.menuItemMaxWaveDataSave.Text = "峰值记忆";
             this.menuItemMaxWaveDataSave.Click += new System.EventHandler(this.menuItemMaxWaveAllChannel_Click);
@@ -519,7 +519,7 @@
             this.menuItemWaveformForm.Checked = true;
             this.menuItemWaveformForm.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuItemWaveformForm.Name = "menuItemWaveformForm";
-            this.menuItemWaveformForm.Size = new System.Drawing.Size(224, 26);
+            this.menuItemWaveformForm.Size = new System.Drawing.Size(143, 26);
             this.menuItemWaveformForm.Tag = "Debug(&D)";
             this.menuItemWaveformForm.Text = "调试(&D)";
             this.menuItemWaveformForm.Click += new System.EventHandler(this.menuItemWaveformForm_Click);
@@ -527,7 +527,7 @@
             // menuItemScanForm
             // 
             this.menuItemScanForm.Name = "menuItemScanForm";
-            this.menuItemScanForm.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanForm.Size = new System.Drawing.Size(143, 26);
             this.menuItemScanForm.Tag = "Scan(&S)";
             this.menuItemScanForm.Text = "扫描(&S)";
             this.menuItemScanForm.Click += new System.EventHandler(this.menuItemScanForm_Click);
@@ -541,7 +541,7 @@
             this.menuItemScanViewType4,
             this.menuItemScanViewType5});
             this.menuItemScanView.Name = "menuItemScanView";
-            this.menuItemScanView.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanView.Size = new System.Drawing.Size(143, 26);
             this.menuItemScanView.Tag = "menuItemScanView";
             this.menuItemScanView.Text = "视图(&V)";
             // 
