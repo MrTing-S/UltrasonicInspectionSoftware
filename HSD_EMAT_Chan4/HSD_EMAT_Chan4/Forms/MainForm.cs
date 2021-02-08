@@ -150,6 +150,10 @@
         private ToolStripMenuItem 设置ToolStripMenuItem;
         private ToolStripMenuItem 通道ToolStripMenuItem;
         private ToolStripMenuItem 文件ToolStripMenuItem;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabelVision;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusConnectStatus;
         private ToolStripMenuItem 显示DToolStripMenuItem;
         #endregion
 
@@ -288,8 +292,13 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAlarmSoundSwitch = new System.Windows.Forms.ToolStripButton();
             this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelVision = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FormTimer
@@ -1453,11 +1462,43 @@
             this.skinEngine1.SerialNumber = "";
             this.skinEngine1.SkinFile = null;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelVision,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusConnectStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 806);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1323, 26);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabelVision
+            // 
+            this.toolStripStatusLabelVision.Name = "toolStripStatusLabelVision";
+            this.toolStripStatusLabelVision.Size = new System.Drawing.Size(105, 20);
+            this.toolStripStatusLabelVision.Text = "版本号： V1.0";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 20);
+            this.toolStripStatusLabel1.Text = "连接状态：";
+            // 
+            // toolStripStatusConnectStatus
+            // 
+            this.toolStripStatusConnectStatus.Name = "toolStripStatusConnectStatus";
+            this.toolStripStatusConnectStatus.Size = new System.Drawing.Size(54, 20);
+            this.toolStripStatusConnectStatus.Text = "未连接";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1323, 832);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1478,6 +1519,8 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1533,6 +1576,7 @@
                     break;
             }
             MessageBox.Show("连接成功");
+            this.toolStripStatusConnectStatus.Text = "已连接";
         }
 
         private void menuItemRunAsServer_Click(object sender, EventArgs e)
@@ -2010,6 +2054,7 @@
         {
             InitToolStripStatus();
             FormLayoutOption.InitAllForms(this);
+            ChannelOption.BadingParams();
             FormLayoutOption.UpDateFormLayOut(FormView.WaveFromViewType.type2);
         }
 
