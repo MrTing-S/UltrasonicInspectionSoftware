@@ -14,13 +14,13 @@
         public uint highVoltage;//高压调节
         public uint digital;//数字抑制
         public int range;
-        public WaveType currWaveType;
-        public DataType currDataType;
+        public WaveType waveType;
+        public DataType dataType;
 
         /// <summary>
         /// 检波方式1_4:正检波，负检波，全检波，射频波
         /// </summary>
-        public  enum WaveType
+        public enum WaveType
         {
             type1, type2, type3, type4
         }

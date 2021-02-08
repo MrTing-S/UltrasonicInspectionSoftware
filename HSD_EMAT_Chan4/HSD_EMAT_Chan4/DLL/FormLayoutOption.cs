@@ -16,9 +16,8 @@ namespace HSD_EMAT_Chan4.DLL
             AllForms.m_MainForm = mainForm;
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
             {
-                AlllChannels.m_ChannelParams[i] = new ChannelParam();
-                AlllChannels.m_Channels[i] = new Channel(AlllChannels.m_ChannelParams[i]);
                 AllForms.m_WaveForms[i] = new WaveForm();
+                AllForms.m_WaveForms[i].Text = "通道" + (i+1).ToString();
             }
             AllForms.m_ParamSetForm = new ParamSetForm();
         }

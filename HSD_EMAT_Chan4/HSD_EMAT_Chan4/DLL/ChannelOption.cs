@@ -7,13 +7,16 @@ using HSD_EMAT_Chan4.Models;
 
 namespace HSD_EMAT_Chan4.DLL
 {
-    public static  class ParamOption
+    public static  class ChannelOption
     {
         static public  void BadingParams()
         {
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
             {
-                AlllChannels.m_ChannelParams[i] = new ChannelParam();
+                AlllChannels.m_ChannelParams[i] = new ChannelParam() 
+                {
+                    channelNum=i
+                };
                 AlllChannels.m_Channels[i] = new Channel(AlllChannels.m_ChannelParams[i]);
             }
         }
