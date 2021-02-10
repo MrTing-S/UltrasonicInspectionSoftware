@@ -108,6 +108,8 @@
             this.Controls.Add(this.buttonLoadConfig);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkedListBoxConfigFiles);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConfigFileLoadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigFileLoadForm";

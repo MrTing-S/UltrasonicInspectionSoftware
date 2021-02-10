@@ -19,8 +19,6 @@ namespace HSD_EMAT_Chan4.DLL
                 AllForms.m_WaveForms[i] = new WaveForm();
                 AllForms.m_WaveForms[i].Text = "通道" + (i+1).ToString();
             }
-            AllForms.m_WaveForms[0].chartControl1.ChartYSizeZoomChange(260, 0);
-            AllForms.m_WaveForms[1].chartControl1.ChartYSizeZoomChange(260, 0);
             AllForms.m_ParamSetForm = new ParamSetForm();
         }
 

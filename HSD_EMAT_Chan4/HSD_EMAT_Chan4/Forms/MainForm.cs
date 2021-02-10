@@ -1568,14 +1568,7 @@
 
         private void menuItemConnectToServer_Click(object sender, EventArgs e)
         {
-            NetModuleHelper.NetModuleConnect();
-            NetModuleHelper.SystemInit();
-            while (true)
-            {
-                if (NetModuleHelper.connectStatus == 1)
-                    break;
-            }
-            MessageBox.Show("连接成功");
+
             this.toolStripStatusConnectStatus.Text = "已连接";
         }
 
@@ -2052,15 +2045,22 @@
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            AlllChannels.dataSamplingStatus = false;//数据采集标志位
             InitToolStripStatus();
             FormLayoutOption.InitAllForms(this);
-            ChannelOption.BadingParams();
+            ChannelOption.BadingParams();//绑定通道对应参数
             FormLayoutOption.UpDateFormLayOut(FormView.WaveFromViewType.type2);
+            NetModuleHelper.SystemInit();//绑定数据
+            ConnectionForm connectionForm = new ConnectionForm();//开启连接窗口
+            if (connectionForm.ShowDialog() == DialogResult.OK)
+            {
+                this.toolStripStatusConnectStatus.Text = "已连接";
+            }
         }
 
         private void InitToolStripStatus()
         {
-            this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Frz.bmp");
+            this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Run.bmp");
             this.toolStripButtonWaveOrScan.Image = Image.FromFile(Application.StartupPath + @"\Resources\Scan.bmp");
             this.toolStripButtonRun.Image = Image.FromFile(Application.StartupPath + @"\Resources\Run.bmp");
             this.toolStripButtonStop.Image = Image.FromFile(Application.StartupPath + @"\Resources\Stop1.bmp");
@@ -2095,11 +2095,6 @@
 
         private void FormTimer_Tick(object sender, EventArgs e)
         {
-            double[] a = new double[300];
-            for (int i = 0; i < 300; i++)
-            {
-                a[i] = i*10;
-;           }
 
            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
            {
@@ -2111,12 +2106,23 @@
 
         private void toolStripButtonStart_Click(object sender, EventArgs e)
         {
-            if (NetModuleHelper.connectStatus != 1)
+            if (!this.FormTimer.Enabled)
             {
-                return;
+                this.FormTimer.Start();
             }
-            NetModuleHelper.StartSampling();
-            this.FormTimer.Start();
+            if (!AlllChannels.dataSamplingStatus)
+            {
+                this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Running.bmp");
+                NetModuleHelper.StartSampling();
+                AlllChannels.dataSamplingStatus = true;//数据采集标志开启
+            }
+            else
+            {
+                this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Run.bmp");
+                NetModuleHelper.StopSampling();
+                AlllChannels.dataSamplingStatus = false;//数据采集标志开启
+            }
+
         }
     }
 }

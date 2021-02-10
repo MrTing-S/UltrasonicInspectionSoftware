@@ -22,15 +22,10 @@ namespace HSD_EMAT_Chan4.DLL
                 connectStatus = -1;
                 return;
             };
-            Thread thread = new Thread(() =>
-              {
-                  if (NetModulDll.GetConnectStatus(ref HSD_EMAT.pConnectNo))
-                  {
-                      connectStatus = 1;
-                  }
-              });
-            thread.IsBackground = true;
-            thread.Start();
+            if (NetModulDll.GetConnectStatus(ref HSD_EMAT.pConnectNo))
+            {
+                connectStatus = 1;
+            }
         }
 
         /// <summary>
@@ -54,6 +49,11 @@ namespace HSD_EMAT_Chan4.DLL
         public static void StartSampling()
         {
             DLL.NetModulDll.SendCmdSampleStart();
+        }
+
+        public static void StopSampling()
+        {
+            DLL.NetModulDll.SendCmdSampleClose();
         }
 
         public static void ReadData(Channel channel)

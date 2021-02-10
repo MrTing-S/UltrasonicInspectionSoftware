@@ -79,6 +79,9 @@
             this.Controls.Add(this.butSave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxconfigName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConfigFileSaveForm";
             this.Text = "配置另存为";
             this.ResumeLayout(false);
