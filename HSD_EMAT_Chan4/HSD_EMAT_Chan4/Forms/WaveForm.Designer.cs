@@ -46,6 +46,8 @@
             this.Controls.Add(this.chartControl1);
             this.Name = "WaveForm";
             this.Text = "WaveForm";
+            this.Load += new System.EventHandler(this.WaveForm_Load);
+            this.Move += new System.EventHandler(this.WaveForm_Move);
             this.ResumeLayout(false);
 
         }

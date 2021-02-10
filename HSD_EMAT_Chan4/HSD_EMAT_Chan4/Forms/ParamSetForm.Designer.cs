@@ -83,6 +83,8 @@
             this.trackBarDigitalGian = new System.Windows.Forms.TrackBar();
             this.buttonSaveConfig = new System.Windows.Forms.Button();
             this.buttonLoadConfig = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonLoadDefaultCnfig = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigital)).BeginInit();
@@ -95,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSignFreqRatio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAnalogGain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigitalGian)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label22
@@ -138,7 +141,7 @@
             // 
             // textBoxDialog
             // 
-            this.textBoxDialog.Location = new System.Drawing.Point(23, 648);
+            this.textBoxDialog.Location = new System.Drawing.Point(23, 656);
             this.textBoxDialog.Multiline = true;
             this.textBoxDialog.Name = "textBoxDialog";
             this.textBoxDialog.Size = new System.Drawing.Size(333, 91);
@@ -147,7 +150,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(20, 617);
+            this.label25.Location = new System.Drawing.Point(20, 625);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(82, 15);
             this.label25.TabIndex = 106;
@@ -680,30 +683,52 @@
             // 
             // buttonSaveConfig
             // 
-            this.buttonSaveConfig.Location = new System.Drawing.Point(19, 504);
+            this.buttonSaveConfig.Location = new System.Drawing.Point(27, 27);
             this.buttonSaveConfig.Name = "buttonSaveConfig";
-            this.buttonSaveConfig.Size = new System.Drawing.Size(100, 33);
+            this.buttonSaveConfig.Size = new System.Drawing.Size(100, 40);
             this.buttonSaveConfig.TabIndex = 108;
-            this.buttonSaveConfig.Text = "保存配置";
+            this.buttonSaveConfig.Text = "配置另存为";
             this.buttonSaveConfig.UseVisualStyleBackColor = true;
             this.buttonSaveConfig.Click += new System.EventHandler(this.buttonSaveConfig_Click);
             // 
             // buttonLoadConfig
             // 
-            this.buttonLoadConfig.Location = new System.Drawing.Point(127, 504);
+            this.buttonLoadConfig.Location = new System.Drawing.Point(135, 27);
             this.buttonLoadConfig.Name = "buttonLoadConfig";
-            this.buttonLoadConfig.Size = new System.Drawing.Size(100, 33);
+            this.buttonLoadConfig.Size = new System.Drawing.Size(100, 40);
             this.buttonLoadConfig.TabIndex = 108;
             this.buttonLoadConfig.Text = "加载配置";
             this.buttonLoadConfig.UseVisualStyleBackColor = true;
+            this.buttonLoadConfig.Click += new System.EventHandler(this.buttonLoadConfig_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.buttonSaveConfig);
+            this.groupBox2.Controls.Add(this.buttonLoadDefaultCnfig);
+            this.groupBox2.Controls.Add(this.buttonLoadConfig);
+            this.groupBox2.Location = new System.Drawing.Point(12, 499);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(380, 80);
+            this.groupBox2.TabIndex = 109;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "配置设置";
+            // 
+            // buttonLoadDefaultCnfig
+            // 
+            this.buttonLoadDefaultCnfig.Location = new System.Drawing.Point(249, 27);
+            this.buttonLoadDefaultCnfig.Name = "buttonLoadDefaultCnfig";
+            this.buttonLoadDefaultCnfig.Size = new System.Drawing.Size(109, 40);
+            this.buttonLoadDefaultCnfig.TabIndex = 108;
+            this.buttonLoadDefaultCnfig.Text = "加载默认配置";
+            this.buttonLoadDefaultCnfig.UseVisualStyleBackColor = true;
+            this.buttonLoadDefaultCnfig.Click += new System.EventHandler(this.buttonLoadDefaultCnfig_Click);
             // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 776);
-            this.Controls.Add(this.buttonLoadConfig);
-            this.Controls.Add(this.buttonSaveConfig);
+            this.ClientSize = new System.Drawing.Size(382, 1042);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.textBoxDialog);
             this.Controls.Add(this.label22);
@@ -713,6 +738,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ParamSetForm";
             this.Text = "参数设置";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParamSetForm_FormClosing);
+            this.Load += new System.EventHandler(this.ParamSetForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -726,6 +753,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSignFreqRatio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAnalogGain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigitalGian)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,5 +815,7 @@
         private System.Windows.Forms.TrackBar trackBarDigitalGian;
         private System.Windows.Forms.Button buttonSaveConfig;
         private System.Windows.Forms.Button buttonLoadConfig;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button buttonLoadDefaultCnfig;
     }
 }

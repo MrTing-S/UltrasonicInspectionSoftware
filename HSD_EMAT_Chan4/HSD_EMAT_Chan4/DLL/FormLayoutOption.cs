@@ -74,6 +74,7 @@ namespace HSD_EMAT_Chan4.DLL
             AllForms.m_WaveForms[1].Location = new Point(AllForms.m_WaveForms[0].Width, 0);
             AllForms.m_WaveForms[2].Location = new Point(0, AllForms.m_WaveForms[0].Height);
             AllForms.m_WaveForms[3].Location = new Point(AllForms.m_WaveForms[0].Width, AllForms.m_WaveForms[0].Height);
+           
             for (int i = 0; i < 4; i++)
             {
                 AllForms.m_WaveForms[i].Show();

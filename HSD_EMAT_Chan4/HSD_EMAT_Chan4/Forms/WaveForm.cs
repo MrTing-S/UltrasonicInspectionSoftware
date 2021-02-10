@@ -13,7 +13,7 @@ namespace HSD_EMAT_Chan4.Forms
 {
     public partial class WaveForm : Form
     {
-
+        Point formPoint;
         public WaveForm()
         {
             InitializeComponent();
@@ -29,6 +29,16 @@ namespace HSD_EMAT_Chan4.Forms
         {
             this.Size = new Size(width,height);
             chartControl1.Size = this.Size;
+        }
+
+        private void WaveForm_Move(object sender, EventArgs e)
+        {
+           //this.Location = formPoint;
+        }
+
+        private void WaveForm_Load(object sender, EventArgs e)
+        {
+            //formPoint = this.Location;
         }
     }
 }

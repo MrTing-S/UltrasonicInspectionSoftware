@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.IO;
     using System.Windows.Forms;
     using System.Xml;
     using HSD_EMAT_Chan4.Models;
 
     public partial class ParamSetForm : Form
     {
-        private int ChanNum = 0;//当前窗口设置的参数信息
+        private int currChanNum = 0;//当前窗口设置的参数信息
         private ChannelParam[] currChannelParam=new ChannelParam[HSD_EMAT.totalChannelNum];//当前的参数信息
         private string configPath = Application.StartupPath + "\\ConfigFile\\";//config文件的地址
         List<string> configPathNames = new List<string>();//默认最大目录数目不超过50个
@@ -24,19 +25,19 @@
         #region 滚动条事件
         private void trackBarRange_Scroll(object sender, System.EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
+            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
             DLL.NetModulDll.setRange(this.trackBarRange.Value);
             this.textBoxRange.Text = this.trackBarRange.Value.ToString();
         }
 
         private void trackBar_Scroll(object sender, System.EventArgs e)//通用的滚动条参数数据
         {
-            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);//设置当前通道
+            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);//设置当前通道
             TrackBar trackBar = (TrackBar)sender;
             switch (trackBar.Tag.ToString())
             {
                 case "tr1":
-                        {
+                    {
                         this.textBoxDigitalGainValue.Text = (trackBar.Value / 10).ToString();
                         DLL.NetModulDll.SendCmdDB1((uint)trackBar.Value);
                         break; 
@@ -113,7 +114,6 @@
                         break;
                     }
             }
-
         }
 
         #endregion
@@ -121,13 +121,14 @@
         #region 多选框事件
         private void comboBoxChanNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ChanNum = this.comboBoxChanNum.SelectedIndex;
-            AllForms.m_WaveForms[ChanNum].Focus();
+            this.currChanNum = this.comboBoxChanNum.SelectedIndex;
+            UpdateFormFromParam(currChanNum);
+            AllForms.m_WaveForms[currChanNum].Focus();
         }
 
         private void comboBoxWaveType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DLL.NetModulDll.SendCmdCurrentChan(ChanNum);
+            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
             DLL.NetModulDll.SendCmdWaveType((uint)this.comboBoxWaveType.SelectedIndex);
         }
 
@@ -152,16 +153,44 @@
 
         #endregion 
 
-        private void  UpDateParam(Channel channel)
-        {
-            
-        }
-
         private void buttonSaveConfig_Click(object sender, EventArgs e)
         {
+            ConfigFileSaveForm configFileSaveForm = new ConfigFileSaveForm();
+            configFileSaveForm.ShowDialog();
+            UpdateParamFromForm(currChanNum);
+            if (configFileSaveForm.DialogResult == DialogResult.OK)
+            {
+                if (configFileSaveForm.fileName.Length == 0)
+                {
+                    MessageBox.Show("请输入配置文件名");
+                    return;
+                }
+                else
+                {
+                    SaveParamToXml(configFileSaveForm.fileName);
+                    MessageBox.Show("配置文件保存成功");
+                }
+            }
 
         }
 
+        private void buttonLoadConfig_Click(object sender, EventArgs e)
+        {
+            FindAllConfigFileName(configPath);//获取所有的文件名
+            ConfigFileLoadForm configFileLoadForm = new ConfigFileLoadForm(configPathNames);
+            configFileLoadForm.ShowDialog();
+            if (configFileLoadForm.DialogResult == DialogResult.Cancel)
+            {
+                SaveParamToXml("configInfo");//配置清空，重建默认配置
+            }
+            if (configFileLoadForm.DialogResult == DialogResult.Yes)
+            {
+                UpdateParamFromXml(configFileLoadForm.fileName);
+                UpdateFormFromParam(currChanNum);
+            }
+        }
+
+        #region 读取与存储配置函数
         public void CreateNode(XmlDocument xmlDoc, XmlNode parentNode, string name, string value)
         {
             XmlNode node = xmlDoc.CreateNode(XmlNodeType.Element, name, null);
@@ -169,7 +198,7 @@
             parentNode.AppendChild(node);
         }
 
-        private void SaveParamToXml()
+        private void SaveParamToXml(string fileName)
         {
             //保存窗口数据到xml文件中
             XmlDocument xmlDoc = new XmlDocument();
@@ -177,25 +206,83 @@
             XmlNode node = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", "");
             xmlDoc.AppendChild(node);
             //创建根节点  
-            XmlNode root = xmlDoc.CreateElement("ConfigInfo");
-            xmlDoc.AppendChild(root);
-            CreateNode(xmlDoc, root, "filename", objDataSet.fileName);
-            CreateNode(xmlDoc, root, "data1", objDataSet.data1.ToString());
-            CreateNode(xmlDoc, root, "data2", objDataSet.data2.ToString());
-            CreateNode(xmlDoc, root, "data3", objDataSet.data3.ToString());
-            CreateNode(xmlDoc, root, "data4", objDataSet.data4.ToString());
-            CreateNode(xmlDoc, root, "selectIndex", objDataSet.selectIndex.ToString());
+            XmlNode rootFileName = xmlDoc.CreateElement("configInfo");
+            xmlDoc.AppendChild(rootFileName);
+            CreateNode(xmlDoc, rootFileName, "fileName", fileName);
 
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                XmlNode root = xmlDoc.CreateElement("channel"+i.ToString());
+                xmlDoc.DocumentElement.AppendChild(root);
+                CreateNode(xmlDoc, root, "analogGain", currChannelParam[i].analogGain.ToString());
+                CreateNode(xmlDoc, root, "digitalGian", currChannelParam[i].digitalGian.ToString());
+                CreateNode(xmlDoc, root, "freqRatio", currChannelParam[i].freqRatio.ToString());
+                CreateNode(xmlDoc, root, "repeatFreq", currChannelParam[i].repeatFreq.ToString());
+                CreateNode(xmlDoc, root, "delayCount", currChannelParam[i].delayCount.ToString());
+                CreateNode(xmlDoc, root, "pulNumber", currChannelParam[i].pulNumber.ToString());
+                CreateNode(xmlDoc, root, "aveNumber", currChannelParam[i].aveNumber.ToString());
+                CreateNode(xmlDoc, root, "fixNumber", currChannelParam[i].fixNumber.ToString());
+                CreateNode(xmlDoc, root, "highVoltage", currChannelParam[i].highVoltage.ToString());
+                CreateNode(xmlDoc, root, "digital", currChannelParam[i].digital.ToString());
+            }
             try
             {
-                string filePath = configPath + objDataSet.fileName;
+                string filePath = configPath + fileName;
                 xmlDoc.Save(filePath);//如果文件存在会直接覆盖
-                MessageBox.Show("保存成功");
             }
             catch (Exception error)
             {
-                //显示错误信息  
-                Console.WriteLine(error.Message);
+                Console.WriteLine(error.Message.ToString());
+            }
+        }
+
+        private void UpdateParamFromXml(string xmlFilePath)
+        {
+            try
+            {
+                //初始化一个xml实例
+                XmlDocument myXmlDoc = new XmlDocument();
+                //加载xml文件（参数为xml文件的路径）
+                myXmlDoc.Load(configPath+ xmlFilePath);
+                //获得第一个姓名匹配的节点（SelectSingleNode）：此xml文件的根节点
+                XmlNode topRootNode = myXmlDoc.SelectSingleNode("configInfo");
+                XmlNode rootNode;
+                for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+                {
+                    rootNode = topRootNode.SelectSingleNode("channel"+i.ToString());
+                    currChannelParam[i].analogGain = Convert.ToUInt32(rootNode.SelectSingleNode("analogGain").FirstChild.InnerText);
+                    currChannelParam[i].digitalGian = Convert.ToUInt32(rootNode.SelectSingleNode("digitalGian").FirstChild.InnerText);
+                    currChannelParam[i].freqRatio = Convert.ToUInt32(rootNode.SelectSingleNode("freqRatio").FirstChild.InnerText);
+                    currChannelParam[i].repeatFreq = Convert.ToUInt32(rootNode.SelectSingleNode("repeatFreq").FirstChild.InnerText);
+                    currChannelParam[i].delayCount = Convert.ToUInt32(rootNode.SelectSingleNode("delayCount").FirstChild.InnerText);
+                    currChannelParam[i].pulNumber = Convert.ToUInt32(rootNode.SelectSingleNode("pulNumber").FirstChild.InnerText);
+                    currChannelParam[i].aveNumber = Convert.ToUInt32(rootNode.SelectSingleNode("aveNumber").FirstChild.InnerText);
+                    currChannelParam[i].fixNumber = Convert.ToUInt32(rootNode.SelectSingleNode("fixNumber").FirstChild.InnerText);
+                    currChannelParam[i].highVoltage = Convert.ToUInt32(rootNode.SelectSingleNode("highVoltage").FirstChild.InnerText);
+                    currChannelParam[i].digital = Convert.ToUInt32(rootNode.SelectSingleNode("digital").FirstChild.InnerText);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void FindAllConfigFileName(string path)
+        {
+            configPathNames.Clear();
+            DirectoryInfo objDirectoryInfo = new DirectoryInfo(path);
+            FileSystemInfo[] objFileSystemInfo = objDirectoryInfo.GetFileSystemInfos();//返回文件夹数组
+            foreach (FileSystemInfo item in objFileSystemInfo)
+            {
+                if (item is DirectoryInfo)//判断是否为文件夹
+                {
+                    FindAllConfigFileName(item.FullName);//如果有文件夹，则递归
+                }
+                else
+                {
+                    configPathNames.Add(item.Name);
+                }
             }
         }
 
@@ -218,10 +305,11 @@
             #endregion
         }
 
-        private void UpdateTrackBarValueFromParam(int iChan)
+        private void UpdateFormFromParam(int iChan)
         {
+            //更新滚动条数据
             this.trackBarAnalogGain.Value = (int)currChannelParam[iChan].analogGain;
-            this.trackBarDigitalGian.Value = (int)currChannelParam[iChan].digitalGian;
+            this.trackBarDigitalGian .Value = (int)currChannelParam[iChan].digitalGian;
             this.trackBarSignFreqRatio.Value = (int)currChannelParam[iChan].freqRatio;
             this.trackBarRepeatFreq.Value = (int)currChannelParam[iChan].repeatFreq;
             this.trackBarSendCmdDelayCount.Value = (int)currChannelParam[iChan].delayCount;
@@ -230,8 +318,91 @@
             this.trackBarFixNumber.Value = (int)currChannelParam[iChan].fixNumber;
             this.trackBarHighVoltage.Value = (int)currChannelParam[iChan].highVoltage;
             this.trackBarDigital.Value = (int)currChannelParam[iChan].digital;
+
+            //更新数据框显示
+            this.textBoxDigitalGainValue.Text = (this.trackBarDigitalGian.Value / 10).ToString();
+            this.textBoxAnalogGainValue.Text = (this.trackBarAnalogGain.Value / 10).ToString();
+            this.textBoxSignFreqRatio.Text = (Convert.ToDouble(this.trackBarSignFreqRatio.Value) / 10).ToString();
+            switch (this.trackBarRepeatFreq.Value.ToString())
+            {
+                case "0":
+                    this.textBoxRepeatFreq.Text = "15Hz";
+                    break;
+                case "1":
+                    this.textBoxRepeatFreq.Text = "50Hz";
+                    break;
+                case "2":
+                    this.textBoxRepeatFreq.Text = "100Hz";
+                    break;
+                case "3":
+                    this.textBoxRepeatFreq.Text = "200Hz";
+                    break;
+                case "4":
+                    this.textBoxRepeatFreq.Text = "500Hz";
+                    break;
+            }
+            this.textBoxDelayCount.Text = this.trackBarRepeatFreq.Value.ToString();
+            this.textBoxPulNumber.Text = (this.trackBarPulNumber.Value + 1).ToString();
+            this.textBoxAveNumber.Text = Math.Pow(2, (double)(this.trackBarAveNumber.Value)).ToString();
+            this.textBoxFixNumber.Text = (this.trackBarFixNumber.Value + 1).ToString();
+            this.textBoxHighVoltage.Text = (300 + 50 * this.trackBarHighVoltage.Value).ToString();
+            this.textBoxDigital.Text = this.trackBarDigital.Value.ToString();
+
+            //更新系统参数
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                UpDateSysParam(i);
+            }
         }
 
+        private void UpDateSysParam(int iChan)
+        {
+            DLL.NetModulDll.SendCmdDB1(currChannelParam[iChan].digitalGian);
+            DLL.NetModulDll.SendCmdDB2(currChannelParam[iChan].analogGain);
+            DLL.NetModulDll.SendCmdSignFreqRatio(currChannelParam[iChan].freqRatio * 100000);
+            DLL.NetModulDll.SendCmdRepeatFreq(currChannelParam[iChan].repeatFreq);
+            DLL.NetModulDll.SendCmdDelayCount(currChannelParam[iChan].delayCount * 100);
+            DLL.NetModulDll.SendCmdPulNumber(currChannelParam[iChan].pulNumber+1);
+            DLL.NetModulDll.SendCmdAveNumber(currChannelParam[iChan].aveNumber);
+            DLL.NetModulDll.SendCmdFixNumber(currChannelParam[iChan].fixNumber);
+            DLL.NetModulDll.SendCmdHighVoltage(currChannelParam[iChan].highVoltage);
+            DLL.NetModulDll.SendCmdDigital(currChannelParam[iChan].digital);
+        }
+        #endregion
 
+
+        private void ParamSetForm_Load(object sender, EventArgs e)
+        {
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                currChannelParam[i] = new ChannelParam();//初始化参数数组
+            }
+            if (!File.Exists(configPath))//创建配置文件夹
+            {
+                Directory.CreateDirectory(configPath);
+            }
+            if (!File.Exists(configPath + "configInfo"))//如果没有配置文件，创建一个初始的配置文件
+            {
+                for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+                {
+                    UpdateParamFromForm(i);
+                }
+                SaveParamToXml("configInfo");
+            }
+            UpdateParamFromXml("configInfo");//从配置中读取参数
+            UpdateFormFromParam(currChanNum);//初始化参数显示
+        }
+
+        private void ParamSetForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UpdateParamFromForm(currChanNum);
+            SaveParamToXml("configInfo");//记录退出前的配置
+        }
+
+        private void buttonLoadDefaultCnfig_Click(object sender, EventArgs e)
+        {
+            UpdateParamFromXml("configInfo");//从配置中读取参数
+            UpdateFormFromParam(currChanNum);//初始化参数显示
+        }
     }
 }

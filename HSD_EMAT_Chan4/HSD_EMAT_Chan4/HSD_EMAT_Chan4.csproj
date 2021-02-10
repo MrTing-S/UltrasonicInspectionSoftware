@@ -80,6 +80,18 @@
     <Compile Include="DLL\NetModulDll.cs" />
     <Compile Include="DLL\NetModuleHelper.cs" />
     <Compile Include="DLL\ChannelOption.cs" />
+    <Compile Include="Forms\ConfigFileLoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigFileLoadForm.Designer.cs">
+      <DependentUpon>ConfigFileLoadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConfigFileSaveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigFileSaveForm.Designer.cs">
+      <DependentUpon>ConfigFileSaveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,12 @@
     <Compile Include="Models\HSD_EMAT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ConfigFileLoadForm.resx">
+      <DependentUpon>ConfigFileLoadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfigFileSaveForm.resx">
+      <DependentUpon>ConfigFileSaveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
