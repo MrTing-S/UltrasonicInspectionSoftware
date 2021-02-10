@@ -1,4 +1,4 @@
-﻿namespace HSD_EMAT_Chan4.Forms
+﻿ namespace HSD_EMAT_Chan4.Forms
 {
     using System;
     using System.Collections.Generic;
@@ -23,12 +23,6 @@
         }
 
         #region 滚动条事件
-        private void trackBarRange_Scroll(object sender, System.EventArgs e)
-        {
-            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
-            DLL.NetModulDll.setRange(this.trackBarRange.Value);
-            this.textBoxRange.Text = this.trackBarRange.Value.ToString();
-        }
 
         private void trackBar_Scroll(object sender, System.EventArgs e)//通用的滚动条参数数据
         {
@@ -113,9 +107,15 @@
                         this.textBoxDigital.Text = trackBar.Value.ToString();
                         break;
                     }
+                case "tr11":
+                    {
+                        DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
+                        DLL.NetModulDll.setRange(trackBar.Value);
+                        this.textBoxRange.Text = trackBar.Value.ToString();
+                        break;
+                    }
             }
         }
-
         #endregion
 
         #region 多选框事件
@@ -138,7 +138,7 @@
             {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
                 {
-                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomIn(300);
+                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomChange(300);
                 }
             }
 
@@ -146,12 +146,14 @@
             {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
                 {
-                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomIn(2000);
+                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomChange(2000);
                 }
             }
         }
 
-        #endregion 
+        #endregion
+
+        #region 配置操作按钮事件
 
         private void buttonSaveConfig_Click(object sender, EventArgs e)
         {
@@ -190,6 +192,13 @@
             }
         }
 
+        private void buttonLoadDefaultCnfig_Click(object sender, EventArgs e)
+        {
+            UpdateParamFromXml("configInfo");//从配置中读取参数
+            UpdateFormFromParam(currChanNum);//初始化参数显示
+        }
+        #endregion
+
         #region 读取与存储配置函数
         public void CreateNode(XmlDocument xmlDoc, XmlNode parentNode, string name, string value)
         {
@@ -224,6 +233,7 @@
                 CreateNode(xmlDoc, root, "fixNumber", currChannelParam[i].fixNumber.ToString());
                 CreateNode(xmlDoc, root, "highVoltage", currChannelParam[i].highVoltage.ToString());
                 CreateNode(xmlDoc, root, "digital", currChannelParam[i].digital.ToString());
+                CreateNode(xmlDoc, root, "range", currChannelParam[i].range.ToString());
             }
             try
             {
@@ -260,6 +270,7 @@
                     currChannelParam[i].fixNumber = Convert.ToUInt32(rootNode.SelectSingleNode("fixNumber").FirstChild.InnerText);
                     currChannelParam[i].highVoltage = Convert.ToUInt32(rootNode.SelectSingleNode("highVoltage").FirstChild.InnerText);
                     currChannelParam[i].digital = Convert.ToUInt32(rootNode.SelectSingleNode("digital").FirstChild.InnerText);
+                    currChannelParam[i].range  = Convert.ToInt32(rootNode.SelectSingleNode("range").FirstChild.InnerText);
                 }
             }
             catch (Exception ex)
@@ -289,18 +300,19 @@
         private void UpdateParamFromForm(int iChan)
         {
             #region 将当前参数记录到currChannelParam[]数组中
-                currChannelParam[iChan] = new ChannelParam()
-                {
-                    analogGain = (uint)this.trackBarAnalogGain.Value,
-                    digitalGian = (uint)this.trackBarDigitalGian.Value,
-                    freqRatio = (uint)this.trackBarSignFreqRatio.Value,
-                    repeatFreq = (uint)this.trackBarRepeatFreq.Value,
-                    delayCount = (uint)this.trackBarSendCmdDelayCount.Value,
-                    pulNumber = (uint)this.trackBarPulNumber.Value,
-                    aveNumber = (uint)this.trackBarAveNumber.Value,
-                    fixNumber = (uint)this.trackBarFixNumber.Value,
-                    highVoltage = (uint)trackBarHighVoltage.Value,
-                    digital = (uint)trackBarDigital.Value
+            currChannelParam[iChan] = new ChannelParam()
+            {
+                analogGain = (uint)this.trackBarAnalogGain.Value,
+                digitalGian = (uint)this.trackBarDigitalGian.Value,
+                freqRatio = (uint)this.trackBarSignFreqRatio.Value,
+                repeatFreq = (uint)this.trackBarRepeatFreq.Value,
+                delayCount = (uint)this.trackBarSendCmdDelayCount.Value,
+                pulNumber = (uint)this.trackBarPulNumber.Value,
+                aveNumber = (uint)this.trackBarAveNumber.Value,
+                fixNumber = (uint)this.trackBarFixNumber.Value,
+                highVoltage = (uint)trackBarHighVoltage.Value,
+                digital = (uint)trackBarDigital.Value,
+                range = trackBarRange.Value   
                 };
             #endregion
         }
@@ -318,6 +330,7 @@
             this.trackBarFixNumber.Value = (int)currChannelParam[iChan].fixNumber;
             this.trackBarHighVoltage.Value = (int)currChannelParam[iChan].highVoltage;
             this.trackBarDigital.Value = (int)currChannelParam[iChan].digital;
+            this.trackBarRange.Value = currChannelParam[iChan].range;
 
             //更新数据框显示
             this.textBoxDigitalGainValue.Text = (this.trackBarDigitalGian.Value / 10).ToString();
@@ -347,6 +360,7 @@
             this.textBoxFixNumber.Text = (this.trackBarFixNumber.Value + 1).ToString();
             this.textBoxHighVoltage.Text = (300 + 50 * this.trackBarHighVoltage.Value).ToString();
             this.textBoxDigital.Text = this.trackBarDigital.Value.ToString();
+            this.textBoxRange.Text = this.trackBarRange.Value.ToString();
 
             //更新系统参数
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
@@ -357,6 +371,7 @@
 
         private void UpDateSysParam(int iChan)
         {
+            DLL.NetModulDll.SendCmdCurrentChan(iChan);
             DLL.NetModulDll.SendCmdDB1(currChannelParam[iChan].digitalGian);
             DLL.NetModulDll.SendCmdDB2(currChannelParam[iChan].analogGain);
             DLL.NetModulDll.SendCmdSignFreqRatio(currChannelParam[iChan].freqRatio * 100000);
@@ -367,10 +382,11 @@
             DLL.NetModulDll.SendCmdFixNumber(currChannelParam[iChan].fixNumber);
             DLL.NetModulDll.SendCmdHighVoltage(currChannelParam[iChan].highVoltage);
             DLL.NetModulDll.SendCmdDigital(currChannelParam[iChan].digital);
+            DLL.NetModulDll.setRange(currChannelParam[iChan].range);
         }
         #endregion
 
-
+        #region 窗体加载与关闭事件
         private void ParamSetForm_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
@@ -398,11 +414,7 @@
             UpdateParamFromForm(currChanNum);
             SaveParamToXml("configInfo");//记录退出前的配置
         }
+        #endregion
 
-        private void buttonLoadDefaultCnfig_Click(object sender, EventArgs e)
-        {
-            UpdateParamFromXml("configInfo");//从配置中读取参数
-            UpdateFormFromParam(currChanNum);//初始化参数显示
-        }
     }
 }

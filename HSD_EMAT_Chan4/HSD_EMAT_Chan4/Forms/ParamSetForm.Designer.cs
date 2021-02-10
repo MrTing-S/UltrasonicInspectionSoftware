@@ -103,7 +103,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(101, 463);
+            this.label22.Location = new System.Drawing.Point(86, 434);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(23, 15);
             this.label22.TabIndex = 102;
@@ -112,7 +112,7 @@
             // textBoxRange
             // 
             this.textBoxRange.BackColor = System.Drawing.Color.White;
-            this.textBoxRange.Location = new System.Drawing.Point(65, 460);
+            this.textBoxRange.Location = new System.Drawing.Point(50, 431);
             this.textBoxRange.Name = "textBoxRange";
             this.textBoxRange.Size = new System.Drawing.Size(30, 25);
             this.textBoxRange.TabIndex = 101;
@@ -121,7 +121,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 464);
+            this.label21.Location = new System.Drawing.Point(5, 435);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(52, 15);
             this.label21.TabIndex = 99;
@@ -129,15 +129,16 @@
             // 
             // trackBarRange
             // 
-            this.trackBarRange.Location = new System.Drawing.Point(126, 458);
+            this.trackBarRange.Location = new System.Drawing.Point(111, 429);
             this.trackBarRange.Maximum = 80;
             this.trackBarRange.Minimum = 10;
             this.trackBarRange.Name = "trackBarRange";
             this.trackBarRange.Size = new System.Drawing.Size(240, 56);
             this.trackBarRange.TabIndex = 100;
+            this.trackBarRange.Tag = "tr11";
             this.trackBarRange.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarRange.Value = 45;
-            this.trackBarRange.Scroll += new System.EventHandler(this.trackBarRange_Scroll);
+            this.trackBarRange.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // textBoxDialog
             // 
@@ -161,8 +162,11 @@
             this.groupBox1.Controls.Add(this.comboBoxChanNum);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.comboBoxWaveType);
+            this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.comboBoxDataTpye);
+            this.groupBox1.Controls.Add(this.textBoxRange);
             this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.textBoxDigital);
@@ -204,9 +208,10 @@
             this.groupBox1.Controls.Add(this.trackBarSignFreqRatio);
             this.groupBox1.Controls.Add(this.trackBarAnalogGain);
             this.groupBox1.Controls.Add(this.trackBarDigitalGian);
+            this.groupBox1.Controls.Add(this.trackBarRange);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 440);
+            this.groupBox1.Size = new System.Drawing.Size(380, 505);
             this.groupBox1.TabIndex = 107;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "单通道参数";
@@ -706,7 +711,7 @@
             this.groupBox2.Controls.Add(this.buttonSaveConfig);
             this.groupBox2.Controls.Add(this.buttonLoadDefaultCnfig);
             this.groupBox2.Controls.Add(this.buttonLoadConfig);
-            this.groupBox2.Location = new System.Drawing.Point(12, 499);
+            this.groupBox2.Location = new System.Drawing.Point(12, 523);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(380, 80);
             this.groupBox2.TabIndex = 109;
@@ -728,14 +733,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 1042);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.textBoxDialog);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.textBoxRange);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.trackBarRange);
-            this.Controls.Add(this.groupBox1);
             this.Name = "ParamSetForm";
             this.Text = "参数设置";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParamSetForm_FormClosing);

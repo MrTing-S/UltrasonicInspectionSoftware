@@ -21,24 +21,14 @@ namespace HSD_EMAT_Chan4.Forms
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             this.chartControl1.ChartInit();
-            this.chartControl1.ChartXSizeZoomIn(300);
-            this.chartControl1.ChartYSizeZoomIn(260, 0);
+            this.chartControl1.ChartXSizeZoomChange(300);
+            //this.chartControl1.ChartYSizeZoomIn(260, 0);
         }
 
         public void  m_ChangeFormSize(int width, int height)
         {
             this.Size = new Size(width,height);
             chartControl1.Size = this.Size;
-        }
-
-        private void WaveForm_Move(object sender, EventArgs e)
-        {
-           //this.Location = formPoint;
-        }
-
-        private void WaveForm_Load(object sender, EventArgs e)
-        {
-            //formPoint = this.Location;
         }
     }
 }

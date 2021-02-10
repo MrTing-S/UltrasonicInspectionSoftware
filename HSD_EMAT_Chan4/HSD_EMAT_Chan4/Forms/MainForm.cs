@@ -2095,8 +2095,14 @@
 
         private void FormTimer_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            double[] a = new double[300];
+            for (int i = 0; i < 300; i++)
             {
+                a[i] = i*10;
+;           }
+
+           for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+           {
                 NetModuleHelper.ReadData(AlllChannels.m_Channels[i]);
                 AllForms.m_WaveForms[i].chartControl1.ChartData = Funcations.ArrayUshortToDouble(AlllChannels.m_Channels[i].wavaData);
                 AllForms.m_WaveForms[i].chartControl1.DrawLine();

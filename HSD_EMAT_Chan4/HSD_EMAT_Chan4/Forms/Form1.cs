@@ -31,8 +31,8 @@
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             this.chartControl1.ChartInit();
-            this.chartControl1.ChartXSizeZoomIn(300);
-            this.chartControl1.ChartYSizeZoomIn(201,50);
+            this.chartControl1.ChartXSizeZoomChange(300);
+            this.chartControl1.ChartYSizeZoomChange(201,50);
 
             this.comboBoxWaveType.SelectedIndex = 3;
             this.comboBoxDataTpye.SelectedIndex = 0;
@@ -315,13 +315,13 @@
         {
             if (this.comboBoxDataTpye.SelectedIndex == 0)
             {
-                chartControl1.ChartXSizeZoomIn(300);
+                chartControl1.ChartXSizeZoomChange(300);
                 //chartControl1.ChartYSizeZoomIn(201, 50);
             }
 
             if (this.comboBoxDataTpye.SelectedIndex == 1)
             {
-                chartControl1.ChartXSizeZoomIn(2000);
+                chartControl1.ChartXSizeZoomChange(2000);
                 //chartControl1.ChartYSizeZoomIn(201, 50);
             }
         }
