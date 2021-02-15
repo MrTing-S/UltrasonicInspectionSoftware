@@ -69,7 +69,7 @@
         private ToolStripMenuItem menuItemRealMeasureValueVisible;
         private ToolStripMenuItem menuItemRectMeasure;
         private ToolStripMenuItem menuItemSeverStop;
-        private ToolStripMenuItem menuItemRunAsServer;
+        private ToolStripMenuItem menuItemFireWallSetting;
         private ToolStripMenuItem MenuItemSave;
         private ToolStripMenuItem menuItemSaveAsPicture;
         private ToolStripMenuItem menuItemScanForm;
@@ -184,7 +184,7 @@
             this.QuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.连接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemConnectToServer = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemRunAsServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFireWallSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSeverStop = new System.Windows.Forms.ToolStripMenuItem();
             this.通道ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemChannelParameter = new System.Windows.Forms.ToolStripMenuItem();
@@ -350,7 +350,7 @@
             // MenuItemOpen
             // 
             this.MenuItemOpen.Name = "MenuItemOpen";
-            this.MenuItemOpen.Size = new System.Drawing.Size(201, 26);
+            this.MenuItemOpen.Size = new System.Drawing.Size(224, 26);
             this.MenuItemOpen.Tag = "Open File(&O)";
             this.MenuItemOpen.Text = "打开文件(&O)...";
             this.MenuItemOpen.Click += new System.EventHandler(this.MenuItemOpen_Click);
@@ -358,12 +358,12 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(221, 6);
             // 
             // MenuItemSave
             // 
             this.MenuItemSave.Name = "MenuItemSave";
-            this.MenuItemSave.Size = new System.Drawing.Size(201, 26);
+            this.MenuItemSave.Size = new System.Drawing.Size(224, 26);
             this.MenuItemSave.Tag = "Save Demarcate File(&S)";
             this.MenuItemSave.Text = "保存标定文件(&S)";
             this.MenuItemSave.Click += new System.EventHandler(this.MenuItemSave_Click);
@@ -371,7 +371,7 @@
             // SaveScanningToolStripMenuItem
             // 
             this.SaveScanningToolStripMenuItem.Name = "SaveScanningToolStripMenuItem";
-            this.SaveScanningToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.SaveScanningToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.SaveScanningToolStripMenuItem.Tag = "Save Scan File(&X)";
             this.SaveScanningToolStripMenuItem.Text = "保存扫查文件(&I)";
             this.SaveScanningToolStripMenuItem.Click += new System.EventHandler(this.SaveScanningToolStripMenuItem_Click);
@@ -379,12 +379,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemSaveAsPicture
             // 
             this.menuItemSaveAsPicture.Name = "menuItemSaveAsPicture";
-            this.menuItemSaveAsPicture.Size = new System.Drawing.Size(201, 26);
+            this.menuItemSaveAsPicture.Size = new System.Drawing.Size(224, 26);
             this.menuItemSaveAsPicture.Tag = "Save as picture...";
             this.menuItemSaveAsPicture.Text = "另存为图片(&P)...";
             this.menuItemSaveAsPicture.Click += new System.EventHandler(this.menuItemSaveAsPicture_Click);
@@ -392,7 +392,7 @@
             // menuItemPrintScreen
             // 
             this.menuItemPrintScreen.Name = "menuItemPrintScreen";
-            this.menuItemPrintScreen.Size = new System.Drawing.Size(201, 26);
+            this.menuItemPrintScreen.Size = new System.Drawing.Size(224, 26);
             this.menuItemPrintScreen.Tag = "menuItemPrintScreen";
             this.menuItemPrintScreen.Text = "打印屏幕(&R)...";
             this.menuItemPrintScreen.Click += new System.EventHandler(this.menuItemPrintScreen_Click);
@@ -400,12 +400,12 @@
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(221, 6);
             // 
             // QuitToolStripMenuItem
             // 
             this.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem";
-            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.QuitToolStripMenuItem.Tag = "Quit(&Q)";
             this.QuitToolStripMenuItem.Text = "退出(&X)";
             this.QuitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
@@ -414,7 +414,7 @@
             // 
             this.连接ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemConnectToServer,
-            this.menuItemRunAsServer,
+            this.menuItemFireWallSetting,
             this.menuItemSeverStop});
             this.连接ToolStripMenuItem.Name = "连接ToolStripMenuItem";
             this.连接ToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
@@ -425,23 +425,23 @@
             // menuItemConnectToServer
             // 
             this.menuItemConnectToServer.Name = "menuItemConnectToServer";
-            this.menuItemConnectToServer.Size = new System.Drawing.Size(231, 26);
+            this.menuItemConnectToServer.Size = new System.Drawing.Size(224, 26);
             this.menuItemConnectToServer.Tag = "Connect to local host(&C)";
             this.menuItemConnectToServer.Text = "连接主机(&C)";
             this.menuItemConnectToServer.Click += new System.EventHandler(this.menuItemConnectToServer_Click);
             // 
-            // menuItemRunAsServer
+            // menuItemFireWallSetting
             // 
-            this.menuItemRunAsServer.Name = "menuItemRunAsServer";
-            this.menuItemRunAsServer.Size = new System.Drawing.Size(231, 26);
-            this.menuItemRunAsServer.Tag = "Run as server(&S)";
-            this.menuItemRunAsServer.Text = "以服务器身份运行(&S)";
-            this.menuItemRunAsServer.Click += new System.EventHandler(this.menuItemRunAsServer_Click);
+            this.menuItemFireWallSetting.Name = "menuItemFireWallSetting";
+            this.menuItemFireWallSetting.Size = new System.Drawing.Size(224, 26);
+            this.menuItemFireWallSetting.Tag = "Run as server(&S)";
+            this.menuItemFireWallSetting.Text = "网络设置(&S)";
+            this.menuItemFireWallSetting.Click += new System.EventHandler(this.menuItemFireWallSetting_Click);
             // 
             // menuItemSeverStop
             // 
             this.menuItemSeverStop.Name = "menuItemSeverStop";
-            this.menuItemSeverStop.Size = new System.Drawing.Size(231, 26);
+            this.menuItemSeverStop.Size = new System.Drawing.Size(224, 26);
             this.menuItemSeverStop.Tag = "SeverStoop(&L)";
             this.menuItemSeverStop.Text = "关闭服务器(&L)";
             this.menuItemSeverStop.Click += new System.EventHandler(this.menuItemSeverStop_Click);
@@ -462,7 +462,7 @@
             // menuItemChannelParameter
             // 
             this.menuItemChannelParameter.Name = "menuItemChannelParameter";
-            this.menuItemChannelParameter.Size = new System.Drawing.Size(153, 26);
+            this.menuItemChannelParameter.Size = new System.Drawing.Size(224, 26);
             this.menuItemChannelParameter.Tag = "Parameter(&P)...";
             this.menuItemChannelParameter.Text = "参数(&P)...";
             this.menuItemChannelParameter.Click += new System.EventHandler(this.menuItemChannelParameter_Click);
@@ -470,7 +470,7 @@
             // menuItemFreezeAllChannel
             // 
             this.menuItemFreezeAllChannel.Name = "menuItemFreezeAllChannel";
-            this.menuItemFreezeAllChannel.Size = new System.Drawing.Size(153, 26);
+            this.menuItemFreezeAllChannel.Size = new System.Drawing.Size(224, 26);
             this.menuItemFreezeAllChannel.Tag = "Freeze";
             this.menuItemFreezeAllChannel.Text = "冻结";
             this.menuItemFreezeAllChannel.Click += new System.EventHandler(this.menuItemFreezeAllChannel_Click);
@@ -481,7 +481,7 @@
             this.menuItemChannelWorkEnable,
             this.menuItemChannelWorkDisable});
             this.menuItemChannelWork.Name = "menuItemChannelWork";
-            this.menuItemChannelWork.Size = new System.Drawing.Size(153, 26);
+            this.menuItemChannelWork.Size = new System.Drawing.Size(224, 26);
             this.menuItemChannelWork.Tag = "MenuItemChannelWork";
             this.menuItemChannelWork.Text = "通道工作";
             // 
@@ -490,7 +490,7 @@
             this.menuItemChannelWorkEnable.Checked = true;
             this.menuItemChannelWorkEnable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuItemChannelWorkEnable.Name = "menuItemChannelWorkEnable";
-            this.menuItemChannelWorkEnable.Size = new System.Drawing.Size(122, 26);
+            this.menuItemChannelWorkEnable.Size = new System.Drawing.Size(224, 26);
             this.menuItemChannelWorkEnable.Tag = "MenuItemChannelWorkEnable";
             this.menuItemChannelWorkEnable.Text = "开启";
             this.menuItemChannelWorkEnable.Click += new System.EventHandler(this.menuItemChannelWorkEnable_Click);
@@ -498,7 +498,7 @@
             // menuItemChannelWorkDisable
             // 
             this.menuItemChannelWorkDisable.Name = "menuItemChannelWorkDisable";
-            this.menuItemChannelWorkDisable.Size = new System.Drawing.Size(122, 26);
+            this.menuItemChannelWorkDisable.Size = new System.Drawing.Size(224, 26);
             this.menuItemChannelWorkDisable.Tag = "MenuItemChannelWorkDisable";
             this.menuItemChannelWorkDisable.Text = "关闭";
             this.menuItemChannelWorkDisable.Click += new System.EventHandler(this.menuItemChannelWorkDisable_Click);
@@ -506,7 +506,7 @@
             // menuItemMaxWaveDataSave
             // 
             this.menuItemMaxWaveDataSave.Name = "menuItemMaxWaveDataSave";
-            this.menuItemMaxWaveDataSave.Size = new System.Drawing.Size(153, 26);
+            this.menuItemMaxWaveDataSave.Size = new System.Drawing.Size(224, 26);
             this.menuItemMaxWaveDataSave.Tag = "MenuItemMaxDataMemory";
             this.menuItemMaxWaveDataSave.Text = "峰值记忆";
             this.menuItemMaxWaveDataSave.Click += new System.EventHandler(this.menuItemMaxWaveAllChannel_Click);
@@ -613,7 +613,7 @@
             // menuItemCheckPlanList
             // 
             this.menuItemCheckPlanList.Name = "menuItemCheckPlanList";
-            this.menuItemCheckPlanList.Size = new System.Drawing.Size(212, 26);
+            this.menuItemCheckPlanList.Size = new System.Drawing.Size(224, 26);
             this.menuItemCheckPlanList.Tag = "Check List(&L)...";
             this.menuItemCheckPlanList.Text = "检测计划清单(&L)...";
             this.menuItemCheckPlanList.Click += new System.EventHandler(this.menuItemCheckPlanList_Click);
@@ -621,12 +621,12 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(209, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemScanStart
             // 
             this.menuItemScanStart.Name = "menuItemScanStart";
-            this.menuItemScanStart.Size = new System.Drawing.Size(212, 26);
+            this.menuItemScanStart.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanStart.Tag = "Run(&T)";
             this.menuItemScanStart.Text = "启动(&T)";
             this.menuItemScanStart.Click += new System.EventHandler(this.menuItemScanStart_Click);
@@ -634,7 +634,7 @@
             // menuItemScanStop
             // 
             this.menuItemScanStop.Name = "menuItemScanStop";
-            this.menuItemScanStop.Size = new System.Drawing.Size(212, 26);
+            this.menuItemScanStop.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanStop.Tag = "Stop(&O)";
             this.menuItemScanStop.Text = "停止(&O)";
             this.menuItemScanStop.Click += new System.EventHandler(this.menuItemScanStop_Click);
@@ -642,12 +642,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(209, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemImageChannel
             // 
             this.menuItemImageChannel.Name = "menuItemImageChannel";
-            this.menuItemImageChannel.Size = new System.Drawing.Size(212, 26);
+            this.menuItemImageChannel.Size = new System.Drawing.Size(224, 26);
             this.menuItemImageChannel.Tag = "Image Channel(&C)...";
             this.menuItemImageChannel.Text = "图像通道(&C)...";
             this.menuItemImageChannel.Click += new System.EventHandler(this.menuItemImageChannel_Click);
@@ -658,7 +658,7 @@
             this.menuItemScanZoomNormal,
             this.menuItemScanZoomUserDefined});
             this.menuItemScanImageZoom.Name = "menuItemScanImageZoom";
-            this.menuItemScanImageZoom.Size = new System.Drawing.Size(212, 26);
+            this.menuItemScanImageZoom.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanImageZoom.Tag = "Zoom(&Z)...";
             this.menuItemScanImageZoom.Text = "显示比例(&Z)...";
             this.menuItemScanImageZoom.Click += new System.EventHandler(this.menuItemScanImageZoom_Click);
@@ -1163,6 +1163,7 @@
             this.toolStripButtonStart.Name = "toolStripButtonStart";
             this.toolStripButtonStart.Size = new System.Drawing.Size(29, 25);
             this.toolStripButtonStart.Tag = "Freeze";
+            this.toolStripButtonStart.ToolTipText = "开始采集";
             this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButtonStart_Click);
             // 
             // toolStripButtonWaveOrScan
@@ -1570,11 +1571,6 @@
         {
 
             this.toolStripStatusConnectStatus.Text = "已连接";
-        }
-
-        private void menuItemRunAsServer_Click(object sender, EventArgs e)
-        {
-             
         }
 
         private void 通道ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2113,16 +2109,24 @@
             if (!AlllChannels.dataSamplingStatus)
             {
                 this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Running.bmp");
+                this.toolStripButtonStart.ToolTipText = "停止采集";
                 NetModuleHelper.StartSampling();
                 AlllChannels.dataSamplingStatus = true;//数据采集标志开启
             }
             else
             {
                 this.toolStripButtonStart.Image = Image.FromFile(Application.StartupPath + @"\Resources\Run.bmp");
+                this.toolStripButtonStart.ToolTipText = "开始采集";
                 NetModuleHelper.StopSampling();
                 AlllChannels.dataSamplingStatus = false;//数据采集标志开启
             }
 
+        }
+
+        private void menuItemFireWallSetting_Click(object sender, EventArgs e)
+        {
+            FirewallSetForm m_FirewallSetForm = new FirewallSetForm();
+            m_FirewallSetForm.ShowDialog();
         }
     }
 }

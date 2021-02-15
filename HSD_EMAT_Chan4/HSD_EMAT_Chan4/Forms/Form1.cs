@@ -132,7 +132,7 @@
 
         private void btnCheckAdmRight_Click(object sender, EventArgs e)
         {
-            if (DLL.FireWallHandle.IsAdministrator())
+            if (DLL.FireWallSet.IsAdministrator())
             {
                 Console.WriteLine("已授权管理员权限");
             }
@@ -144,7 +144,7 @@
 
         private void btnFireWallClose_Click(object sender, EventArgs e)
         {
-            if (DLL.FireWallHandle.FirewallOperateByObject(false, false, false))
+            if (DLL.FireWallSet.FirewallOperateByObject(false, false, false))
             {
                 Console.WriteLine("防火墙已关闭");
             }
@@ -156,7 +156,7 @@
 
         private void btnOpenFireWall_Click(object sender, EventArgs e)
         {
-            if (DLL.FireWallHandle.FirewallOperateByObject())
+            if (DLL.FireWallSet.FirewallOperateByObject())
             {
                 Console.WriteLine("防火墙已开启");
             }

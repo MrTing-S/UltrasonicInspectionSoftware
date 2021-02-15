@@ -10,7 +10,7 @@
     using Microsoft.Win32;
     using NetFwTypeLib;
 
-    public  class FireWallHandle
+    public  class FireWallSet
     {
         /// <summary>
         /// 判断程序是否拥有管理员权限

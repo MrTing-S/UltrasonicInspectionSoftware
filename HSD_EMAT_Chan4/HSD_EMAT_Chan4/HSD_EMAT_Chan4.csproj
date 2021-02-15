@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DLL\FireWallHandle.cs" />
+    <Compile Include="DLL\FireWallSet.cs" />
     <Compile Include="DLL\FormLayoutOption.cs" />
     <Compile Include="DLL\Funcations.cs" />
     <Compile Include="DLL\NetModulDll.cs" />
@@ -97,6 +97,12 @@
     </Compile>
     <Compile Include="Forms\ConnectionForm.Designer.cs">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FirewallSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FirewallSetForm.Designer.cs">
+      <DependentUpon>FirewallSetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -123,8 +129,10 @@
     <Compile Include="Models\AlllChannels.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelParam.cs" />
+    <Compile Include="Models\Firewall.cs" />
     <Compile Include="Models\FormView.cs" />
     <Compile Include="Models\HSD_EMAT.cs" />
+    <Compile Include="Models\WaveData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ConfigFileLoadForm.resx">
@@ -135,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConnectionForm.resx">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirewallSetForm.resx">
+      <DependentUpon>FirewallSetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
