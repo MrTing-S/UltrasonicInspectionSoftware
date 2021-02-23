@@ -8,7 +8,7 @@ namespace HSD_EMAT_Chan4.Models
 {
     public static  class AlllChannels
     {
-        public static bool dataSamplingStatus;//定义全局数据发送状态
+        
         public static Channel[] m_Channels=new Channel[HSD_EMAT.totalChannelNum];
         public static ChannelParam[] m_ChannelParams=new ChannelParam[HSD_EMAT.totalChannelNum];
     }

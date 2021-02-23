@@ -85,6 +85,7 @@
             this.buttonLoadConfig = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonLoadDefaultCnfig = new System.Windows.Forms.Button();
+            this.trackBarDataProcess = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigital)).BeginInit();
@@ -98,6 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAnalogGain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigitalGian)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).BeginInit();
             this.SuspendLayout();
             // 
             // label22
@@ -728,11 +730,25 @@
             this.buttonLoadDefaultCnfig.UseVisualStyleBackColor = true;
             this.buttonLoadDefaultCnfig.Click += new System.EventHandler(this.buttonLoadDefaultCnfig_Click);
             // 
+            // trackBarDataProcess
+            // 
+            this.trackBarDataProcess.Location = new System.Drawing.Point(19, 798);
+            this.trackBarDataProcess.Maximum = 80;
+            this.trackBarDataProcess.Minimum = 10;
+            this.trackBarDataProcess.Name = "trackBarDataProcess";
+            this.trackBarDataProcess.Size = new System.Drawing.Size(337, 56);
+            this.trackBarDataProcess.TabIndex = 151;
+            this.trackBarDataProcess.Tag = "tr11";
+            this.trackBarDataProcess.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarDataProcess.Value = 45;
+            this.trackBarDataProcess.Scroll += new System.EventHandler(this.trackBarDataProcess_Scroll);
+            // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 1042);
+            this.Controls.Add(this.trackBarDataProcess);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label25);
@@ -755,6 +771,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAnalogGain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigitalGian)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -818,5 +835,6 @@
         private System.Windows.Forms.Button buttonLoadConfig;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonLoadDefaultCnfig;
+        public  System.Windows.Forms.TrackBar trackBarDataProcess;
     }
 }

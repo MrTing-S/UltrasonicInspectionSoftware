@@ -7,7 +7,7 @@ using HSD_EMAT_Chan4.Models;
 
 namespace HSD_EMAT_Chan4.DLL
 {
-    public static  class ChannelOption
+    public static  class AllChannelsSet
     {
         static public  void BadingParams()
         {

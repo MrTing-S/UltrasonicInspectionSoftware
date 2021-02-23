@@ -416,5 +416,12 @@
         }
         #endregion
 
+        private void trackBarDataProcess_Scroll(object sender, EventArgs e)
+        {
+            double[] data = new double[300];
+            Array.ConstrainedCopy(AllForms.m_MainForm.readDataBuf, (this.trackBarDataProcess.Value - 1) * 300, data, 0,300);
+            AllForms.m_WaveForms[0].chartControl1.ChartData = data;
+            AllForms.m_WaveForms[0].chartControl1.DrawLine();
+        }
     }
 }

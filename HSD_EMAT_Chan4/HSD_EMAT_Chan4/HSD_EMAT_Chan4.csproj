@@ -74,12 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DLL\FireWallSet.cs" />
-    <Compile Include="DLL\FormLayoutOption.cs" />
+    <Compile Include="DLL\FirewallSet.cs" />
+    <Compile Include="DLL\AllFormsSet.cs" />
     <Compile Include="DLL\Funcations.cs" />
     <Compile Include="DLL\NetModulDll.cs" />
     <Compile Include="DLL\NetModuleHelper.cs" />
-    <Compile Include="DLL\ChannelOption.cs" />
+    <Compile Include="DLL\AllChannelsSet.cs" />
+    <Compile Include="DLL\WaveDataFileSet.cs" />
     <Compile Include="Forms\ConfigFileLoadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +120,12 @@
     <Compile Include="Forms\ParamSetForm.Designer.cs">
       <DependentUpon>ParamSetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\WaveDataSaveSetFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WaveDataSaveSetFrom.Designer.cs">
+      <DependentUpon>WaveDataSaveSetFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WaveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,12 +134,13 @@
     </Compile>
     <Compile Include="Models\AllForms.cs" />
     <Compile Include="Models\AlllChannels.cs" />
+    <Compile Include="DLL\GetAllStatus.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelParam.cs" />
     <Compile Include="Models\Firewall.cs" />
     <Compile Include="Models\FormView.cs" />
     <Compile Include="Models\HSD_EMAT.cs" />
-    <Compile Include="Models\WaveData.cs" />
+    <Compile Include="Models\WaveDataFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ConfigFileLoadForm.resx">
@@ -155,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ParamSetForm.resx">
       <DependentUpon>ParamSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WaveDataSaveSetFrom.resx">
+      <DependentUpon>WaveDataSaveSetFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WaveForm.resx">
       <DependentUpon>WaveForm.cs</DependentUpon>

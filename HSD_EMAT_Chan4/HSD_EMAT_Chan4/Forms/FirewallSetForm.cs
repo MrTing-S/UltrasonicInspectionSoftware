@@ -30,7 +30,7 @@ namespace HSD_EMAT_Chan4.Forms
         {
             try
             {
-                m_Firewall.administratorRight = DLL.FireWallSet.IsAdministrator();
+                m_Firewall.administratorRight = DLL.FirewallSet.IsAdministrator();
             }
             catch (Exception a)
             {
@@ -56,7 +56,7 @@ namespace HSD_EMAT_Chan4.Forms
             }
             try
             {
-                m_Firewall.fireWallStatus = !DLL.FireWallSet.FirewallOperateByObject(false, false, false);
+                m_Firewall.fireWallStatus = !DLL.FirewallSet.FirewallOperateByObject(false, false, false);
                 MessageBox.Show("关闭防火墙成功");
             }
             catch (Exception a)
@@ -75,7 +75,7 @@ namespace HSD_EMAT_Chan4.Forms
             }
             try
             {
-                m_Firewall.fireWallStatus = !DLL.FireWallSet.FirewallOperateByObject();
+                m_Firewall.fireWallStatus = !DLL.FirewallSet.FirewallOperateByObject();
                 MessageBox.Show("开启防火墙成功");
             }
             catch (Exception a)

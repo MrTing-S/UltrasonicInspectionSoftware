@@ -44,6 +44,7 @@ namespace HSD_EMAT_Chan4.Forms
             if (NetModuleHelper.connectStatus == 1)
             {
                 this.labelDialog.Text = "连接成功";
+                GetAllStatus.SetIsSeverConnecting(true);
                 Thread.Sleep(500);
                 this.DialogResult = DialogResult.OK;
                 this.Close();

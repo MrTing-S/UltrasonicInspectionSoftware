@@ -22,7 +22,7 @@ namespace HSD_EMAT_Chan4.Forms
 
             this.chartControl1.ChartInit();
             this.chartControl1.ChartXSizeZoomChange(300);
-            //this.chartControl1.ChartYSizeZoomIn(260, 0);
+            this.chartControl1.ChartYSizeZoomChange(260, 0);
         }
 
         public void  m_ChangeFormSize(int width, int height)
