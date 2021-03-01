@@ -46,31 +46,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChartControl.cs">
+    <Compile Include="ScanChart\AxisLable.cs" />
+    <Compile Include="ScanChart\Class1.cs" />
+    <Compile Include="ScanChart\ColorIndex.cs" />
+    <Compile Include="WaveChart\ChartData.cs" />
+    <Compile Include="WaveChart\VAxisLable.cs" />
+    <Compile Include="WaveChart\WaveChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChartControl.Designer.cs">
-      <DependentUpon>ChartControl.cs</DependentUpon>
+    <Compile Include="WaveChart\WaveChartControl.Designer.cs">
+      <DependentUpon>WaveChartControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChartView.cs" />
-    <Compile Include="GageInfo.cs" />
+    <Compile Include="WaveChart\WaveChartView.cs" />
+    <Compile Include="WaveChart\Gage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScanChartControl.cs">
+    <Compile Include="ScanChart\ScanChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ScanChartControl.Designer.cs">
+    <Compile Include="ScanChart\ScanChartControl.Designer.cs">
       <DependentUpon>ScanChartControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScanChartView.cs" />
+    <Compile Include="ScanChart\ScanChartView.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChartControl.resx">
-      <DependentUpon>ChartControl.cs</DependentUpon>
+    <EmbeddedResource Include="WaveChart\WaveChartControl.resx">
+      <DependentUpon>WaveChartControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScanChartControl.resx">
+    <EmbeddedResource Include="ScanChart\ScanChartControl.resx">
       <DependentUpon>ScanChartControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

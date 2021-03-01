@@ -327,8 +327,8 @@
             this.aboutAToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1323, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(992, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -353,7 +353,7 @@
             // MenuItemOpenFile
             // 
             this.MenuItemOpenFile.Name = "MenuItemOpenFile";
-            this.MenuItemOpenFile.Size = new System.Drawing.Size(224, 26);
+            this.MenuItemOpenFile.Size = new System.Drawing.Size(201, 26);
             this.MenuItemOpenFile.Tag = "Open File(&O)";
             this.MenuItemOpenFile.Text = "打开文件(&O)...";
             this.MenuItemOpenFile.Click += new System.EventHandler(this.MenuItemOpenFile_Click);
@@ -361,12 +361,12 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(198, 6);
             // 
             // MenuItemSave
             // 
             this.MenuItemSave.Name = "MenuItemSave";
-            this.MenuItemSave.Size = new System.Drawing.Size(224, 26);
+            this.MenuItemSave.Size = new System.Drawing.Size(201, 26);
             this.MenuItemSave.Tag = "Save Demarcate File(&S)";
             this.MenuItemSave.Text = "保存标定文件(&S)";
             this.MenuItemSave.Click += new System.EventHandler(this.MenuItemSave_Click);
@@ -374,7 +374,7 @@
             // SaveScanningToolStripMenuItem
             // 
             this.SaveScanningToolStripMenuItem.Name = "SaveScanningToolStripMenuItem";
-            this.SaveScanningToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.SaveScanningToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.SaveScanningToolStripMenuItem.Tag = "Save Scan File(&X)";
             this.SaveScanningToolStripMenuItem.Text = "保存扫查文件(&I)";
             this.SaveScanningToolStripMenuItem.Click += new System.EventHandler(this.SaveScanningToolStripMenuItem_Click);
@@ -382,12 +382,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
             // 
             // menuItemSaveAsPicture
             // 
             this.menuItemSaveAsPicture.Name = "menuItemSaveAsPicture";
-            this.menuItemSaveAsPicture.Size = new System.Drawing.Size(224, 26);
+            this.menuItemSaveAsPicture.Size = new System.Drawing.Size(201, 26);
             this.menuItemSaveAsPicture.Tag = "Save as picture...";
             this.menuItemSaveAsPicture.Text = "另存为图片(&P)...";
             this.menuItemSaveAsPicture.Click += new System.EventHandler(this.menuItemSaveAsPicture_Click);
@@ -395,7 +395,7 @@
             // menuItemPrintScreen
             // 
             this.menuItemPrintScreen.Name = "menuItemPrintScreen";
-            this.menuItemPrintScreen.Size = new System.Drawing.Size(224, 26);
+            this.menuItemPrintScreen.Size = new System.Drawing.Size(201, 26);
             this.menuItemPrintScreen.Tag = "menuItemPrintScreen";
             this.menuItemPrintScreen.Text = "打印屏幕(&R)...";
             this.menuItemPrintScreen.Click += new System.EventHandler(this.menuItemPrintScreen_Click);
@@ -403,12 +403,12 @@
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(198, 6);
             // 
             // QuitToolStripMenuItem
             // 
             this.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem";
-            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.QuitToolStripMenuItem.Tag = "Quit(&Q)";
             this.QuitToolStripMenuItem.Text = "退出(&X)";
             this.QuitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
@@ -1153,7 +1153,7 @@
             this.toolStripButtonAlarmSoundSwitch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1323, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(992, 28);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
@@ -1261,7 +1261,7 @@
             this.toolStripComboBoxChannel.DropDownWidth = 75;
             this.toolStripComboBoxChannel.IntegralHeight = false;
             this.toolStripComboBoxChannel.Name = "toolStripComboBoxChannel";
-            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(79, 28);
+            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(60, 28);
             this.toolStripComboBoxChannel.Tag = "Channel";
             this.toolStripComboBoxChannel.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxChannel_SelectedIndexChanged);
             this.toolStripComboBoxChannel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxChannel_KeyDown);
@@ -1470,9 +1470,10 @@
             this.toolStripStatusLabelVision,
             this.toolStripStatusLabel1,
             this.toolStripStatusConnectStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 806);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1323, 26);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(992, 26);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1496,9 +1497,9 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 832);
+            this.ClientSize = new System.Drawing.Size(992, 666);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1506,7 +1507,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -2083,8 +2084,7 @@
            for (int i = 0; i < 4; i++)
            {
                 NetModuleHelper.ReadData(AlllChannels.m_Channels[i]);
-                AllForms.m_WaveForms[i].chartControl1.ChartData = Funcations.ArrayUshortToDouble(AlllChannels.m_Channels[i].wavaData);
-                AllForms.m_WaveForms[i].chartControl1.DrawLine();
+                AllForms.m_WaveForms[i].chartControl1.DrawLine(Funcations.ArrayUshortToDouble(AlllChannels.m_Channels[i].wavaData));
            }
            if (GetAllStatus.GetIsWaveDataRecording())
            {

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.chartControl1 = new MyChartControl.ChartControl();
+            this.chartControl1 = new MyChartControl.WaveChart.WaveChartControl();
             this.SuspendLayout();
             // 
             // chartControl1
@@ -52,6 +52,6 @@
 
         #endregion
 
-        public MyChartControl.ChartControl chartControl1;
+        public MyChartControl.WaveChart.WaveChartControl chartControl1;
     }
 }

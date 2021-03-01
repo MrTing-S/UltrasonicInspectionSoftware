@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.chartControl1 = new MyChartControl.ChartControl();
+            this.chartControl1 = new MyChartControl.WaveChart.WaveChartControl();
             this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
@@ -818,7 +818,7 @@
         }
 
         #endregion
-        private MyChartControl.ChartControl chartControl1;
+        private MyChartControl.WaveChart.WaveChartControl chartControl1;
         private Sunisoft.IrisSkin.SkinEngine skinEngine1;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnInit;

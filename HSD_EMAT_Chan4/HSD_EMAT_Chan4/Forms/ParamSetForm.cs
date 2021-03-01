@@ -26,15 +26,16 @@
 
         private void trackBar_Scroll(object sender, System.EventArgs e)//通用的滚动条参数数据
         {
-            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);//设置当前通道
+            #region 
             TrackBar trackBar = (TrackBar)sender;
+            DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
             switch (trackBar.Tag.ToString())
             {
                 case "tr1":
                     {
                         this.textBoxDigitalGainValue.Text = (trackBar.Value / 10).ToString();
                         DLL.NetModulDll.SendCmdDB1((uint)trackBar.Value);
-                        break; 
+                        break;
                     }
                 case "tr2":
                     {
@@ -46,29 +47,6 @@
                     {
                         this.textBoxSignFreqRatio.Text = (Convert.ToDouble(trackBar.Value) / 10).ToString();
                         DLL.NetModulDll.SendCmdSignFreqRatio((uint)trackBar.Value * 100000);
-                        break;
-                    }
-                case "tr4":
-                    {
-                        switch (trackBar.Value.ToString())
-                        {
-                            case "0":
-                                this.textBoxRepeatFreq.Text = "15Hz";
-                                break;
-                            case "1":
-                                this.textBoxRepeatFreq.Text = "50Hz";
-                                break;
-                            case "2":
-                                this.textBoxRepeatFreq.Text = "100Hz";
-                                break;
-                            case "3":
-                                this.textBoxRepeatFreq.Text = "200Hz";
-                                break;
-                            case "4":
-                                this.textBoxRepeatFreq.Text = "500Hz";
-                                break;
-                        }
-                        DLL.NetModulDll.SendCmdRepeatFreq((uint)trackBar.Value);
                         break;
                     }
                 case "tr5":
@@ -109,12 +87,37 @@
                     }
                 case "tr11":
                     {
-                        DLL.NetModulDll.SendCmdCurrentChan(currChanNum);
                         DLL.NetModulDll.setRange(trackBar.Value);
                         this.textBoxRange.Text = trackBar.Value.ToString();
                         break;
                     }
             }
+            #endregion
+            UpdateParamFromForm(currChanNum);
+            UpdateLableFromParam(currChanNum);
+        }
+
+        private void trackBarRepeatFreq_Scroll(object sender, EventArgs e)
+        {
+            switch (trackBarRepeatFreq.Value.ToString())
+            {
+                case "0":
+                    this.textBoxRepeatFreq.Text = "15Hz";
+                    break;
+                case "1":
+                    this.textBoxRepeatFreq.Text = "50Hz";
+                    break;
+                case "2":
+                    this.textBoxRepeatFreq.Text = "100Hz";
+                    break;
+                case "3":
+                    this.textBoxRepeatFreq.Text = "200Hz";
+                    break;
+                case "4":
+                    this.textBoxRepeatFreq.Text = "500Hz";
+                    break;
+            }
+            DLL.NetModulDll.SendCmdRepeatFreq((uint)trackBarRepeatFreq.Value);
         }
         #endregion
 
@@ -122,7 +125,8 @@
         private void comboBoxChanNum_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.currChanNum = this.comboBoxChanNum.SelectedIndex;
-            UpdateFormFromParam(currChanNum);
+            UpdateTrackBarFromParam(currChanNum);
+            UpdateLableFromParam(currChanNum);
             AllForms.m_WaveForms[currChanNum].Focus();
         }
 
@@ -141,7 +145,6 @@
                     AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomChange(300);
                 }
             }
-
             if (this.comboBoxDataTpye.SelectedIndex == 1)
             {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
@@ -150,7 +153,6 @@
                 }
             }
         }
-
         #endregion
 
         #region 配置操作按钮事件
@@ -188,14 +190,24 @@
             if (configFileLoadForm.DialogResult == DialogResult.Yes)
             {
                 UpdateParamFromXml(configFileLoadForm.fileName);
-                UpdateFormFromParam(currChanNum);
+                UpdateTrackBarFromParam(currChanNum);
+                UpdateLableFromParam(currChanNum);
+                for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+                {
+                    UpDateSysParam(i);
+                }
             }
         }
 
         private void buttonLoadDefaultCnfig_Click(object sender, EventArgs e)
         {
             UpdateParamFromXml("configInfo");//从配置中读取参数
-            UpdateFormFromParam(currChanNum);//初始化参数显示
+            UpdateTrackBarFromParam(currChanNum);
+            UpdateLableFromParam(currChanNum);
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                UpDateSysParam(i);
+            }
         }
         #endregion
 
@@ -226,7 +238,6 @@
                 CreateNode(xmlDoc, root, "analogGain", currChannelParam[i].analogGain.ToString());
                 CreateNode(xmlDoc, root, "digitalGian", currChannelParam[i].digitalGian.ToString());
                 CreateNode(xmlDoc, root, "freqRatio", currChannelParam[i].freqRatio.ToString());
-                CreateNode(xmlDoc, root, "repeatFreq", currChannelParam[i].repeatFreq.ToString());
                 CreateNode(xmlDoc, root, "delayCount", currChannelParam[i].delayCount.ToString());
                 CreateNode(xmlDoc, root, "pulNumber", currChannelParam[i].pulNumber.ToString());
                 CreateNode(xmlDoc, root, "aveNumber", currChannelParam[i].aveNumber.ToString());
@@ -262,8 +273,7 @@
                     rootNode = topRootNode.SelectSingleNode("channel"+i.ToString());
                     currChannelParam[i].analogGain = Convert.ToUInt32(rootNode.SelectSingleNode("analogGain").FirstChild.InnerText);
                     currChannelParam[i].digitalGian = Convert.ToUInt32(rootNode.SelectSingleNode("digitalGian").FirstChild.InnerText);
-                    currChannelParam[i].freqRatio = Convert.ToUInt32(rootNode.SelectSingleNode("freqRatio").FirstChild.InnerText);
-                    currChannelParam[i].repeatFreq = Convert.ToUInt32(rootNode.SelectSingleNode("repeatFreq").FirstChild.InnerText);
+                    currChannelParam[i].freqRatio=Convert.ToUInt32(rootNode.SelectSingleNode("freqRatio").FirstChild.InnerText);
                     currChannelParam[i].delayCount = Convert.ToUInt32(rootNode.SelectSingleNode("delayCount").FirstChild.InnerText);
                     currChannelParam[i].pulNumber = Convert.ToUInt32(rootNode.SelectSingleNode("pulNumber").FirstChild.InnerText);
                     currChannelParam[i].aveNumber = Convert.ToUInt32(rootNode.SelectSingleNode("aveNumber").FirstChild.InnerText);
@@ -305,7 +315,6 @@
                 analogGain = (uint)this.trackBarAnalogGain.Value,
                 digitalGian = (uint)this.trackBarDigitalGian.Value,
                 freqRatio = (uint)this.trackBarSignFreqRatio.Value,
-                repeatFreq = (uint)this.trackBarRepeatFreq.Value,
                 delayCount = (uint)this.trackBarSendCmdDelayCount.Value,
                 pulNumber = (uint)this.trackBarPulNumber.Value,
                 aveNumber = (uint)this.trackBarAveNumber.Value,
@@ -317,13 +326,12 @@
             #endregion
         }
 
-        private void UpdateFormFromParam(int iChan)
+        private void UpdateTrackBarFromParam(int iChan)
         {
             //更新滚动条数据
             this.trackBarAnalogGain.Value = (int)currChannelParam[iChan].analogGain;
-            this.trackBarDigitalGian .Value = (int)currChannelParam[iChan].digitalGian;
+            this.trackBarDigitalGian.Value = (int)currChannelParam[iChan].digitalGian;
             this.trackBarSignFreqRatio.Value = (int)currChannelParam[iChan].freqRatio;
-            this.trackBarRepeatFreq.Value = (int)currChannelParam[iChan].repeatFreq;
             this.trackBarSendCmdDelayCount.Value = (int)currChannelParam[iChan].delayCount;
             this.trackBarPulNumber.Value = (int)currChannelParam[iChan].pulNumber;
             this.trackBarAveNumber.Value = (int)currChannelParam[iChan].aveNumber;
@@ -331,42 +339,21 @@
             this.trackBarHighVoltage.Value = (int)currChannelParam[iChan].highVoltage;
             this.trackBarDigital.Value = (int)currChannelParam[iChan].digital;
             this.trackBarRange.Value = currChannelParam[iChan].range;
+        }
 
+        private void UpdateLableFromParam(int iChan)
+        { 
             //更新数据框显示
             this.textBoxDigitalGainValue.Text = (this.trackBarDigitalGian.Value / 10).ToString();
             this.textBoxAnalogGainValue.Text = (this.trackBarAnalogGain.Value / 10).ToString();
+            this.textBoxRange.Text = this.trackBarRange.Value.ToString();
             this.textBoxSignFreqRatio.Text = (Convert.ToDouble(this.trackBarSignFreqRatio.Value) / 10).ToString();
-            switch (this.trackBarRepeatFreq.Value.ToString())
-            {
-                case "0":
-                    this.textBoxRepeatFreq.Text = "15Hz";
-                    break;
-                case "1":
-                    this.textBoxRepeatFreq.Text = "50Hz";
-                    break;
-                case "2":
-                    this.textBoxRepeatFreq.Text = "100Hz";
-                    break;
-                case "3":
-                    this.textBoxRepeatFreq.Text = "200Hz";
-                    break;
-                case "4":
-                    this.textBoxRepeatFreq.Text = "500Hz";
-                    break;
-            }
-            this.textBoxDelayCount.Text = this.trackBarRepeatFreq.Value.ToString();
+            this.textBoxDelayCount.Text = this.trackBarSendCmdDelayCount.Value.ToString();
             this.textBoxPulNumber.Text = (this.trackBarPulNumber.Value + 1).ToString();
             this.textBoxAveNumber.Text = Math.Pow(2, (double)(this.trackBarAveNumber.Value)).ToString();
             this.textBoxFixNumber.Text = (this.trackBarFixNumber.Value + 1).ToString();
             this.textBoxHighVoltage.Text = (300 + 50 * this.trackBarHighVoltage.Value).ToString();
             this.textBoxDigital.Text = this.trackBarDigital.Value.ToString();
-            this.textBoxRange.Text = this.trackBarRange.Value.ToString();
-
-            //更新系统参数
-            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
-            {
-                UpDateSysParam(i);
-            }
         }
 
         private void UpDateSysParam(int iChan)
@@ -375,7 +362,6 @@
             DLL.NetModulDll.SendCmdDB1(currChannelParam[iChan].digitalGian);
             DLL.NetModulDll.SendCmdDB2(currChannelParam[iChan].analogGain);
             DLL.NetModulDll.SendCmdSignFreqRatio(currChannelParam[iChan].freqRatio * 100000);
-            DLL.NetModulDll.SendCmdRepeatFreq(currChannelParam[iChan].repeatFreq);
             DLL.NetModulDll.SendCmdDelayCount(currChannelParam[iChan].delayCount * 100);
             DLL.NetModulDll.SendCmdPulNumber(currChannelParam[iChan].pulNumber+1);
             DLL.NetModulDll.SendCmdAveNumber(currChannelParam[iChan].aveNumber);
@@ -383,6 +369,7 @@
             DLL.NetModulDll.SendCmdHighVoltage(currChannelParam[iChan].highVoltage);
             DLL.NetModulDll.SendCmdDigital(currChannelParam[iChan].digital);
             DLL.NetModulDll.setRange(currChannelParam[iChan].range);
+            DLL.NetModulDll.SendCmdRepeatFreq((uint)this.trackBarRepeatFreq.Value);
         }
         #endregion
 
@@ -406,7 +393,9 @@
                 SaveParamToXml("configInfo");
             }
             UpdateParamFromXml("configInfo");//从配置中读取参数
-            UpdateFormFromParam(currChanNum);//初始化参数显示
+            UpdateTrackBarFromParam(currChanNum);//初始化参数显示
+            UpdateLableFromParam(currChanNum);
+            UpDateSysParam(currChanNum);
         }
 
         private void ParamSetForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -420,8 +409,9 @@
         {
             double[] data = new double[300];
             Array.ConstrainedCopy(AllForms.m_MainForm.readDataBuf, (this.trackBarDataProcess.Value - 1) * 300, data, 0,300);
-            AllForms.m_WaveForms[0].chartControl1.ChartData = data;
-            AllForms.m_WaveForms[0].chartControl1.DrawLine();
+            AllForms.m_WaveForms[0].chartControl1.DrawLine(data);
         }
+
+
     }
 }

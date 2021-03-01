@@ -30,7 +30,6 @@
             this.ControlBox = false;//不显示控制控件
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            this.chartControl1.ChartInit();
             this.chartControl1.ChartXSizeZoomChange(300);
             this.chartControl1.ChartYSizeZoomChange(201,50);
 
@@ -188,14 +187,14 @@
             }
             if (this.comboBoxDataTpye.SelectedIndex == 0)
             {
-                this.chartControl1.ChartData = dataDraw;
+                this.chartControl1.DrawLine(dataDraw);
             }
             if (this.comboBoxDataTpye.SelectedIndex == 1)
             {
-                this.chartControl1.ChartData = oriDataDraw;
+                this.chartControl1.DrawLine(oriDataDraw); 
             }
 
-            this.chartControl1.DrawLine();
+
         }
 
         private void btnSeverStop_Click(object sender, EventArgs e)
