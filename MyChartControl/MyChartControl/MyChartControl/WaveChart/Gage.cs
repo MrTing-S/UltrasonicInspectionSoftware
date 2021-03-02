@@ -12,7 +12,25 @@ namespace MyChartControl.WaveChart
 
         public int initPositionX;//范围都在0-100之间变动
         public int initPositionY;
-        public int CenterLength;
+        private int gageLength=1;
+        public int Gagelength
+        {
+            get 
+            {
+                return gageLength;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    gageLength = 1;
+                }
+                else
+                {
+                    gageLength = value;
+                }
+            }
+        }//保证最小长度为1
 
         public string gageName;
         public bool visiable;

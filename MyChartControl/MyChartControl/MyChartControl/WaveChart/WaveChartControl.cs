@@ -25,6 +25,8 @@ namespace MyChartControl.WaveChart
         //坐标轴数据
         private VAxisValue axisValue;
 
+        bool isChartReady=false;
+
         public WaveChartControl()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace MyChartControl.WaveChart
             SetChartView();
             ResetSize();
             ResetPos();
+            this.isChartReady = true;
         }
 
         private void InitGage()
@@ -58,7 +61,7 @@ namespace MyChartControl.WaveChart
             gageA = new Gage
             {
                 gageTpye = GageTpye.GageA,
-                CenterLength = 10,
+                Gagelength = 10,
                 initPositionX = 70,
                 initPositionY = 70,
                 gageName = "Series2",
@@ -67,7 +70,7 @@ namespace MyChartControl.WaveChart
             gageB = new Gage
             {
                 gageTpye = GageTpye.GageB,
-                CenterLength = 10,
+                Gagelength = 10,
                 initPositionX = 20,
                 initPositionY = 20,
                 gageName = "Series3",
@@ -177,26 +180,26 @@ namespace MyChartControl.WaveChart
         #endregion
 
         #region 闸门绘制
-
         private void DrawGate(Gage gageInfo)
         {
             this.chart1.Series[gageInfo.gageName].Points.Clear();
+            if (!gageInfo.visiable)
+            {
+                return;
+            }
             for (int i = 0; i < 5; i++)
             {
                 chart1.Series[gageInfo.gageName].Points.AddXY(gageInfo.initPositionX,gageInfo.initPositionY-5/2+i);
             }
-            for (int i = 0; i < gageInfo.CenterLength+1; i++)
+            for (int i = 0; i < gageInfo.Gagelength+1; i++)
             {
                 chart1.Series[gageInfo.gageName].Points.AddXY(gageInfo.initPositionX+i, gageInfo.initPositionY);
             }
             for (int i = 0; i < 5; i++)
             {
-                chart1.Series[gageInfo.gageName].Points.AddXY(gageInfo.initPositionX + gageInfo.CenterLength, gageInfo.initPositionY - 5/2 + i);
+                chart1.Series[gageInfo.gageName].Points.AddXY(gageInfo.initPositionX + gageInfo.Gagelength, gageInfo.initPositionY - 5/2 + i);
             }
         }
-
-
-
         #endregion
 
         #region 大小与位置调整
@@ -222,14 +225,20 @@ namespace MyChartControl.WaveChart
 
         private void WaveChartControl_Resize(object sender, EventArgs e)
         {
-            ResetSize();
-            ResetPos();
+            if (isChartReady)
+            {
+                ResetSize();
+                ResetPos();
+            }
         }
 
         private void WaveChartControl_SizeChanged(object sender, EventArgs e)
         {
-            ResetSize();
-            ResetPos();
+            if (isChartReady)
+            {
+                ResetSize();
+                ResetPos();
+            }
         }
         #endregion
 
@@ -375,17 +384,75 @@ namespace MyChartControl.WaveChart
         /// <param name="gageLength">闸门长度</param>
         public void SetGage(GageTpye gageTpye, Point initPos, int gageLength)
         {
-            foreach (Gage  item in allGage)
+            foreach (Gage item in allGage)
             {
                 if (item.gageTpye == gageTpye)
                 {
                     item.initPositionX = initPos.X;
                     item.initPositionY = initPos.Y;
-                    item.CenterLength = gageLength;
+                    item.Gagelength = gageLength;
                 }
                 DrawGate(item);
             }
         }
+
+        public void SetGageVisible(GageTpye gageTpye,bool isVisible)
+        {
+            foreach (Gage item in allGage)
+            {
+                if (item.gageTpye == gageTpye)
+                {
+                    item.visiable = isVisible;
+                }
+                DrawGate(item);
+            }
+        }
+
+        /// <summary>
+        /// 返回闸门范围内的数据
+        /// </summary>
+        /// <param name="gageTpye"></param>
+        /// <param name="sourceArray"></param>
+        /// <returns></returns>
+        public double  [] GetGageData(GageTpye gageTpye,double [] sourceArray)
+        {
+            Gage gage=new Gage();
+            foreach (Gage item in allGage)
+            {
+                if (item.gageTpye == gageTpye)
+                {
+                    gage = item;
+                    break;
+                }
+            }
+            int startIndex = Convert.ToInt32((gage.initPositionX) * chartView.axisXScale / 100);
+            if (startIndex > sourceArray.Length)
+            {
+                return null;
+            }
+            int stopIndex= Convert.ToInt32((gage.initPositionX+gage.Gagelength) * chartView.axisXScale / 100);
+            if (stopIndex>chartView.axisXScale|| stopIndex>sourceArray.Length)
+            {
+                if (chartView.axisXScale >= sourceArray.Length)
+                {
+                    stopIndex = sourceArray.Length;
+                }
+                else
+                {
+                    stopIndex = chartView.axisXScale;
+                }
+            }
+            int indexLength = stopIndex - startIndex;
+            double[] data = new double[indexLength];
+            Array.Copy(sourceArray, startIndex, data, 0, indexLength);
+            return data;
+        }
+
+        public double[] GetlineData()
+        {
+            return chartData.lineData;
+        }
+
         #endregion
 
         #endregion

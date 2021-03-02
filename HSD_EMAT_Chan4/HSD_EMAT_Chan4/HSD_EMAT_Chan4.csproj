@@ -139,6 +139,7 @@
     <Compile Include="Models\ChannelParam.cs" />
     <Compile Include="Models\Firewall.cs" />
     <Compile Include="Models\FormView.cs" />
+    <Compile Include="Models\Gage.cs" />
     <Compile Include="Models\HSD_EMAT.cs" />
     <Compile Include="Models\WaveDataFile.cs" />
     <Compile Include="Program.cs" />

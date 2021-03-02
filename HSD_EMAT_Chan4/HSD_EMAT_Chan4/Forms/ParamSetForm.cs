@@ -142,14 +142,14 @@
             {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
                 {
-                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomChange(300);
+                    AllForms.m_WaveForms[i].waveChart.ChartXSizeZoomChange(300);
                 }
             }
             if (this.comboBoxDataTpye.SelectedIndex == 1)
             {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
                 {
-                    AllForms.m_WaveForms[i].chartControl1.ChartXSizeZoomChange(2000);
+                    AllForms.m_WaveForms[i].waveChart.ChartXSizeZoomChange(2000);
                 }
             }
         }
@@ -409,9 +409,28 @@
         {
             double[] data = new double[300];
             Array.ConstrainedCopy(AllForms.m_MainForm.readDataBuf, (this.trackBarDataProcess.Value - 1) * 300, data, 0,300);
-            AllForms.m_WaveForms[0].chartControl1.DrawLine(data);
+            AllForms.m_WaveForms[0].waveChart.DrawLine(data);
         }
 
+        private void trackBarGagePosX_Scroll(object sender, EventArgs e)
+        {
+            Gage gage = AllForms.m_MainForm.gageA;
+            AllForms.m_MainForm.gageA.InitIndexX = this.trackBarGagePosX.Value;
+            AllForms.m_WaveForms[0].waveChart.SetGage(gage.gageTpye, new Point(gage.InitIndexX, gage.InitIndexY), gage.IndexLength);
+        }
 
+        private void trackBarGagePosY_Scroll(object sender, EventArgs e)
+        {
+            Gage gage = AllForms.m_MainForm.gageA;
+            AllForms.m_MainForm.gageA.InitIndexY = this.trackBarGagePosY.Value;
+            AllForms.m_WaveForms[0].waveChart.SetGage(gage.gageTpye, new Point(gage.InitIndexX, gage.InitIndexY), gage.IndexLength);
+        }
+
+        private void trackBarGageLength_Scroll(object sender, EventArgs e)
+        {
+            Gage gage = AllForms.m_MainForm.gageA;
+            AllForms.m_MainForm.gageA.IndexLength = this.trackBarGageLength.Value;
+            AllForms.m_WaveForms[0].waveChart.SetGage(gage.gageTpye, new Point(gage.InitIndexX, gage.InitIndexY), gage.IndexLength);
+        }
     }
 }
