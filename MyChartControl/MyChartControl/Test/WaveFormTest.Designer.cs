@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.buttonTest = new System.Windows.Forms.Button();
+            this.buttonScan = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.waveChart = new MyChartControl.WaveChart.WaveChartControl();
             this.buttonChangeDataType = new System.Windows.Forms.Button();
             this.trackBarGageX = new System.Windows.Forms.TrackBar();
             this.trackBarGageY = new System.Windows.Forms.TrackBar();
@@ -40,34 +39,27 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxGageType = new System.Windows.Forms.ComboBox();
+            this.waveChart = new MyChartControl.WaveChart.WaveChartControl();
+            this.buttonTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGageX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGageY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGageLength)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonTest
+            // buttonScan
             // 
-            this.buttonTest.Location = new System.Drawing.Point(689, 299);
-            this.buttonTest.Name = "buttonTest";
-            this.buttonTest.Size = new System.Drawing.Size(100, 40);
-            this.buttonTest.TabIndex = 1;
-            this.buttonTest.Text = "测试";
-            this.buttonTest.UseVisualStyleBackColor = true;
-            this.buttonTest.Click += new System.EventHandler(this.buttonTest_Click);
+            this.buttonScan.Location = new System.Drawing.Point(689, 299);
+            this.buttonScan.Name = "buttonScan";
+            this.buttonScan.Size = new System.Drawing.Size(100, 40);
+            this.buttonScan.TabIndex = 1;
+            this.buttonScan.Text = "开始扫描";
+            this.buttonScan.UseVisualStyleBackColor = true;
+            this.buttonScan.Click += new System.EventHandler(this.buttonScan_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // waveChart
-            // 
-            this.waveChart.BackColor = System.Drawing.Color.White;
-            this.waveChart.Location = new System.Drawing.Point(1, 1);
-            this.waveChart.Margin = new System.Windows.Forms.Padding(2);
-            this.waveChart.Name = "waveChart";
-            this.waveChart.Size = new System.Drawing.Size(778, 281);
-            this.waveChart.TabIndex = 0;
             // 
             // buttonChangeDataType
             // 
@@ -154,11 +146,30 @@
             this.comboBoxGageType.TabIndex = 4;
             this.comboBoxGageType.SelectedIndexChanged += new System.EventHandler(this.comboBoxGageType_SelectedIndexChanged);
             // 
+            // waveChart
+            // 
+            this.waveChart.BackColor = System.Drawing.Color.White;
+            this.waveChart.Location = new System.Drawing.Point(1, 1);
+            this.waveChart.Margin = new System.Windows.Forms.Padding(2);
+            this.waveChart.Name = "waveChart";
+            this.waveChart.Size = new System.Drawing.Size(778, 281);
+            this.waveChart.TabIndex = 0;
+            // 
+            // buttonTest
+            // 
+            this.buttonTest.Location = new System.Drawing.Point(477, 299);
+            this.buttonTest.Name = "buttonTest";
+            this.buttonTest.Size = new System.Drawing.Size(100, 40);
+            this.buttonTest.TabIndex = 1;
+            this.buttonTest.Text = "测试";
+            this.buttonTest.UseVisualStyleBackColor = true;
+            this.buttonTest.Click += new System.EventHandler(this.buttonTest_Click);
+            // 
             // WaveFormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 351);
+            this.ClientSize = new System.Drawing.Size(815, 351);
             this.Controls.Add(this.comboBoxGageType);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -168,6 +179,7 @@
             this.Controls.Add(this.trackBarGageX);
             this.Controls.Add(this.buttonChangeDataType);
             this.Controls.Add(this.buttonTest);
+            this.Controls.Add(this.buttonScan);
             this.Controls.Add(this.waveChart);
             this.Name = "WaveFormTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -183,7 +195,7 @@
         #endregion
 
         private MyChartControl.WaveChart.WaveChartControl waveChart;
-        private System.Windows.Forms.Button buttonTest;
+        private System.Windows.Forms.Button buttonScan;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button buttonChangeDataType;
         private System.Windows.Forms.TrackBar trackBarGageX;
@@ -193,5 +205,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxGageType;
+        private System.Windows.Forms.Button buttonTest;
     }
 }

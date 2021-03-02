@@ -21,6 +21,7 @@ namespace Test
         MyChartControl.WaveChart.GageTpye gageTpye;
         GageInfo gageA;
         GageInfo gageB;
+        bool isGageVisible;
         public WaveFormTest()
         {
             InitializeComponent();
@@ -35,18 +36,15 @@ namespace Test
             gageTpye = MyChartControl.WaveChart.GageTpye.GageA;
             gageA = new GageInfo { length = 5, point = new Point(20, 20) };
             gageB = new GageInfo { length = 5, point = new Point(50, 50) };
+            isGageVisible = false;
         }
 
         private void buttonTest_Click(object sender, EventArgs e)
         {
-            if (timer1.Enabled)
-            {
-                timer1.Stop();
-            }
-            else
-            {
-                timer1.Start();
-            }
+            //isGageVisible = !isGageVisible;
+            //this.waveChart.SetGageVisible(gageTpye, isGageVisible);
+            double[] data = waveChart.GetGageData(gageTpye, waveChart.GetlineData());
+            Console.WriteLine(data.Max());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -157,6 +155,18 @@ namespace Test
         {
             public int length;
             public Point point;
+        }
+
+        private void buttonScan_Click(object sender, EventArgs e)
+        {
+            if (timer1.Enabled)
+            {
+                timer1.Stop();
+            }
+            else
+            {
+                timer1.Start();
+            }
         }
     }
 }
