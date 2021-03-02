@@ -41,10 +41,20 @@ namespace Test
 
         private void buttonTest_Click(object sender, EventArgs e)
         {
+            ////闸门的显示与隐藏
             //isGageVisible = !isGageVisible;
             //this.waveChart.SetGageVisible(gageTpye, isGageVisible);
-            double[] data = waveChart.GetGageData(gageTpye, waveChart.GetlineData());
-            Console.WriteLine(data.Max());
+
+            ////返回闸门内的数据并提取最大值
+            //double[] data = waveChart.GetGageData(gageTpye, waveChart.GetlineData());
+            //Console.WriteLine(data.Max());
+
+            //测试窗体的大小控制功能
+            int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
+            int windowBorderHeight=(this .Height - this .ClientRectangle.Height);//获取边框的宽度
+            Console.WriteLine(windowBorderWidth.ToString() + " "+windowBorderHeight.ToString()) ;
+            this.waveChart.Location = new Point(0, 0);
+            this.waveChart.Size = new Size(this.Width- windowBorderWidth, this.Height - windowBorderHeight);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

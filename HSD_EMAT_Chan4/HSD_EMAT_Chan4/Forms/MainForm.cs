@@ -15,6 +15,7 @@
     using System.Windows.Forms;
     using HSD_EMAT_Chan4.DLL;
     using HSD_EMAT_Chan4.Models;
+    using System.Linq;
 
     public class MainForm : Form
     {
@@ -90,7 +91,7 @@
         private ToolStripMenuItem menuItemToolsOptions;
         private ToolStripMenuItem MenuItemTU;
         private ToolStripMenuItem menuItemWaveformForm;
-        public  MenuStrip menuStrip1;
+        private MenuStrip menuStrip1;
         public int[] nBaseline;
         public int[] nRectifyReject;
        /// private File3201.FileType OpenFileType;
@@ -103,7 +104,7 @@
         private SkinEngine skinEngine1;
         private ToolStripMenuItem TemperatureVelToolStripMenuItem;
         private int tmp;
-        public  ToolStrip toolStrip1;
+        private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButtonAlarmSoundSwitch;
         private ToolStripButton toolStripButtonCalc;
@@ -157,7 +158,6 @@
         private ToolStripMenuItem 显示DToolStripMenuItem;
         #endregion
 
-        AllFormsSet allFormsSet;
 
         //数据保存
         private WaveDataFile m_WaveDataFile;
@@ -170,7 +170,6 @@
         {
             InitializeComponent();
             this.skinEngine1.SkinFile = Application.StartupPath + "//DeepCyan.ssk";//读取皮肤文件路径
-            allFormsSet = new AllFormsSet();
         }
 
         private void InitializeComponent()
@@ -534,7 +533,7 @@
             this.menuItemWaveformForm.Checked = true;
             this.menuItemWaveformForm.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuItemWaveformForm.Name = "menuItemWaveformForm";
-            this.menuItemWaveformForm.Size = new System.Drawing.Size(224, 26);
+            this.menuItemWaveformForm.Size = new System.Drawing.Size(143, 26);
             this.menuItemWaveformForm.Tag = "Debug(&D)";
             this.menuItemWaveformForm.Text = "调试(&D)";
             this.menuItemWaveformForm.Click += new System.EventHandler(this.menuItemWaveformForm_Click);
@@ -542,7 +541,7 @@
             // menuItemScanForm
             // 
             this.menuItemScanForm.Name = "menuItemScanForm";
-            this.menuItemScanForm.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanForm.Size = new System.Drawing.Size(143, 26);
             this.menuItemScanForm.Tag = "Scan(&S)";
             this.menuItemScanForm.Text = "扫描(&S)";
             this.menuItemScanForm.Click += new System.EventHandler(this.menuItemScanForm_Click);
@@ -556,14 +555,14 @@
             this.menuItemScanViewType4,
             this.menuItemScanViewType5});
             this.menuItemScanView.Name = "menuItemScanView";
-            this.menuItemScanView.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanView.Size = new System.Drawing.Size(143, 26);
             this.menuItemScanView.Tag = "menuItemScanView";
             this.menuItemScanView.Text = "视图(&V)";
             // 
             // menuItemScanViewType1
             // 
             this.menuItemScanViewType1.Name = "menuItemScanViewType1";
-            this.menuItemScanViewType1.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanViewType1.Size = new System.Drawing.Size(135, 26);
             this.menuItemScanViewType1.Tag = "menuItemScanViewType1";
             this.menuItemScanViewType1.Text = "类型 1";
             this.menuItemScanViewType1.Click += new System.EventHandler(this.menuItemScanViewType1_Click);
@@ -571,7 +570,7 @@
             // menuItemScanViewType2
             // 
             this.menuItemScanViewType2.Name = "menuItemScanViewType2";
-            this.menuItemScanViewType2.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanViewType2.Size = new System.Drawing.Size(135, 26);
             this.menuItemScanViewType2.Tag = "menuItemScanViewType2";
             this.menuItemScanViewType2.Text = "类型 2";
             this.menuItemScanViewType2.Click += new System.EventHandler(this.menuItemScanViewType2_Click);
@@ -579,7 +578,7 @@
             // menuItemScanViewType3
             // 
             this.menuItemScanViewType3.Name = "menuItemScanViewType3";
-            this.menuItemScanViewType3.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanViewType3.Size = new System.Drawing.Size(135, 26);
             this.menuItemScanViewType3.Tag = "menuItemScanViewType3";
             this.menuItemScanViewType3.Text = "类型 3";
             this.menuItemScanViewType3.Click += new System.EventHandler(this.menuItemScanViewType3_Click);
@@ -587,7 +586,7 @@
             // menuItemScanViewType4
             // 
             this.menuItemScanViewType4.Name = "menuItemScanViewType4";
-            this.menuItemScanViewType4.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanViewType4.Size = new System.Drawing.Size(135, 26);
             this.menuItemScanViewType4.Tag = "menuItemScanViewType4";
             this.menuItemScanViewType4.Text = "类型 4";
             this.menuItemScanViewType4.Click += new System.EventHandler(this.menuItemScanViewType4_Click);
@@ -595,7 +594,7 @@
             // menuItemScanViewType5
             // 
             this.menuItemScanViewType5.Name = "menuItemScanViewType5";
-            this.menuItemScanViewType5.Size = new System.Drawing.Size(224, 26);
+            this.menuItemScanViewType5.Size = new System.Drawing.Size(135, 26);
             this.menuItemScanViewType5.Tag = "menuItemScanViewType5";
             this.menuItemScanViewType5.Text = "类型 5";
             this.menuItemScanViewType5.Click += new System.EventHandler(this.menuItemScanViewType5_Click_1);
@@ -1531,20 +1530,6 @@
 
         }
 
-        private void InitGage()
-        {
-            gageA = new Gage
-            {
-                InitIndexX = 20,
-                InitIndexY = 20,
-                gageTpye = MyChartControl.WaveChart.GageTpye.GageA,
-                IndexLength = 5,
-            };
-            foreach (WaveForm item in AllForms.m_WaveForms)
-            {
-                item.waveChart.SetGage(gageA.gageTpye,new Point(gageA.InitIndexX,gageA.InitIndexY),gageA.IndexLength);
-            } 
-        }
 
         private void 文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1581,11 +1566,6 @@
              
         }
 
-        private void menuItemConnectToServer_Click(object sender, EventArgs e)
-        {
-
-            this.toolStripStatusConnectStatus.Text = "已连接";
-        }
 
         private void 通道ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1630,18 +1610,6 @@
         private void menuItemScanForm_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void menuItemScanViewType1_Click(object sender, EventArgs e)
-        {
-            FormView.m_aveFromViewType = FromViewType.type1;
-            allFormsSet.UpDateFormLayOut();
-        }
-
-        private void menuItemScanViewType2_Click(object sender, EventArgs e)
-        {
-            FormView.m_aveFromViewType = FromViewType.type2;
-            allFormsSet.UpDateFormLayOut();
         }
 
         private void menuItemScanViewType4_Click(object sender, EventArgs e)
@@ -2040,21 +2008,36 @@
              
         }
 
+        #region 初始化事件
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            GetAllStatus.SetIsDataSampling(false);//数据采集标志位
+            InitAllForms();
+            InitSys();
+            InitFormView();
             InitToolStripStatus();
-            allFormsSet.InitAllForms(this);
-            AllChannelsSet.BadingParams();//绑定通道对应参数
-            FormView.m_aveFromViewType = FromViewType.type1;
-            allFormsSet.UpDateFormLayOut();
-            NetModuleHelper.SystemInit();//绑定数据
             InitGage();
-            ConnectionForm connectionForm = new ConnectionForm();//开启连接窗口
-            if (connectionForm.ShowDialog() == DialogResult.OK)
-            {
-                this.toolStripStatusConnectStatus.Text = "已连接";
-            }
+            SysConnecting();
+        }
+
+        private void InitAllForms()
+        {
+            AllFormsSet.InitAllForms(this);
+        }
+
+        private void InitSys()
+        {
+            GetAllStatus.SetIsDataSampling(false);//数据采集标志位
+            AllChannelsSet.InitChannel();//初始化通道参数
+            NetModuleHelper.SystemInit();//绑定数据
+        }
+
+        private void InitFormView()
+        {
+            this.VScroll = false;
+            this.HScroll = false;
+            FormView.m_aveFromViewType = FromViewType.type1;
+            AllFormsSet.UpDateFormLayOut();
         }
 
         private void InitToolStripStatus()
@@ -2086,40 +2069,35 @@
             //this.toolStripComboBoxChannel.SelectedIndex = 0;
         }
 
-
-        private void menuItemSeverStop_Click(object sender, EventArgs e)
+        private void InitGage()
         {
-            NetModuleHelper.SeverStop();
-            MessageBox.Show("服务器关闭成功");
+            gageA = new Gage
+            {
+                InitIndexX = 20,
+                InitIndexY = 20,
+                gageTpye = MyChartControl.WaveChart.GageTpye.GageA,
+                IndexLength = 5,
+            };
+            foreach (WaveForm item in AllForms.m_WaveForms)
+            {
+                item.waveChart.SetGage(gageA.gageTpye, new Point(gageA.InitIndexX, gageA.InitIndexY), gageA.IndexLength);
+            }
         }
 
+        #endregion
+
+        #region 定时器事件
         private void FormTimer_Tick(object sender, EventArgs e)
         {
-           this.ChangeControlEnable();
-           for (int i = 0; i < 4; i++)
+            ChangeControlEnable();
+            UpdateAllData();
+            DrawAllWaveChart();
+           if (FormView.chartViewType == ChartViewType.scanChart)
            {
-                NetModuleHelper.ReadData(AlllChannels.m_Channels[i]);
-                AllForms.m_WaveForms[i].waveChart.DrawLine(Funcations.ArrayUshortToDouble(AlllChannels.m_Channels[i].wavaData));
-           }
-           if (GetAllStatus.GetIsWaveDataRecording())
-           {
-                AlllChannels.m_Channels[0].wavaData[1] = 1;
-                WaveDataFileSet.WriteByteArray(Funcations.ArrayUshortToByte(AlllChannels.m_Channels[0].wavaData));
-           }
-            if (FormView.chartViewType == ChartViewType.scanChart)
-            {
-                double data0=0;
-                double[] data1 = Funcations.ArrayUshortToDouble(AlllChannels.m_Channels[0].wavaData);
+                double[] data1 = Funcations.ArrayUshortToDouble(AllChannels.m_Channels[0].wavaData);
                 double[] data2 = AllForms.m_WaveForms[0].ScanChart.GetGageData(MyChartControl.WaveChart.GageTpye.GageA, data1);
-                foreach (double item in data2)
-                {
-                    if (item>data0)
-                    {
-                        data0 = item;
-                    }
-                }
-                AllForms.m_WaveForms[0].ScanChart.DrawPoint(data0);
-            }
+                AllForms.m_WaveForms[0].ScanChart.DrawPoint(data2.Max());
+           }
         }
 
         private void ChangeControlEnable()
@@ -2133,6 +2111,33 @@
                 this.MenuItemOpenFile.Enabled = true;
             }
         }
+
+        private void UpdateAllData()
+        {
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                UpdateData(i);
+            }
+        }
+
+        private void UpdateData(int channel)
+        {
+            NetModuleHelper.ReadData(AllChannels.m_Channels[channel]);
+        }
+
+        private void DrawAllWaveChart()
+        {
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                DrawWaveChart(i);
+            }
+        }
+
+        private void DrawWaveChart(int channel)
+        {
+            AllForms.m_WaveForms[channel].waveChart.DrawLine(Funcations.ArrayUshortToDouble(AllChannels.m_Channels[channel].wavaData));
+        }
+        #endregion 
 
         private void toolStripButtonStart_Click(object sender, EventArgs e)
         {
@@ -2157,7 +2162,16 @@
                 GetAllStatus.SetIsDataSampling(false); ;//数据采集标志开启
                 this.ChangeControlEnable();
             }
+        }
 
+        #region 系统连接设置
+        private void SysConnecting()
+        {
+            ConnectionForm connectionForm = new ConnectionForm();//开启连接窗口
+            if (connectionForm.ShowDialog() == DialogResult.OK)
+            {
+                this.toolStripStatusConnectStatus.Text = "已连接";
+            }
         }
 
         private void menuItemFireWallSetting_Click(object sender, EventArgs e)
@@ -2166,6 +2180,20 @@
             m_FirewallSetForm.ShowDialog();
         }
 
+        private void menuItemConnectToServer_Click(object sender, EventArgs e)
+        {
+            SysConnecting();
+        }
+
+        private void menuItemSeverStop_Click(object sender, EventArgs e)
+        {
+            NetModuleHelper.SeverStop();
+            MessageBox.Show("服务器关闭成功");
+            this.toolStripStatusConnectStatus.Text = "未连接";
+        }
+        #endregion
+
+        #region 数据保存与读取事件
         private void toolStripButtonSaveWaveData_Click(object sender, EventArgs e)
         {
             //if (!GetAllStatus.GetIsSeverConnecting())
@@ -2204,11 +2232,6 @@
             this.m_WaveDataFile.filePath = waveDataFile.filePath;
         }
 
-        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            WaveDataFileSet.CloseFileStream();//关闭文件流
-        }
-
         private void MenuItemOpenFile_Click(object sender, EventArgs e)
         {
             string waveDataDefaultPath = Application.StartupPath + "\\WaveDataFile\\";//数据文件的地址
@@ -2218,37 +2241,69 @@
             }
             OpenFileDialog objOpenFileDialog = new OpenFileDialog();
             objOpenFileDialog.Title = "请选择打开的文件";
-            objOpenFileDialog.Filter= "文本文档(*.txt)|*.txt";
+            objOpenFileDialog.Filter = "文本文档(*.txt)|*.txt";
             objOpenFileDialog.InitialDirectory = waveDataDefaultPath;
             if (objOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
                 WaveDataFileSet.SetFileStreamRead(objOpenFileDialog.FileName);
-                this.readDataBuf = Funcations.ArrayByteToDouble( WaveDataFileSet.ReadAllByteArray());
+                this.readDataBuf = Funcations.ArrayByteToDouble(WaveDataFileSet.ReadAllByteArray());
                 if (this.readDataBuf == null)
                 {
                     MessageBox.Show("读取文件错误");
                     return;
                 }
                 FormView.m_aveFromViewType = FromViewType.type2;
-                allFormsSet.UpDateFormLayOut();
+                AllFormsSet.UpDateFormLayOut();
 
                 AllForms.m_ParamSetForm.trackBarDataProcess.Minimum = 1;
-                AllForms.m_ParamSetForm.trackBarDataProcess.Maximum = readDataBuf.Length/(AlllChannels.m_Channels[0].wavaData.Length);
+                AllForms.m_ParamSetForm.trackBarDataProcess.Maximum = readDataBuf.Length / (AllChannels.m_Channels[0].wavaData.Length);
                 AllForms.m_ParamSetForm.trackBarDataProcess.Value = 1;
             }
+        }
+        #endregion
+
+        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            WaveDataFileSet.CloseFileStream();//关闭文件流
         }
 
         private void toolStripButtonWaveOrScan_Click(object sender, EventArgs e)
         {
+            menuItemScanViewType3_Click(sender, e);
+        }
+
+        #region 改变窗体的布局事件
+        private void menuItemScanViewType1_Click(object sender, EventArgs e)
+        {
+            FormView.m_aveFromViewType = FromViewType.type1;
+            AllFormsSet.UpDateFormLayOut();
+        }
+
+        private void menuItemScanViewType2_Click(object sender, EventArgs e)
+        {
             FormView.m_aveFromViewType = FromViewType.type2;
-            allFormsSet.UpDateFormLayOut();
+            AllFormsSet.UpDateFormLayOut(AllForms.m_ParamSetForm.CurrChanNum);
         }
 
         private void menuItemScanViewType3_Click(object sender, EventArgs e)
         {
             FormView.m_aveFromViewType = FromViewType.type3;
-            allFormsSet.UpDateFormLayOut();
+            AllFormsSet.UpDateFormLayOut();
         }
+        #endregion 
+
+        #region 公开函数
+        //获得主窗体工作区域的大小
+        public Size GetMainFormWorkingSpace()
+        {
+            int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
+            int windowBorderHeight = (this.Height - this.ClientRectangle.Height);//获取边框的宽度
+            int width = this.Width - windowBorderWidth;
+            int heigh = this.Height - this.toolStrip1.Bottom - this.menuStrip1.Bottom - this.statusStrip1.Height - windowBorderHeight;
+            Size size = new Size(width, heigh);
+            return size;
+        }
+        #endregion
     }
 }
 

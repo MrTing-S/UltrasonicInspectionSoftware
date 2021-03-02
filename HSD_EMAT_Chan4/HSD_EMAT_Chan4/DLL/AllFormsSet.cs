@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HSD_EMAT_Chan4.DLL
 {
-    public class AllFormsSet
+    public static  class AllFormsSet
     {     
-        public void InitAllForms(MainForm mainForm)
+        public static void InitAllForms(MainForm mainForm)
         {
             AllForms.m_MainForm = mainForm;
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
@@ -29,7 +29,7 @@ namespace HSD_EMAT_Chan4.DLL
             SetParamFormLayout();
         }
 
-        public  void UpDateFormLayOut()
+        public static void UpDateFormLayOut()
         {
             switch (FormView.m_aveFromViewType.ToString())
             {
@@ -41,7 +41,7 @@ namespace HSD_EMAT_Chan4.DLL
                 }
                 case "type2":
                 {
-                        SetWaveFromLayoutType2();
+                        SetWaveFromLayoutType2(0);
                         AllForms.m_MainForm.Invalidate();
                         break;
                 }
@@ -54,10 +54,21 @@ namespace HSD_EMAT_Chan4.DLL
             }
         }
 
-        /// <summary>
-        /// 改视图为2*2个波形窗口的布局
-        /// </summary>
-        private void SetWaveFromLayoutType1()
+        public static void UpDateFormLayOut(int channelNum)
+        {
+            if (FormView.m_aveFromViewType == FromViewType.type2)
+            {
+                SetWaveFromLayoutType2(channelNum);
+                return;
+            }
+            else
+            {
+                UpDateFormLayOut();
+            }
+        }
+
+        //2*2波形视图
+        private static void SetWaveFromLayoutType1()
         {
             FormView.chartViewType = ChartViewType.waveChart;
             if (AllForms.m_MainForm == null)
@@ -81,13 +92,45 @@ namespace HSD_EMAT_Chan4.DLL
             }
             foreach (WaveForm item in AllForms.m_WaveForms)
             {
-                item.ShowWaveView();
+                item.UpdateChartView();
             }
             SetParamFormLayout();
             AllForms.m_ParamSetForm.Show();
         }
 
-        private void SetWaveFromLayoutType2()
+        //单通道视图
+        private static void SetWaveFromLayoutType2(int channelNum)
+        {
+            if (channelNum > HSD_EMAT.totalChannelNum)
+            {
+                return;
+            }
+            if (AllForms.m_MainForm == null)
+            {
+                return;
+            }
+            foreach (WaveForm item in AllForms.m_WaveForms)
+            {
+                if (item == null)
+                {
+                    return;
+                }
+            }
+            foreach (Form item in AllForms.m_MainForm.MdiChildren)
+            {
+                item.Hide();//关闭所有子窗体
+            }
+            FormView.chartViewType = ChartViewType.scanChart;
+            AllForms.m_WaveForms[channelNum].UpdateChartView();
+            AllForms.m_WaveForms[channelNum].Location = new Point(0, 0);
+            AllForms.m_WaveForms[channelNum].Size =new Size(AllForms.m_MainForm.GetMainFormWorkingSpace().Width-AllForms.m_ParamSetForm.Size.Width, AllForms.m_ParamSetForm.Height);
+            AllForms.m_WaveForms[channelNum].Show();
+            AllForms.m_ParamSetForm.Show();
+
+        }
+
+        //2*2扫描视图
+        private static void SetWaveFromLayoutType3()
         {
             FormView.chartViewType = ChartViewType.scanChart;
             if (AllForms.m_MainForm == null)
@@ -105,35 +148,10 @@ namespace HSD_EMAT_Chan4.DLL
             {
                 item.Hide();//关闭所有子窗体
             }
-            AllForms.m_WaveForms[0].ShowWaveView();
-            AllForms.m_WaveForms[0].Show();
-            AllForms.m_WaveForms[0].m_ChangeFormSize(AllForms.m_MainForm.Size.Width-AllForms.m_ParamSetForm.Size.Width, AllForms.m_ParamSetForm.Height);
-            AllForms.m_ParamSetForm.Show();
-
-        }
-
-        private void SetWaveFromLayoutType3()
-        {
-            FormView.chartViewType = ChartViewType.scanChart;
-            if (AllForms.m_MainForm == null)
-            {
-                return;
-            }
-            foreach (WaveForm item in AllForms.m_WaveForms)
-            {
-                if (item == null)
-                {
-                    return;
-                }
-            }
-            foreach (Form item in AllForms.m_MainForm.MdiChildren)
-            {
-                item.Hide();//关闭所有子窗体
-            }
             SetParamFormLayout();
             foreach (WaveForm item in AllForms.m_WaveForms)
             {
-                item.ShowScanView();
+                item.UpdateChartView();
                 item.Show();
             }
             AllForms.m_ParamSetForm.Show();
@@ -143,19 +161,19 @@ namespace HSD_EMAT_Chan4.DLL
         /// <summary>
         /// 布局参数设置窗口
         /// </summary>
-        private void SetParamFormLayout()
+        private static void SetParamFormLayout()
         {
             if (AllForms.m_ParamSetForm == null||AllForms.m_MainForm==null)
             {
                 return;
             }
-            AllForms.m_ParamSetForm.Size = new Size(FormView.paramSetFormWidth, AllForms.m_MainForm.Height - AllForms.m_MainForm.toolStrip1.Bottom - AllForms.m_MainForm.menuStrip1.Bottom);
+            AllForms.m_ParamSetForm.Size = new Size(FormView.paramSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
             AllForms.m_ParamSetForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             AllForms.m_ParamSetForm.MdiParent = AllForms.m_MainForm;
-            AllForms.m_ParamSetForm.Location = new Point(AllForms.m_WaveForms[0].Width * 2, 0);
+            AllForms.m_ParamSetForm.Location = new Point(AllForms.m_MainForm.GetMainFormWorkingSpace().Width- FormView.paramSetFormWidth, 0);
         }
 
-        private void SetChartFormLayout()
+        private static void SetChartFormLayout()
         {
             if (AllForms.m_WaveForms == null)
             {
@@ -163,7 +181,7 @@ namespace HSD_EMAT_Chan4.DLL
             }
             for (int i = 0; i < 4; i++)
             {
-                AllForms.m_WaveForms[i].m_ChangeFormSize((AllForms.m_MainForm.Width - FormView.paramSetFormWidth) / 2, (AllForms.m_MainForm.Height - AllForms.m_MainForm.toolStrip1.Bottom - AllForms.m_MainForm.menuStrip1.Bottom) / 2);
+                AllForms.m_WaveForms[i].Size =new Size((AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth) / 2, (AllForms.m_MainForm.GetMainFormWorkingSpace().Height)/ 2);
                 AllForms.m_WaveForms[i].StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             }
             AllForms.m_WaveForms[0].Location = new Point(0, 0);

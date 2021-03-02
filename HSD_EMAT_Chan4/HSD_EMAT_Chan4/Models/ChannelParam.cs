@@ -16,21 +16,21 @@
         public int range;
         public WaveType waveType;
         public DataType dataType;
+    }
 
-        /// <summary>
-        /// 检波方式1_4:正检波，负检波，全检波，射频波
-        /// </summary>
-        public enum WaveType
-        {
-            type1, type2, type3, type4
-        }
+    /// <summary>
+    /// 数据类型，对应采样后的数据或者原始数据
+    /// </summary>
+    public enum DataType
+    {
+        data, oriData
+    }
 
-        /// <summary>
-        /// 数据类型，对应采样后的数据或者原始数据
-        /// </summary>
-        public  enum DataType
-        { 
-            data, oriData
-        }
+    /// <summary>
+    /// 检波方式1_4:正检波，负检波，全检波，射频波
+    /// </summary>
+    public enum WaveType
+    {
+        type1, type2, type3, type4
     }
 }

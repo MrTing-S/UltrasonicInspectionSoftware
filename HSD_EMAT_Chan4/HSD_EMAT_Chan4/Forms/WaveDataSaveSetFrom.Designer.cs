@@ -125,11 +125,12 @@
             this.Controls.Add(this.textBoxFileName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonBrowse);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WaveDataSaveSetFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ".";
+            this.Text = "保存数据";
             this.Load += new System.EventHandler(this.WaveDataSaveSetFrom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

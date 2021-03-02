@@ -108,6 +108,7 @@
             this.Controls.Add(this.buttonLoadConfig);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkedListBoxConfigFiles);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigFileLoadForm";

@@ -82,6 +82,7 @@
             this.Controls.Add(this.buttonOpenFirewall);
             this.Controls.Add(this.buttonCloseFireWall);
             this.Controls.Add(this.buttonCheckAdministratorRight);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FirewallSetForm";

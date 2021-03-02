@@ -34,7 +34,7 @@ namespace HSD_EMAT_Chan4.DLL
         /// <returns></returns>
         public static bool SystemInit()
         {
-            if (AllForms.m_WaveForms == null || AlllChannels.m_ChannelParams == null || AlllChannels.m_Channels == null)
+            if (AllForms.m_WaveForms == null ||  AllChannels.m_Channels == null)
             {
                 return false;
             }
@@ -62,9 +62,9 @@ namespace HSD_EMAT_Chan4.DLL
             {
                 return;
             }
-            NetModulDll.SendCmdCurrentChan(channel.channeParam.channelNum);
-            NetModulDll.MyReadData(channel.wavaData, channel.channeParam.channelNum, 1);
-            NetModulDll.MyReadOridata(channel.oriWaveData, channel.channeParam.channelNum);
+            NetModulDll.SendCmdCurrentChan(channel.channelParam.channelNum);
+            NetModulDll.MyReadData(channel.wavaData, channel.channelParam.channelNum, 1);
+            NetModulDll.MyReadOridata(channel.oriWaveData, channel.channelParam.channelNum);
         }
 
         public static void SeverStop()
