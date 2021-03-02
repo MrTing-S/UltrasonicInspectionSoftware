@@ -64,6 +64,7 @@
             this.ClientSize = new System.Drawing.Size(611, 340);
             this.Controls.Add(this.labelDialog);
             this.Controls.Add(this.buttonStopConnect);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConnectionForm";

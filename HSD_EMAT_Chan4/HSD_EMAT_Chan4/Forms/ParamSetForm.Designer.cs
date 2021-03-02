@@ -87,12 +87,12 @@
             this.buttonLoadDefaultCnfig = new System.Windows.Forms.Button();
             this.trackBarDataProcess = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.trackBarGageLength = new System.Windows.Forms.TrackBar();
             this.trackBarGagePosY = new System.Windows.Forms.TrackBar();
             this.trackBarGagePosX = new System.Windows.Forms.TrackBar();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigital)).BeginInit();
@@ -158,7 +158,7 @@
             // 
             // textBoxDialog
             // 
-            this.textBoxDialog.Location = new System.Drawing.Point(23, 807);
+            this.textBoxDialog.Location = new System.Drawing.Point(23, 864);
             this.textBoxDialog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDialog.Multiline = true;
             this.textBoxDialog.Name = "textBoxDialog";
@@ -168,7 +168,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(20, 775);
+            this.label25.Location = new System.Drawing.Point(20, 832);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(82, 15);
             this.label25.TabIndex = 106;
@@ -773,7 +773,7 @@
             // 
             // trackBarDataProcess
             // 
-            this.trackBarDataProcess.Location = new System.Drawing.Point(20, 930);
+            this.trackBarDataProcess.Location = new System.Drawing.Point(18, 975);
             this.trackBarDataProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBarDataProcess.Maximum = 80;
             this.trackBarDataProcess.Minimum = 10;
@@ -801,6 +801,33 @@
             this.groupBox3.TabIndex = 110;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "闸门设置";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(3, 93);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 15);
+            this.label28.TabIndex = 158;
+            this.label28.Text = "长度";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(12, 61);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(15, 15);
+            this.label27.TabIndex = 157;
+            this.label27.Text = "y";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(9, 24);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(15, 15);
+            this.label26.TabIndex = 152;
+            this.label26.Text = "x";
             // 
             // trackBarGageLength
             // 
@@ -843,38 +870,11 @@
             this.trackBarGagePosX.Value = 50;
             this.trackBarGagePosX.Scroll += new System.EventHandler(this.trackBarGagePosX_Scroll);
             // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 24);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(15, 15);
-            this.label26.TabIndex = 152;
-            this.label26.Text = "x";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(12, 61);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(15, 15);
-            this.label27.TabIndex = 157;
-            this.label27.Text = "y";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 93);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 15);
-            this.label28.TabIndex = 158;
-            this.label28.Text = "长度";
-            // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 1042);
+            this.ClientSize = new System.Drawing.Size(392, 1042);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.trackBarDataProcess);
             this.Controls.Add(this.groupBox1);

@@ -30,29 +30,43 @@ namespace HSD_EMAT_Chan4.Forms
             this.ScanChart.SetGageVisible(MyChartControl.WaveChart.GageTpye.GageB, false);
         }
 
-        public void ShowScanView()
+        public void UpdateChartView()
         {
+            if (FormView.chartViewType == ChartViewType.scanChart)
+            {
+                ShowScanView();
+            }
+            else
+            {
+                ShowWaveView();
+            }
+        }
+
+        private  void ShowScanView()
+        {
+            int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
+            int windowBorderHeight = (this.Height - this.ClientRectangle.Height);//获取边框的宽度
             this.ScanChart.Visible = true;
             ScanChart.Location = new Point(0, 0);
-            ScanChart.Width = this.Width;
+            ScanChart.Width = this.Width - windowBorderWidth;
             ScanChart.Height = this.Height * 4 / 7;
             waveChart.Location = new Point(0, ScanChart.Height);
-            waveChart.Width = this.Width;
-            waveChart.Height = this.Height - ScanChart.Height-50;
+            waveChart.Width = this.Width - windowBorderWidth;
+            waveChart.Height = this.Height - ScanChart.Height- windowBorderHeight;
         }
 
-        public void ShowWaveView()
+        private  void ShowWaveView()
         {
+            int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
+            int windowBorderHeight = (this.Height - this.ClientRectangle.Height);//获取边框的宽度
             this.ScanChart.Visible=false;
             waveChart.Location = new Point(0, 0);
-            waveChart.Size = new Size(this.Size.Width,this.Size.Height-50);
+            waveChart.Size = new Size(this.Size.Width- windowBorderWidth, this.Size.Height- windowBorderHeight);
         }
 
-        public void  m_ChangeFormSize(int width, int height)
+        private void WaveForm_SizeChanged(object sender, EventArgs e)
         {
-            this.Size = new Size(width,height);
-            waveChart.Location = new Point(0, 0);
-            waveChart.Size = new Size(width, height - 50);
+            UpdateChartView();
         }
     }
 }

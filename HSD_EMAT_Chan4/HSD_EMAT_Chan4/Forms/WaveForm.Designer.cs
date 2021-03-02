@@ -59,6 +59,7 @@
             this.Controls.Add(this.waveChart);
             this.Name = "WaveForm";
             this.Text = "WaveForm";
+            this.SizeChanged += new System.EventHandler(this.WaveForm_SizeChanged);
             this.ResumeLayout(false);
 
         }

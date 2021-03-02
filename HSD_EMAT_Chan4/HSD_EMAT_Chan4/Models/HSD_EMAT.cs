@@ -5,6 +5,7 @@
     /// </summary>
     public static class HSD_EMAT
     {
+        public static int totalGageNum = 2;
         public static int totalChannelNum=4;
         public static int boardNum = 1;//客户端数   
         public static ushort pConnectNo=1;

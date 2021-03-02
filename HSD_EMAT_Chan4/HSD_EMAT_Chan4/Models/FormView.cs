@@ -9,7 +9,7 @@ namespace HSD_EMAT_Chan4.Models
     public static class FormView
     {
         public static  FromViewType m_aveFromViewType;
-        static public int paramSetFormWidth = 400;//参数调节窗口的宽度
+        static public int paramSetFormWidth = 320;//参数调节窗口的宽度
         static public ChartViewType chartViewType;
     }
 

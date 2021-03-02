@@ -79,7 +79,7 @@
             this.Controls.Add(this.butSave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxconfigName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigFileSaveForm";
