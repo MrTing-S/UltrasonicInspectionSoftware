@@ -64,10 +64,10 @@
 
         }
 
-        public  MyChartControl.WaveChart.WaveChartControl waveChart;
+        private   MyChartControl.WaveChart.WaveChartControl waveChart;
 
         #endregion
 
-        public MyChartControl.WaveChart.WaveChartControl ScanChart;
+        private  MyChartControl.WaveChart.WaveChartControl ScanChart;
     }
 }

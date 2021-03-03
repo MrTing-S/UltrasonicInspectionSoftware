@@ -163,8 +163,6 @@
         private WaveDataFile m_WaveDataFile;
         public  double[] readDataBuf;
 
-        //闸门(全部重新写)
-        public  Gage gageA;
 
         public MainForm()
         {
@@ -329,8 +327,8 @@
             this.aboutAToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1323, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(992, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1155,7 +1153,7 @@
             this.toolStripButtonAlarmSoundSwitch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1323, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(992, 28);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
@@ -1263,7 +1261,7 @@
             this.toolStripComboBoxChannel.DropDownWidth = 75;
             this.toolStripComboBoxChannel.IntegralHeight = false;
             this.toolStripComboBoxChannel.Name = "toolStripComboBoxChannel";
-            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(79, 28);
+            this.toolStripComboBoxChannel.Size = new System.Drawing.Size(60, 28);
             this.toolStripComboBoxChannel.Tag = "Channel";
             this.toolStripComboBoxChannel.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxChannel_SelectedIndexChanged);
             this.toolStripComboBoxChannel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxChannel_KeyDown);
@@ -1472,10 +1470,10 @@
             this.toolStripStatusLabelVision,
             this.toolStripStatusLabel1,
             this.toolStripStatusConnectStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 806);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1323, 26);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(992, 26);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1499,9 +1497,9 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 832);
+            this.ClientSize = new System.Drawing.Size(992, 666);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1509,7 +1507,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -1610,11 +1608,6 @@
         private void menuItemScanForm_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void menuItemScanViewType4_Click(object sender, EventArgs e)
-        {
-             
         }
 
         private void menuItemScanViewType5_Click_1(object sender, EventArgs e)
@@ -2038,6 +2031,8 @@
             this.HScroll = false;
             FormView.m_aveFromViewType = FromViewType.type1;
             AllFormsSet.UpDateFormLayOut();
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType1.Checked = true;
         }
 
         private void InitToolStripStatus()
@@ -2071,16 +2066,10 @@
 
         private void InitGage()
         {
-            gageA = new Gage
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
             {
-                InitIndexX = 20,
-                InitIndexY = 20,
-                gageTpye = MyChartControl.WaveChart.GageTpye.GageA,
-                IndexLength = 5,
-            };
-            foreach (WaveForm item in AllForms.m_WaveForms)
-            {
-                item.waveChart.SetGage(gageA.gageTpye, new Point(gageA.InitIndexX, gageA.InitIndexY), gageA.IndexLength);
+                AllForms.m_WaveForms[i].DrawGage(AllChannels.m_Channels[i].channelGage[0]);
+                AllForms.m_WaveForms[i].DrawGage(AllChannels.m_Channels[i].channelGage[1]);
             }
         }
 
@@ -2094,9 +2083,12 @@
             DrawAllWaveChart();
            if (FormView.chartViewType == ChartViewType.scanChart)
            {
-                double[] data1 = Funcations.ArrayUshortToDouble(AllChannels.m_Channels[0].wavaData);
-                double[] data2 = AllForms.m_WaveForms[0].ScanChart.GetGageData(MyChartControl.WaveChart.GageTpye.GageA, data1);
-                AllForms.m_WaveForms[0].ScanChart.DrawPoint(data2.Max());
+                for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+                {
+                    double data = AllForms.m_WaveForms[i].GetGageMaxValue(AllChannels.m_Channels[i].channelGage[0], Funcations.ArrayUshortToDouble(AllChannels.m_Channels[i].wavaData));
+                    AllForms.m_WaveForms[i].DrawPoint(data);
+                }
+
            }
         }
 
@@ -2135,7 +2127,7 @@
 
         private void DrawWaveChart(int channel)
         {
-            AllForms.m_WaveForms[channel].waveChart.DrawLine(Funcations.ArrayUshortToDouble(AllChannels.m_Channels[channel].wavaData));
+            AllForms.m_WaveForms[channel].DrawLine(Funcations.ArrayUshortToDouble(AllChannels.m_Channels[channel].wavaData));
         }
         #endregion 
 
@@ -2277,18 +2269,40 @@
         {
             FormView.m_aveFromViewType = FromViewType.type1;
             AllFormsSet.UpDateFormLayOut();
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType1.Checked = true;
         }
 
         private void menuItemScanViewType2_Click(object sender, EventArgs e)
         {
             FormView.m_aveFromViewType = FromViewType.type2;
             AllFormsSet.UpDateFormLayOut(AllForms.m_ParamSetForm.CurrChanNum);
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType2.Checked = true;
         }
 
         private void menuItemScanViewType3_Click(object sender, EventArgs e)
         {
             FormView.m_aveFromViewType = FromViewType.type3;
             AllFormsSet.UpDateFormLayOut();
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType3.Checked = true;
+        }
+
+        private void menuItemScanViewType4_Click(object sender, EventArgs e)
+        {
+            FormView.m_aveFromViewType = FromViewType.type4;
+            AllFormsSet.UpDateFormLayOut();
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType4.Checked = true;
+        }
+
+        private void ClearAllMenuItemViewChecked()
+        {
+            menuItemScanViewType1.Checked = false;
+            menuItemScanViewType2.Checked = false;
+            menuItemScanViewType3.Checked = false;
+            menuItemScanViewType4.Checked = false;
         }
         #endregion 
 
@@ -2298,12 +2312,14 @@
         {
             int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
             int windowBorderHeight = (this.Height - this.ClientRectangle.Height);//获取边框的宽度
-            int width = this.Width - windowBorderWidth;
-            int heigh = this.Height - this.toolStrip1.Bottom - this.menuStrip1.Bottom - this.statusStrip1.Height - windowBorderHeight;
+            int width = this.Width - windowBorderWidth-7;
+            int heigh = this.Height - this.toolStrip1.Bottom - this.menuStrip1.Bottom - windowBorderHeight-16;
             Size size = new Size(width, heigh);
             return size;
         }
         #endregion
+
+
     }
 }
 

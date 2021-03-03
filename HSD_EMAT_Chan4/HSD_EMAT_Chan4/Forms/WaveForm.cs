@@ -30,6 +30,50 @@ namespace HSD_EMAT_Chan4.Forms
             this.ScanChart.SetGageVisible(MyChartControl.WaveChart.GageTpye.GageB, false);
         }
 
+        #region 窗体设置
+        public void DrawGage(Gage gage)
+        {
+            waveChart.SetGage(gage.gageTpye, new Point(gage.InitIndexX, gage.InitIndexY), gage.IndexLength);
+        }
+
+        public void DrawLine(double [] data)
+        {
+            waveChart.DrawLine(data);
+        }
+
+        public void DrawPoint(double data)
+        {
+            ScanChart.DrawPoint(data);
+        }
+
+        public void ChangeWaveFormXScale(int xMaxValue)
+        {
+            this.waveChart.ChartXSizeZoomChange(xMaxValue);
+        }
+
+        public void ChangeWaveFormYScale(int yMaxValue,int yMinValue)
+        {
+            this.waveChart.ChartYSizeZoomChange(yMaxValue, yMinValue);
+        }
+        public void ChangeScanFormXScale(int xMaxValue)
+        {
+            this.ScanChart.ChartXSizeZoomChange(xMaxValue);
+        }
+        public void ChangeSacnFormYScale(int yMaxValue, int yMinValue)
+        {
+            this.ScanChart.ChartYSizeZoomChange(yMaxValue, yMinValue);
+        }
+        #endregion
+
+        #region 数据提取
+        public double GetGageMaxValue(Gage gage,double[] data)
+        {
+            return waveChart.GetGageData(gage.gageTpye, data).Max();
+        }
+        #endregion
+
+        #region 改变窗体视图
+
         public void UpdateChartView()
         {
             if (FormView.chartViewType == ChartViewType.scanChart)
@@ -68,5 +112,6 @@ namespace HSD_EMAT_Chan4.Forms
         {
             UpdateChartView();
         }
+        #endregion
     }
 }

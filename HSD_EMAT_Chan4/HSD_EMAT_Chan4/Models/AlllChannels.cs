@@ -9,8 +9,8 @@ namespace HSD_EMAT_Chan4.Models
     public static class AllChannels
     {
         public static Channel[] m_Channels = new Channel[HSD_EMAT.totalChannelNum];
-        private static int repeatFreq=4;
-        public static int RepeatFreq
+        private static uint repeatFreq =4;
+        public static uint  RepeatFreq
         {
             get
             {

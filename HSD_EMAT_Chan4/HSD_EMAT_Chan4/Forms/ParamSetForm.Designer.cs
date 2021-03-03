@@ -86,13 +86,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonLoadDefaultCnfig = new System.Windows.Forms.Button();
             this.trackBarDataProcess = new System.Windows.Forms.TrackBar();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.trackBarGageLength = new System.Windows.Forms.TrackBar();
-            this.trackBarGagePosY = new System.Windows.Forms.TrackBar();
-            this.trackBarGagePosX = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigital)).BeginInit();
@@ -107,10 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRepeatFreq)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGageLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGagePosY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGagePosX)).BeginInit();
             this.SuspendLayout();
             // 
             // label22
@@ -785,97 +774,11 @@
             this.trackBarDataProcess.Value = 45;
             this.trackBarDataProcess.Scroll += new System.EventHandler(this.trackBarDataProcess_Scroll);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label28);
-            this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.trackBarGageLength);
-            this.groupBox3.Controls.Add(this.trackBarGagePosY);
-            this.groupBox3.Controls.Add(this.trackBarGagePosX);
-            this.groupBox3.Location = new System.Drawing.Point(12, 614);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(380, 159);
-            this.groupBox3.TabIndex = 110;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "闸门设置";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 93);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 15);
-            this.label28.TabIndex = 158;
-            this.label28.Text = "长度";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(12, 61);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(15, 15);
-            this.label27.TabIndex = 157;
-            this.label27.Text = "y";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 24);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(15, 15);
-            this.label26.TabIndex = 152;
-            this.label26.Text = "x";
-            // 
-            // trackBarGageLength
-            // 
-            this.trackBarGageLength.Location = new System.Drawing.Point(36, 87);
-            this.trackBarGageLength.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.trackBarGageLength.Maximum = 50;
-            this.trackBarGageLength.Name = "trackBarGageLength";
-            this.trackBarGageLength.Size = new System.Drawing.Size(329, 56);
-            this.trackBarGageLength.TabIndex = 156;
-            this.trackBarGageLength.Tag = "tr6";
-            this.trackBarGageLength.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trackBarGageLength.Value = 5;
-            this.trackBarGageLength.Scroll += new System.EventHandler(this.trackBarGageLength_Scroll);
-            // 
-            // trackBarGagePosY
-            // 
-            this.trackBarGagePosY.Location = new System.Drawing.Point(36, 52);
-            this.trackBarGagePosY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.trackBarGagePosY.Maximum = 100;
-            this.trackBarGagePosY.Minimum = 1;
-            this.trackBarGagePosY.Name = "trackBarGagePosY";
-            this.trackBarGagePosY.Size = new System.Drawing.Size(329, 56);
-            this.trackBarGagePosY.TabIndex = 155;
-            this.trackBarGagePosY.Tag = "tr6";
-            this.trackBarGagePosY.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trackBarGagePosY.Value = 50;
-            this.trackBarGagePosY.Scroll += new System.EventHandler(this.trackBarGagePosY_Scroll);
-            // 
-            // trackBarGagePosX
-            // 
-            this.trackBarGagePosX.Location = new System.Drawing.Point(36, 20);
-            this.trackBarGagePosX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.trackBarGagePosX.Maximum = 100;
-            this.trackBarGagePosX.Minimum = 1;
-            this.trackBarGagePosX.Name = "trackBarGagePosX";
-            this.trackBarGagePosX.Size = new System.Drawing.Size(329, 56);
-            this.trackBarGagePosX.TabIndex = 154;
-            this.trackBarGagePosX.Tag = "tr6";
-            this.trackBarGagePosX.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trackBarGagePosX.Value = 50;
-            this.trackBarGagePosX.Scroll += new System.EventHandler(this.trackBarGagePosX_Scroll);
-            // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 1042);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.trackBarDataProcess);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -905,11 +808,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRepeatFreq)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGageLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGagePosY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGagePosX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,12 +872,5 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonLoadDefaultCnfig;
         public  System.Windows.Forms.TrackBar trackBarDataProcess;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TrackBar trackBarGageLength;
-        private System.Windows.Forms.TrackBar trackBarGagePosY;
-        private System.Windows.Forms.TrackBar trackBarGagePosX;
     }
 }
