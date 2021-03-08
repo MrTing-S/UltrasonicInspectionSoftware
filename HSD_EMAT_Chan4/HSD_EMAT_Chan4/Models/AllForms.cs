@@ -7,5 +7,6 @@
         public static ParamSetForm m_ParamSetForm;
         public static WaveForm[] m_WaveForms = new WaveForm[HSD_EMAT.totalChannelNum];
         public static GageForm m_GageForm;
+        public static MutiScanForm m_MutiScanForm;
     }
 }

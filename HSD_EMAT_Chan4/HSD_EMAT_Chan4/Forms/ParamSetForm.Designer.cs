@@ -86,6 +86,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonLoadDefaultCnfig = new System.Windows.Forms.Button();
             this.trackBarDataProcess = new System.Windows.Forms.TrackBar();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBoxSoundSpeed = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.trackBarSoundSpeed = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRange)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDigital)).BeginInit();
@@ -100,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRepeatFreq)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSoundSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // label22
@@ -117,9 +122,11 @@
             this.textBoxRange.Location = new System.Drawing.Point(221, 105);
             this.textBoxRange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRange.Name = "textBoxRange";
+            this.textBoxRange.ReadOnly = true;
             this.textBoxRange.Size = new System.Drawing.Size(31, 25);
             this.textBoxRange.TabIndex = 101;
             this.textBoxRange.Text = "45";
+            this.textBoxRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label21
             // 
@@ -144,20 +151,21 @@
             this.trackBarRange.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarRange.Value = 45;
             this.trackBarRange.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarRange.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // textBoxDialog
             // 
-            this.textBoxDialog.Location = new System.Drawing.Point(23, 864);
+            this.textBoxDialog.Location = new System.Drawing.Point(12, 649);
             this.textBoxDialog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDialog.Multiline = true;
             this.textBoxDialog.Name = "textBoxDialog";
-            this.textBoxDialog.Size = new System.Drawing.Size(333, 92);
+            this.textBoxDialog.Size = new System.Drawing.Size(380, 92);
             this.textBoxDialog.TabIndex = 105;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(20, 832);
+            this.label25.Location = new System.Drawing.Point(9, 625);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(82, 15);
             this.label25.TabIndex = 106;
@@ -308,10 +316,12 @@
             this.textBoxDigital.Location = new System.Drawing.Point(291, 280);
             this.textBoxDigital.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDigital.Name = "textBoxDigital";
+            this.textBoxDigital.ReadOnly = true;
             this.textBoxDigital.Size = new System.Drawing.Size(31, 25);
             this.textBoxDigital.TabIndex = 143;
             this.textBoxDigital.Tag = "t10";
             this.textBoxDigital.Text = "0";
+            this.textBoxDigital.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label19
             // 
@@ -335,6 +345,7 @@
             this.trackBarDigital.Tag = "tr10";
             this.trackBarDigital.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarDigital.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarDigital.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label16
             // 
@@ -351,10 +362,12 @@
             this.textBoxHighVoltage.Location = new System.Drawing.Point(221, 280);
             this.textBoxHighVoltage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxHighVoltage.Name = "textBoxHighVoltage";
+            this.textBoxHighVoltage.ReadOnly = true;
             this.textBoxHighVoltage.Size = new System.Drawing.Size(31, 25);
             this.textBoxHighVoltage.TabIndex = 139;
             this.textBoxHighVoltage.Tag = "t9";
             this.textBoxHighVoltage.Text = "300";
+            this.textBoxHighVoltage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label17
             // 
@@ -378,6 +391,7 @@
             this.trackBarHighVoltage.Tag = "tr9";
             this.trackBarHighVoltage.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarHighVoltage.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarHighVoltage.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label14
             // 
@@ -394,10 +408,12 @@
             this.textBoxFixNumber.Location = new System.Drawing.Point(149, 280);
             this.textBoxFixNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxFixNumber.Name = "textBoxFixNumber";
+            this.textBoxFixNumber.ReadOnly = true;
             this.textBoxFixNumber.Size = new System.Drawing.Size(31, 25);
             this.textBoxFixNumber.TabIndex = 135;
             this.textBoxFixNumber.Tag = "t8";
             this.textBoxFixNumber.Text = "1";
+            this.textBoxFixNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label15
             // 
@@ -420,6 +436,7 @@
             this.trackBarFixNumber.Tag = "tr8";
             this.trackBarFixNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarFixNumber.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarFixNumber.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label12
             // 
@@ -436,10 +453,12 @@
             this.textBoxAveNumber.Location = new System.Drawing.Point(77, 280);
             this.textBoxAveNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxAveNumber.Name = "textBoxAveNumber";
+            this.textBoxAveNumber.ReadOnly = true;
             this.textBoxAveNumber.Size = new System.Drawing.Size(31, 25);
             this.textBoxAveNumber.TabIndex = 131;
             this.textBoxAveNumber.Tag = "t7";
             this.textBoxAveNumber.Text = "1";
+            this.textBoxAveNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label13
             // 
@@ -462,6 +481,7 @@
             this.trackBarAveNumber.Tag = "tr7";
             this.trackBarAveNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarAveNumber.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarAveNumber.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label10
             // 
@@ -478,10 +498,12 @@
             this.textBoxPulNumber.Location = new System.Drawing.Point(8, 280);
             this.textBoxPulNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPulNumber.Name = "textBoxPulNumber";
+            this.textBoxPulNumber.ReadOnly = true;
             this.textBoxPulNumber.Size = new System.Drawing.Size(31, 25);
             this.textBoxPulNumber.TabIndex = 127;
             this.textBoxPulNumber.Tag = "t6";
             this.textBoxPulNumber.Text = "1";
+            this.textBoxPulNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -504,6 +526,7 @@
             this.trackBarPulNumber.Tag = "tr6";
             this.trackBarPulNumber.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarPulNumber.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarPulNumber.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarSendCmdDelayCount
             // 
@@ -517,6 +540,7 @@
             this.trackBarSendCmdDelayCount.Tag = "tr5";
             this.trackBarSendCmdDelayCount.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarSendCmdDelayCount.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarSendCmdDelayCount.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label8
             // 
@@ -532,10 +556,12 @@
             this.textBoxDelayCount.Location = new System.Drawing.Point(293, 106);
             this.textBoxDelayCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDelayCount.Name = "textBoxDelayCount";
+            this.textBoxDelayCount.ReadOnly = true;
             this.textBoxDelayCount.Size = new System.Drawing.Size(31, 25);
             this.textBoxDelayCount.TabIndex = 122;
             this.textBoxDelayCount.Tag = "t5";
             this.textBoxDelayCount.Text = "0";
+            this.textBoxDelayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
@@ -578,20 +604,24 @@
             this.textBoxSignFreqRatio.Location = new System.Drawing.Point(149, 106);
             this.textBoxSignFreqRatio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSignFreqRatio.Name = "textBoxSignFreqRatio";
+            this.textBoxSignFreqRatio.ReadOnly = true;
             this.textBoxSignFreqRatio.Size = new System.Drawing.Size(31, 25);
             this.textBoxSignFreqRatio.TabIndex = 113;
             this.textBoxSignFreqRatio.Tag = "t3";
             this.textBoxSignFreqRatio.Text = "4";
+            this.textBoxSignFreqRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxAnalogGainValue
             // 
             this.textBoxAnalogGainValue.Location = new System.Drawing.Point(77, 106);
             this.textBoxAnalogGainValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxAnalogGainValue.Name = "textBoxAnalogGainValue";
+            this.textBoxAnalogGainValue.ReadOnly = true;
             this.textBoxAnalogGainValue.Size = new System.Drawing.Size(31, 25);
             this.textBoxAnalogGainValue.TabIndex = 112;
             this.textBoxAnalogGainValue.Tag = "t2";
             this.textBoxAnalogGainValue.Text = "0";
+            this.textBoxAnalogGainValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDigitalGainValue
             // 
@@ -599,10 +629,12 @@
             this.textBoxDigitalGainValue.Location = new System.Drawing.Point(8, 106);
             this.textBoxDigitalGainValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDigitalGainValue.Name = "textBoxDigitalGainValue";
+            this.textBoxDigitalGainValue.ReadOnly = true;
             this.textBoxDigitalGainValue.Size = new System.Drawing.Size(31, 25);
             this.textBoxDigitalGainValue.TabIndex = 111;
             this.textBoxDigitalGainValue.Tag = "t1";
             this.textBoxDigitalGainValue.Text = "0";
+            this.textBoxDigitalGainValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -645,6 +677,7 @@
             this.trackBarSignFreqRatio.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarSignFreqRatio.Value = 40;
             this.trackBarSignFreqRatio.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarSignFreqRatio.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarAnalogGain
             // 
@@ -658,6 +691,7 @@
             this.trackBarAnalogGain.Tag = "tr2";
             this.trackBarAnalogGain.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarAnalogGain.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarAnalogGain.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarDigitalGian
             // 
@@ -671,10 +705,11 @@
             this.trackBarDigitalGian.Tag = "tr1";
             this.trackBarDigitalGian.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarDigitalGian.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            this.trackBarDigitalGian.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarRepeatFreq
             // 
-            this.trackBarRepeatFreq.Location = new System.Drawing.Point(147, 554);
+            this.trackBarRepeatFreq.Location = new System.Drawing.Point(147, 450);
             this.trackBarRepeatFreq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBarRepeatFreq.Maximum = 4;
             this.trackBarRepeatFreq.Name = "trackBarRepeatFreq";
@@ -684,11 +719,12 @@
             this.trackBarRepeatFreq.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarRepeatFreq.Value = 4;
             this.trackBarRepeatFreq.Scroll += new System.EventHandler(this.trackBarRepeatFreq_Scroll);
+            this.trackBarRepeatFreq.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(131, 558);
+            this.label6.Location = new System.Drawing.Point(131, 454);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 15);
             this.label6.TabIndex = 119;
@@ -696,18 +732,20 @@
             // 
             // textBoxRepeatFreq
             // 
-            this.textBoxRepeatFreq.Location = new System.Drawing.Point(96, 554);
+            this.textBoxRepeatFreq.Location = new System.Drawing.Point(77, 450);
             this.textBoxRepeatFreq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRepeatFreq.Name = "textBoxRepeatFreq";
-            this.textBoxRepeatFreq.Size = new System.Drawing.Size(31, 25);
+            this.textBoxRepeatFreq.ReadOnly = true;
+            this.textBoxRepeatFreq.Size = new System.Drawing.Size(50, 25);
             this.textBoxRepeatFreq.TabIndex = 118;
             this.textBoxRepeatFreq.Tag = "t4";
             this.textBoxRepeatFreq.Text = "500";
+            this.textBoxRepeatFreq.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 558);
+            this.label7.Location = new System.Drawing.Point(6, 454);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 117;
@@ -740,7 +778,7 @@
             this.groupBox2.Controls.Add(this.buttonSaveConfig);
             this.groupBox2.Controls.Add(this.buttonLoadDefaultCnfig);
             this.groupBox2.Controls.Add(this.buttonLoadConfig);
-            this.groupBox2.Location = new System.Drawing.Point(12, 459);
+            this.groupBox2.Location = new System.Drawing.Point(12, 527);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -774,14 +812,63 @@
             this.trackBarDataProcess.Value = 45;
             this.trackBarDataProcess.Scroll += new System.EventHandler(this.trackBarDataProcess_Scroll);
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(5, 494);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(67, 15);
+            this.label26.TabIndex = 152;
+            this.label26.Text = "材料声速";
+            // 
+            // textBoxSoundSpeed
+            // 
+            this.textBoxSoundSpeed.Location = new System.Drawing.Point(77, 490);
+            this.textBoxSoundSpeed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxSoundSpeed.Name = "textBoxSoundSpeed";
+            this.textBoxSoundSpeed.ReadOnly = true;
+            this.textBoxSoundSpeed.Size = new System.Drawing.Size(49, 25);
+            this.textBoxSoundSpeed.TabIndex = 153;
+            this.textBoxSoundSpeed.Tag = "t4";
+            this.textBoxSoundSpeed.Text = "500";
+            this.textBoxSoundSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(128, 494);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(31, 15);
+            this.label27.TabIndex = 154;
+            this.label27.Text = "m/s";
+            // 
+            // trackBarSoundSpeed
+            // 
+            this.trackBarSoundSpeed.Location = new System.Drawing.Point(146, 490);
+            this.trackBarSoundSpeed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.trackBarSoundSpeed.Maximum = 8000;
+            this.trackBarSoundSpeed.Minimum = 2000;
+            this.trackBarSoundSpeed.Name = "trackBarSoundSpeed";
+            this.trackBarSoundSpeed.Size = new System.Drawing.Size(231, 56);
+            this.trackBarSoundSpeed.TabIndex = 155;
+            this.trackBarSoundSpeed.Tag = "tr4";
+            this.trackBarSoundSpeed.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarSoundSpeed.Value = 4320;
+            this.trackBarSoundSpeed.Scroll += new System.EventHandler(this.trackBarSoundSpeed_Scroll);
+            this.trackBarSoundSpeed.Enter += new System.EventHandler(this.trackBar_Enter);
+            // 
             // ParamSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 1042);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.trackBarSoundSpeed);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.textBoxSoundSpeed);
             this.Controls.Add(this.trackBarDataProcess);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.textBoxDialog);
             this.Controls.Add(this.label7);
@@ -808,6 +895,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRepeatFreq)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDataProcess)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSoundSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -872,5 +960,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonLoadDefaultCnfig;
         public  System.Windows.Forms.TrackBar trackBarDataProcess;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBoxSoundSpeed;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TrackBar trackBarSoundSpeed;
     }
 }

@@ -51,8 +51,17 @@ namespace HSD_EMAT_Chan4.DLL
         #endregion
 
         #region 加载参数
+        public static void UpDateSysAllParam()
+        {
+            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
+            {
+                UpDateSysSingleChannelParam(i);
+            }
+            UpDateSysAllChannelParam();
+        }
+
         //改变系统的参数设置
-        public static  void UpDateSysParam(int iChan)
+        private  static void UpDateSysSingleChannelParam(int iChan)
         {
             DLL.NetModulDll.SendCmdCurrentChan(iChan);
             DLL.NetModulDll.SendCmdDB1(AllChannels.m_Channels[iChan].channelParam.digitalGian);
@@ -65,6 +74,10 @@ namespace HSD_EMAT_Chan4.DLL
             DLL.NetModulDll.SendCmdHighVoltage(AllChannels.m_Channels[iChan].channelParam.highVoltage);
             DLL.NetModulDll.SendCmdDigital(AllChannels.m_Channels[iChan].channelParam.digital);
             DLL.NetModulDll.setRange(AllChannels.m_Channels[iChan].channelParam.range);
+        }
+
+        private  static void UpDateSysAllChannelParam()
+        {
             DLL.NetModulDll.SendCmdRepeatFreq((uint)AllChannels.RepeatFreq);
         }
 
@@ -78,9 +91,10 @@ namespace HSD_EMAT_Chan4.DLL
             //获得第一个姓名匹配的节点（SelectSingleNode）：此xml文件的根节点
             XmlNode topRootNode = myXmlDoc.SelectSingleNode("configInfo");
             XmlNode rootNode;
+            #region 单通道
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
             {
-                #region
+                #region 参数
                 rootNode = topRootNode.SelectSingleNode("channel" + i.ToString());
                 AllChannels.m_Channels[i].channelParam.analogGain = Convert.ToUInt32(rootNode.SelectSingleNode("analogGain").FirstChild.InnerText);
                 AllChannels.m_Channels[i].channelParam.digitalGian = Convert.ToUInt32(rootNode.SelectSingleNode("digitalGian").FirstChild.InnerText);
@@ -93,7 +107,6 @@ namespace HSD_EMAT_Chan4.DLL
                 AllChannels.m_Channels[i].channelParam.digital = Convert.ToUInt32(rootNode.SelectSingleNode("digital").FirstChild.InnerText);
                 AllChannels.m_Channels[i].channelParam.range = Convert.ToInt32(rootNode.SelectSingleNode("range").FirstChild.InnerText);
                 #endregion
-
                 #region 通道闸门
                 for (int i1 = 0; i1 < HSD_EMAT.totalGageNum; i1++)
                 {
@@ -103,6 +116,13 @@ namespace HSD_EMAT_Chan4.DLL
                 }
                 #endregion
             }
+            #endregion
+
+            #region 所有通道
+            rootNode = topRootNode.SelectSingleNode("AllChannel");
+            AllChannels.RepeatFreq = Convert.ToUInt32(rootNode.SelectSingleNode("RepeatFreq").FirstChild.InnerText);
+            AllChannels.SoundSpeed = Convert.ToInt32(rootNode.SelectSingleNode("SoundSpeed").FirstChild.InnerText);
+            #endregion
         }
         #endregion
 
@@ -119,6 +139,7 @@ namespace HSD_EMAT_Chan4.DLL
             xmlDoc.AppendChild(rootFileName);
             CreateNode(xmlDoc, rootFileName, "fileName", filePath .Substring(filePath.LastIndexOf("\\")+1));
 
+            #region 单通道
             for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
             {
                 XmlNode root = xmlDoc.CreateElement("channel" + i.ToString());
@@ -147,6 +168,15 @@ namespace HSD_EMAT_Chan4.DLL
                 }
                 #endregion
             }
+            #endregion
+
+            #region 所有通道
+            XmlNode rootAll = xmlDoc.CreateElement("AllChannel");
+            xmlDoc.DocumentElement.AppendChild(rootAll);
+            CreateNode(xmlDoc, rootAll, "RepeatFreq", AllChannels.RepeatFreq.ToString());
+            CreateNode(xmlDoc, rootAll, "SoundSpeed", AllChannels.SoundSpeed.ToString());
+            #endregion
+
             xmlDoc.Save(filePath);//如果文件存在会直接覆盖
         }
 

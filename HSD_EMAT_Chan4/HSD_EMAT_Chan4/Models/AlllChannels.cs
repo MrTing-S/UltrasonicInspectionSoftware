@@ -9,8 +9,8 @@ namespace HSD_EMAT_Chan4.Models
     public static class AllChannels
     {
         public static Channel[] m_Channels = new Channel[HSD_EMAT.totalChannelNum];
-        private static uint repeatFreq =4;
-        public static uint  RepeatFreq
+        private static uint repeatFreq;
+        public static uint RepeatFreq
         {
             get
             {
@@ -18,9 +18,25 @@ namespace HSD_EMAT_Chan4.Models
             }
             set
             {
-                if (value <5&&value>0)
+                if (value < 5 && value > 0)
                 {
                     repeatFreq = value;
+                }
+            }
+        }
+
+        private static int soundSpeed;
+        public static int SoundSpeed
+        {
+            get 
+            {
+                return soundSpeed;
+            }
+            set
+            {
+                if (value > 1999 && value < 8001)
+                {
+                    soundSpeed = value;
                 }
             }
         }

@@ -50,6 +50,10 @@ namespace HSD_EMAT_Chan4.Forms
             AllChannels.m_Channels[index].channelGage[gageIndex].IndexLength = this.trackBarGageLength.Value;
             AllForms.m_WaveForms[index].DrawGage(AllChannels.m_Channels[index].channelGage[gageIndex]);
         }
+        private void trackBar_Enter(object sender, EventArgs e)
+        {
+            AllForms.m_WaveForms[AllForms.m_ParamSetForm.CurrChanNum].Focus();
+        }
         #endregion
 
         #region 公开函数
@@ -75,6 +79,5 @@ namespace HSD_EMAT_Chan4.Forms
             }
         }
         #endregion
-
     }
 }

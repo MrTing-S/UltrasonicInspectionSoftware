@@ -531,7 +531,7 @@
             this.menuItemWaveformForm.Checked = true;
             this.menuItemWaveformForm.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuItemWaveformForm.Name = "menuItemWaveformForm";
-            this.menuItemWaveformForm.Size = new System.Drawing.Size(143, 26);
+            this.menuItemWaveformForm.Size = new System.Drawing.Size(224, 26);
             this.menuItemWaveformForm.Tag = "Debug(&D)";
             this.menuItemWaveformForm.Text = "调试(&D)";
             this.menuItemWaveformForm.Click += new System.EventHandler(this.menuItemWaveformForm_Click);
@@ -539,7 +539,7 @@
             // menuItemScanForm
             // 
             this.menuItemScanForm.Name = "menuItemScanForm";
-            this.menuItemScanForm.Size = new System.Drawing.Size(143, 26);
+            this.menuItemScanForm.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanForm.Tag = "Scan(&S)";
             this.menuItemScanForm.Text = "扫描(&S)";
             this.menuItemScanForm.Click += new System.EventHandler(this.menuItemScanForm_Click);
@@ -553,14 +553,14 @@
             this.menuItemScanViewType4,
             this.menuItemScanViewType5});
             this.menuItemScanView.Name = "menuItemScanView";
-            this.menuItemScanView.Size = new System.Drawing.Size(143, 26);
+            this.menuItemScanView.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanView.Tag = "menuItemScanView";
             this.menuItemScanView.Text = "视图(&V)";
             // 
             // menuItemScanViewType1
             // 
             this.menuItemScanViewType1.Name = "menuItemScanViewType1";
-            this.menuItemScanViewType1.Size = new System.Drawing.Size(135, 26);
+            this.menuItemScanViewType1.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanViewType1.Tag = "menuItemScanViewType1";
             this.menuItemScanViewType1.Text = "类型 1";
             this.menuItemScanViewType1.Click += new System.EventHandler(this.menuItemScanViewType1_Click);
@@ -568,7 +568,7 @@
             // menuItemScanViewType2
             // 
             this.menuItemScanViewType2.Name = "menuItemScanViewType2";
-            this.menuItemScanViewType2.Size = new System.Drawing.Size(135, 26);
+            this.menuItemScanViewType2.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanViewType2.Tag = "menuItemScanViewType2";
             this.menuItemScanViewType2.Text = "类型 2";
             this.menuItemScanViewType2.Click += new System.EventHandler(this.menuItemScanViewType2_Click);
@@ -576,7 +576,7 @@
             // menuItemScanViewType3
             // 
             this.menuItemScanViewType3.Name = "menuItemScanViewType3";
-            this.menuItemScanViewType3.Size = new System.Drawing.Size(135, 26);
+            this.menuItemScanViewType3.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanViewType3.Tag = "menuItemScanViewType3";
             this.menuItemScanViewType3.Text = "类型 3";
             this.menuItemScanViewType3.Click += new System.EventHandler(this.menuItemScanViewType3_Click);
@@ -584,7 +584,7 @@
             // menuItemScanViewType4
             // 
             this.menuItemScanViewType4.Name = "menuItemScanViewType4";
-            this.menuItemScanViewType4.Size = new System.Drawing.Size(135, 26);
+            this.menuItemScanViewType4.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanViewType4.Tag = "menuItemScanViewType4";
             this.menuItemScanViewType4.Text = "类型 4";
             this.menuItemScanViewType4.Click += new System.EventHandler(this.menuItemScanViewType4_Click);
@@ -592,10 +592,10 @@
             // menuItemScanViewType5
             // 
             this.menuItemScanViewType5.Name = "menuItemScanViewType5";
-            this.menuItemScanViewType5.Size = new System.Drawing.Size(135, 26);
+            this.menuItemScanViewType5.Size = new System.Drawing.Size(224, 26);
             this.menuItemScanViewType5.Tag = "menuItemScanViewType5";
             this.menuItemScanViewType5.Text = "类型 5";
-            this.menuItemScanViewType5.Click += new System.EventHandler(this.menuItemScanViewType5_Click_1);
+            this.menuItemScanViewType5.Click += new System.EventHandler(this.menuItemScanViewType5_Click);
             // 
             // 扫描SToolStripMenuItem
             // 
@@ -2085,8 +2085,8 @@
            {
                 for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
                 {
-                    double data = AllForms.m_WaveForms[i].GetGageMaxValue(AllChannels.m_Channels[i].channelGage[0], Funcations.ArrayUshortToDouble(AllChannels.m_Channels[i].wavaData));
-                    AllForms.m_WaveForms[i].DrawPoint(data);
+                    //double data = AllForms.m_WaveForms[i].GetGageMaxValue(AllChannels.m_Channels[i].channelGage[0], Funcations.ArrayUshortToDouble(AllChannels.m_Channels[i].wavaData));
+                    //AllForms.m_WaveForms[i].DrawPoint(data);
                 }
 
            }
@@ -2297,12 +2297,21 @@
             this.menuItemScanViewType4.Checked = true;
         }
 
+        private void menuItemScanViewType5_Click(object sender, EventArgs e)
+        {
+            FormView.m_aveFromViewType = FromViewType.type5;
+            AllFormsSet.UpDateFormLayOut();
+            ClearAllMenuItemViewChecked();
+            this.menuItemScanViewType5.Checked = true;
+        }
+
         private void ClearAllMenuItemViewChecked()
         {
             menuItemScanViewType1.Checked = false;
             menuItemScanViewType2.Checked = false;
             menuItemScanViewType3.Checked = false;
             menuItemScanViewType4.Checked = false;
+            menuItemScanViewType5.Checked = false;
         }
         #endregion 
 
@@ -2317,6 +2326,7 @@
             Size size = new Size(width, heigh);
             return size;
         }
+
         #endregion
 
 

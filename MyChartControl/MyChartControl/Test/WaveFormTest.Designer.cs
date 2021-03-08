@@ -39,7 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxGageType = new System.Windows.Forms.ComboBox();
-            this.waveChart = new MyChartControl.WaveChart.WaveChartControl();
+            this.waveChart = new MyChartControl.WaveChart.WaveChartControl(true);
             this.buttonTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGageX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGageY)).BeginInit();

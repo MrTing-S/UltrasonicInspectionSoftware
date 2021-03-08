@@ -19,7 +19,8 @@ namespace HSD_EMAT_Chan4.Models
         type1,
         type2,
         type3,
-        type4
+        type4,
+        type5
     }
 
     public enum ChartViewType

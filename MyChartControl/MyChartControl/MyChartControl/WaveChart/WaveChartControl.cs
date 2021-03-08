@@ -27,6 +27,9 @@ namespace MyChartControl.WaveChart
 
         bool isChartReady=false;
 
+        /// <summary>
+        /// 新建一个绘图窗体，默认为单通道波形曲线
+        /// </summary>
         public WaveChartControl()
         {
             InitializeComponent();
@@ -34,6 +37,30 @@ namespace MyChartControl.WaveChart
             InitAxisValue();
             InitChartData();
             InitChartView();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="waveOrScan">扫描曲线（true）</param>
+        public WaveChartControl(bool isScanChart)
+        {
+            InitializeComponent();
+            if (!isScanChart)
+            {
+                InitGage();
+                InitAxisValue();
+                InitChartData();
+                InitChartView();
+                return;
+            }
+            InitGage();
+            InitAxisValue();
+            InitChartData();
+            InitChartView();
+            chartView.waveChartTpye = WaveChartTpye.Point;
+            SetGageVisible(GageTpye.GageA, false);
+            SetGageVisible(GageTpye.GageB, false);
         }
 
         #region 内置函数
@@ -48,7 +75,7 @@ namespace MyChartControl.WaveChart
                 axisXGridNum = 5,
                 axisYUpScale = 500,
                 axisYDownScale = -500,
-                axisYGridNum = 5
+                axisYGridNum = 4
             };
             SetChartView();
             ResetSize();
@@ -98,7 +125,7 @@ namespace MyChartControl.WaveChart
             this.chartData = new ChartData
             {
                 isPointDataFull = false,
-                pointValue = 0,
+                pointValue = new double[2],
                 lineData = new double[300],
                 pointDataIndex = 0,
                 pointDataQueue = new System.Collections.Queue(),
@@ -116,7 +143,7 @@ namespace MyChartControl.WaveChart
             //设置图表坐标轴
             this.chart1.ChartAreas["ChartArea1"].AxisY.Minimum = chartView.axisYDownScale;//设置Y轴最小尺寸
             this.chart1.ChartAreas["ChartArea1"].AxisY.Maximum = chartView.axisYUpScale;//设置Y轴最大尺寸
-            this.chart1.ChartAreas["ChartArea1"].AxisY.Interval = CalAxisGridValue(chartView.axisYUpScale, chartView.axisYDownScale, chartView.axisYGridNum);//设置Y轴间隔
+            this.chart1.ChartAreas["ChartArea1"].AxisY.Interval = CalAxisGridValue((chartView.axisYUpScale- chartView.axisYDownScale), chartView.axisYDownScale, chartView.axisYGridNum);//设置Y轴间隔
             this.chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;//设置X轴最小尺寸
             this.chart1.ChartAreas["ChartArea1"].AxisX.Maximum = chartView.axisXScale;//设置X轴最大尺寸
             this.chart1.ChartAreas["ChartArea1"].AxisX.Interval = CalAxisGridValue(chartView.axisXScale, 0, chartView.axisXGridNum);//设置X轴间隔
@@ -135,9 +162,12 @@ namespace MyChartControl.WaveChart
             this.chart1.Titles["title2"].ForeColor = Color.RoyalBlue;//设置标题颜色
             this.chart1.Titles["title2"].Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);//设置标题字体和大小
             //绘图曲线设置
-            this.chart1.Series["Series1"].Color = Color.Green;//设置线条颜色
-            this.chart1.Series["Series1"].BorderWidth = 1;//设置线粗
-            this.chart1.Series["Series1"].ChartType = SeriesChartType.FastLine;//设置绘图模式
+            this.chart1.Series["Series1.1"].Color = Color.Green;//设置线条颜色
+            this.chart1.Series["Series1.1"].BorderWidth = 1;//设置线粗
+            this.chart1.Series["Series1.1"].ChartType = SeriesChartType.FastLine;//设置绘图模式
+            this.chart1.Series["Series1.2"].Color = Color.Green;//设置线条颜色
+            this.chart1.Series["Series1.2"].BorderWidth = 1;//设置线粗
+            this.chart1.Series["Series1.2"].ChartType = SeriesChartType.FastLine;//设置绘图模式
 
             #endregion
 
@@ -259,9 +289,19 @@ namespace MyChartControl.WaveChart
             {
                 return;
             }
-            this.chartView.axisYUpScale = axisUpYplotScale;
-            this.chartView.axisYDownScale = axisDownYplotScale;
-            SetChartView();
+            if (chartView.waveChartTpye == WaveChartTpye.Line)
+            {
+                this.chartView.axisYUpScale = axisUpYplotScale;
+                this.chartView.axisYDownScale = axisDownYplotScale;
+                SetChartView();
+            }
+            else if (chartView.waveChartTpye == WaveChartTpye.Point)
+            {
+                this.chartView.axisYUpScale = axisUpYplotScale + (axisUpYplotScale - axisDownYplotScale);
+                this.chartView.axisYDownScale = axisDownYplotScale;
+                SetChartView();
+            }
+
             this.chart1.Invalidate();//图像刷新
         }
 
@@ -302,10 +342,10 @@ namespace MyChartControl.WaveChart
             }
             if (chartData.lineData != null || chartData.lineData.Length  > 0)
             {
-                this.chart1.Series["Series1"].Points.Clear();
+                this.chart1.Series["Series1.1"].Points.Clear();
                 for (int pointIndex = 0; pointIndex < chartData.lineData.Length; pointIndex++)
                 {
-                    chart1.Series["Series1"].Points.AddY(chartData.lineData[pointIndex]);
+                    chart1.Series["Series1.1"].Points.AddY(chartData.lineData[pointIndex]);
                 }
             }
             else
@@ -314,29 +354,47 @@ namespace MyChartControl.WaveChart
             }
         }
 
-        public void DrawPoint(double data)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data">扫描点数组，索引0代表下方曲线</param>
+        public void DrawPoint(double[] data)
         {
-            if (this.chartView.waveChartTpye == WaveChartTpye.Line)
+            if (data == null)
             {
-                chart1.Series["Series1"].Points.Clear();
-                this.chartView.waveChartTpye = WaveChartTpye.Point;
+                return;
             }
+            for (int i = 0; i < 2; i++)
+            {
+                if (data[i] > chartView.axisYUpScale)
+                {
+                    data[i] = chartView.axisYUpScale;
+                }
+                if (data[i] < chartView.axisYDownScale)
+                {
+                    data[i] = chartView.axisYDownScale;
+                }
+            }
+            data[1] = data[1] + (chartView.axisYUpScale - chartView.axisYDownScale)/2;
             if (this.chartData.pointDataIndex == this.chartView.axisXScale)
             {
                 this.chartData.pointDataQueue.Dequeue();
                 this.chartData.pointDataQueue.Enqueue(data);
                 this.chartData.isPointDataFull = true;
-                chart1.Series["Series1"].Points.Clear();
-                foreach (double item in this.chartData.pointDataQueue)
+                chart1.Series["Series1.1"].Points.Clear();
+                chart1.Series["Series1.2"].Points.Clear();
+                foreach (double[] item in this.chartData.pointDataQueue)
                 {
-                    chart1.Series["Series1"].Points.AddY(item);
+                    chart1.Series["Series1.1"].Points.AddY(item[0]);
+                    chart1.Series["Series1.2"].Points.AddY(item[1]);
                 }
             }
             else
             {
                 this.chartData.pointDataIndex++;
                 this.chartData.pointDataQueue.Enqueue(data);
-                chart1.Series["Series1"].Points.AddY(data);
+                chart1.Series["Series1.1"].Points.AddY(data[0]);
+                chart1.Series["Series1.2"].Points.AddY(data[1]);
             }
         }
         #endregion

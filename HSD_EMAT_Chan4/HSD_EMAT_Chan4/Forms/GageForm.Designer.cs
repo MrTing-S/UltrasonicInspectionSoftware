@@ -53,11 +53,11 @@
             this.groupBox3.Controls.Add(this.trackBarGageLength);
             this.groupBox3.Controls.Add(this.trackBarGagePosY);
             this.groupBox3.Controls.Add(this.trackBarGagePosX);
-            this.groupBox3.Location = new System.Drawing.Point(9, 23);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Location = new System.Drawing.Point(12, 29);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(280, 162);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(373, 202);
             this.groupBox3.TabIndex = 111;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "闸门设置";
@@ -68,10 +68,10 @@
             this.comboBoxGageTpye.Items.AddRange(new object[] {
             "闸门A",
             "闸门B"});
-            this.comboBoxGageTpye.Location = new System.Drawing.Point(46, 18);
-            this.comboBoxGageTpye.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxGageTpye.Location = new System.Drawing.Point(61, 22);
+            this.comboBoxGageTpye.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxGageTpye.Name = "comboBoxGageTpye";
-            this.comboBoxGageTpye.Size = new System.Drawing.Size(72, 20);
+            this.comboBoxGageTpye.Size = new System.Drawing.Size(95, 23);
             this.comboBoxGageTpye.TabIndex = 160;
             this.comboBoxGageTpye.Text = "闸门A";
             this.comboBoxGageTpye.SelectedIndexChanged += new System.EventHandler(this.comboBoxGageTpye_SelectedIndexChanged);
@@ -79,91 +79,90 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(2, 20);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(3, 25);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(46, 13);
+            this.label23.Size = new System.Drawing.Size(52, 15);
             this.label23.TabIndex = 159;
             this.label23.Text = "闸门：";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(2, 94);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Location = new System.Drawing.Point(3, 118);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(33, 13);
+            this.label28.Size = new System.Drawing.Size(37, 15);
             this.label28.TabIndex = 158;
             this.label28.Text = "长度";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(2, 66);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Location = new System.Drawing.Point(3, 82);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(14, 13);
+            this.label27.Size = new System.Drawing.Size(15, 15);
             this.label27.TabIndex = 157;
             this.label27.Text = "y";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(2, 40);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Location = new System.Drawing.Point(3, 50);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(14, 13);
+            this.label26.Size = new System.Drawing.Size(15, 15);
             this.label26.TabIndex = 152;
             this.label26.Text = "x";
             // 
             // trackBarGageLength
             // 
-            this.trackBarGageLength.Location = new System.Drawing.Point(27, 94);
-            this.trackBarGageLength.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBarGageLength.Location = new System.Drawing.Point(36, 118);
+            this.trackBarGageLength.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBarGageLength.Maximum = 50;
             this.trackBarGageLength.Name = "trackBarGageLength";
-            this.trackBarGageLength.Size = new System.Drawing.Size(247, 56);
+            this.trackBarGageLength.Size = new System.Drawing.Size(329, 56);
             this.trackBarGageLength.TabIndex = 156;
             this.trackBarGageLength.Tag = "tr6";
             this.trackBarGageLength.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarGageLength.Value = 5;
             this.trackBarGageLength.Scroll += new System.EventHandler(this.trackBarGageLength_Scroll);
+            this.trackBarGageLength.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarGagePosY
             // 
-            this.trackBarGagePosY.Location = new System.Drawing.Point(27, 66);
-            this.trackBarGagePosY.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBarGagePosY.Location = new System.Drawing.Point(36, 82);
+            this.trackBarGagePosY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBarGagePosY.Maximum = 100;
             this.trackBarGagePosY.Minimum = 1;
             this.trackBarGagePosY.Name = "trackBarGagePosY";
-            this.trackBarGagePosY.Size = new System.Drawing.Size(247, 56);
+            this.trackBarGagePosY.Size = new System.Drawing.Size(329, 56);
             this.trackBarGagePosY.TabIndex = 155;
             this.trackBarGagePosY.Tag = "tr6";
             this.trackBarGagePosY.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarGagePosY.Value = 50;
             this.trackBarGagePosY.Scroll += new System.EventHandler(this.trackBarGagePosY_Scroll);
+            this.trackBarGagePosY.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // trackBarGagePosX
             // 
-            this.trackBarGagePosX.Location = new System.Drawing.Point(27, 40);
-            this.trackBarGagePosX.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBarGagePosX.Location = new System.Drawing.Point(36, 50);
+            this.trackBarGagePosX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trackBarGagePosX.Maximum = 100;
             this.trackBarGagePosX.Minimum = 1;
             this.trackBarGagePosX.Name = "trackBarGagePosX";
-            this.trackBarGagePosX.Size = new System.Drawing.Size(247, 56);
+            this.trackBarGagePosX.Size = new System.Drawing.Size(329, 56);
             this.trackBarGagePosX.TabIndex = 154;
             this.trackBarGagePosX.Tag = "tr6";
             this.trackBarGagePosX.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarGagePosX.Value = 50;
             this.trackBarGagePosX.Scroll += new System.EventHandler(this.trackBarGagePosX_Scroll);
+            this.trackBarGagePosX.Enter += new System.EventHandler(this.trackBar_Enter);
             // 
             // GageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 494);
+            this.ClientSize = new System.Drawing.Size(397, 618);
             this.Controls.Add(this.groupBox3);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GageForm";
             this.Text = "检测设置";
             this.groupBox3.ResumeLayout(false);

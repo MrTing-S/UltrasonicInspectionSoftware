@@ -46,8 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MutiScanChart\ChartData.cs" />
+    <Compile Include="MutiScanChart\Gage.cs" />
+    <Compile Include="MutiScanChart\MutiScanChartControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MutiScanChart\MutiScanChartControl.Designer.cs">
+      <DependentUpon>MutiScanChartControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MutiScanChart\HAxisValue.cs" />
+    <Compile Include="MutiScanChart\VAxisValue.cs" />
+    <Compile Include="MutiScanChart\MutiScanChartView.cs" />
     <Compile Include="ScanChart\AxisLable.cs" />
-    <Compile Include="ScanChart\Class1.cs" />
     <Compile Include="ScanChart\ColorIndex.cs" />
     <Compile Include="WaveChart\ChartData.cs" />
     <Compile Include="WaveChart\VAxisLable.cs" />
@@ -70,6 +80,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MutiScanChart\MutiScanChartControl.resx">
+      <DependentUpon>MutiScanChartControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaveChart\WaveChartControl.resx">
       <DependentUpon>WaveChartControl.cs</DependentUpon>
     </EmbeddedResource>

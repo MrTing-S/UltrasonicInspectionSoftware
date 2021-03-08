@@ -29,8 +29,63 @@ namespace HSD_EMAT_Chan4.DLL
             AllForms.m_GageForm = new GageForm();
             AllForms.m_GageForm.MdiParent = AllForms.m_MainForm;
             SetGageFormLayout();
+            AllForms.m_MutiScanForm = new MutiScanForm();
+            AllForms.m_MutiScanForm.MdiParent = AllForms.m_MainForm;
+            SetMutiScanFormLayout();
         }
-        #endregion 
+        #endregion
+
+        #region 子窗体布局
+        private static void SetParamFormLayout()
+        {
+            if (AllForms.m_ParamSetForm == null || AllForms.m_MainForm == null)
+            {
+                return;
+            }
+            AllForms.m_ParamSetForm.Size = new Size(FormView.paramSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
+            AllForms.m_ParamSetForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            AllForms.m_ParamSetForm.Location = new Point(AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth, 0);
+        }
+
+        private static void SetChartFormLayout()
+        {
+            if (AllForms.m_WaveForms == null)
+            {
+                return;
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                AllForms.m_WaveForms[i].Size = new Size((AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth) / 2, (AllForms.m_MainForm.GetMainFormWorkingSpace().Height) / 2);
+                AllForms.m_WaveForms[i].StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            }
+            AllForms.m_WaveForms[0].Location = new Point(0, 0);
+            AllForms.m_WaveForms[1].Location = new Point(AllForms.m_WaveForms[0].Width, 0);
+            AllForms.m_WaveForms[2].Location = new Point(0, AllForms.m_WaveForms[0].Height);
+            AllForms.m_WaveForms[3].Location = new Point(AllForms.m_WaveForms[0].Width, AllForms.m_WaveForms[0].Height);
+        }
+
+        private static void SetGageFormLayout()
+        {
+            if (AllForms.m_ParamSetForm == null || AllForms.m_MainForm == null)
+            {
+                return;
+            }
+            AllForms.m_GageForm.Size = new Size(FormView.gageSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
+            AllForms.m_GageForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            AllForms.m_GageForm.Location = new Point(AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth - FormView.gageSetFormWidth, 0);
+        }
+
+        private static void SetMutiScanFormLayout()
+        {
+            if (AllForms.m_MutiScanForm == null || AllForms.m_MainForm == null)
+            {
+                return;
+            }
+            AllForms.m_MutiScanForm.Size = new Size(AllForms.m_MainForm.GetMainFormWorkingSpace().Width-FormView.paramSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
+            AllForms.m_MutiScanForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            AllForms.m_MutiScanForm.Location = new Point(0, 0);
+        }
+        #endregion
 
         #region 视图模式
 
@@ -59,6 +114,12 @@ namespace HSD_EMAT_Chan4.DLL
                 case "type4":
                     {
                         SetWaveFromLayoutType4(0);
+                        AllForms.m_MainForm.Invalidate();
+                        break;
+                    }
+                case "type5":
+                    {
+                        SetWaveFromLayoutType5();
                         AllForms.m_MainForm.Invalidate();
                         break;
                     }
@@ -205,46 +266,17 @@ namespace HSD_EMAT_Chan4.DLL
             AllForms.m_GageForm.Show();
             AllForms.m_ParamSetForm.Show();
         }
-        #endregion
 
-        #region 子窗体布局
-        private static void SetParamFormLayout()
+        private static  void SetWaveFromLayoutType5()
         {
-            if (AllForms.m_ParamSetForm == null||AllForms.m_MainForm==null)
+            foreach (Form item in AllForms.m_MainForm.MdiChildren)
             {
-                return;
+                item.Hide();//关闭所有子窗体
             }
-            AllForms.m_ParamSetForm.Size = new Size(FormView.paramSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
-            AllForms.m_ParamSetForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            AllForms.m_ParamSetForm.Location = new Point(AllForms.m_MainForm.GetMainFormWorkingSpace().Width- FormView.paramSetFormWidth, 0);
-        }
-
-        private static void SetChartFormLayout()
-        {
-            if (AllForms.m_WaveForms == null)
-            {
-                return;
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                AllForms.m_WaveForms[i].Size =new Size((AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth) / 2, (AllForms.m_MainForm.GetMainFormWorkingSpace().Height)/ 2);
-                AllForms.m_WaveForms[i].StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            }
-            AllForms.m_WaveForms[0].Location = new Point(0, 0);
-            AllForms.m_WaveForms[1].Location = new Point(AllForms.m_WaveForms[0].Width, 0);
-            AllForms.m_WaveForms[2].Location = new Point(0, AllForms.m_WaveForms[0].Height);
-            AllForms.m_WaveForms[3].Location = new Point(AllForms.m_WaveForms[0].Width, AllForms.m_WaveForms[0].Height);
-        }
-
-        private static void SetGageFormLayout()
-        {
-            if (AllForms.m_ParamSetForm == null || AllForms.m_MainForm == null)
-            {
-                return;
-            }
-            AllForms.m_GageForm.Size = new Size(FormView.gageSetFormWidth, AllForms.m_MainForm.GetMainFormWorkingSpace().Height);
-            AllForms.m_GageForm.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            AllForms.m_GageForm.Location = new Point(AllForms.m_MainForm.GetMainFormWorkingSpace().Width - FormView.paramSetFormWidth - FormView.gageSetFormWidth, 0);
+            SetParamFormLayout();
+            SetMutiScanFormLayout();
+            AllForms.m_ParamSetForm.Show();
+            AllForms.m_MutiScanForm.Show();
         }
         #endregion
     }

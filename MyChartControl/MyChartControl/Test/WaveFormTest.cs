@@ -26,7 +26,7 @@ namespace Test
         {
             InitializeComponent();
             waveChart.ChartXSizeZoomChange(300);
-            waveChart.ChartYSizeZoomChange(256, 0);
+            waveChart.ChartYSizeZoomChange(256, 100);
             waveChart.SetAxisValue(CalcuAxielValue());
             drawData = new double[300];
             random = new Random();
@@ -49,39 +49,35 @@ namespace Test
             //double[] data = waveChart.GetGageData(gageTpye, waveChart.GetlineData());
             //Console.WriteLine(data.Max());
 
-            //测试窗体的大小控制功能
-            int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
-            int windowBorderHeight=(this .Height - this .ClientRectangle.Height);//获取边框的宽度
-            Console.WriteLine(windowBorderWidth.ToString() + " "+windowBorderHeight.ToString()) ;
-            this.waveChart.Location = new Point(0, 0);
-            this.waveChart.Size = new Size(this.Width- windowBorderWidth, this.Height - windowBorderHeight);
+            ////测试窗体的大小控制功能
+            //int windowBorderWidth = (this.Width - this.ClientRectangle.Width);//获取边框的宽度
+            //int windowBorderHeight=(this .Height - this .ClientRectangle.Height);//获取边框的宽度
+            //Console.WriteLine(windowBorderWidth.ToString() + " "+windowBorderHeight.ToString()) ;
+            //this.waveChart.Location = new Point(0, 0);
+            //this.waveChart.Size = new Size(this.Width- windowBorderWidth, this.Height - windowBorderHeight);
+
+            this.waveChart.chart1.Series["Series1.2"].Points.AddY(510);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             stopwatch.Restart();
-            if (dataTpye == true)
+            if (waveChart.GetIsPointDataFulling())
             {
-                if (waveChart.GetIsPointDataFulling())
-                {
-                    axielValueIndex++;
-                    waveChart.SetAxisValue(CalcuAxielValue());
-                }
-                waveChart.DrawPoint(random.NextDouble() * 256);
-            }
-            else
-            {
-                axielValueIndex = 0;
+                axielValueIndex++;
                 waveChart.SetAxisValue(CalcuAxielValue());
-                for (int i = 0; i < drawData.Length; i++)
-                {
-                    drawData[i] = random.NextDouble() * 256;
-                }
-                waveChart.DrawLine(drawData);
-
             }
+            waveChart.DrawPoint(GetData());
             stopwatch.Stop();
             Console.WriteLine(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        private double[] GetData()
+        {
+            double[] data = new double[2];
+            data[0] = random.NextDouble() * 255;
+            data[1] = random.NextDouble() * 255;
+            return data;
         }
 
         private void buttonChangeDataType_Click(object sender, EventArgs e)

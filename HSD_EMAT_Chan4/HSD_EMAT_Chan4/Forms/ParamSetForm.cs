@@ -107,26 +107,32 @@
 
         private void trackBarRepeatFreq_Scroll(object sender, EventArgs e)
         {
-            switch (trackBarRepeatFreq.Value.ToString())
+            AllChannels.RepeatFreq = (uint)trackBarRepeatFreq.Value;
+            switch (AllChannels.RepeatFreq.ToString())
             {
                 case "0":
-                    this.textBoxRepeatFreq.Text = "15Hz";
+                    this.textBoxRepeatFreq.Text = "15";
                     break;
                 case "1":
-                    this.textBoxRepeatFreq.Text = "50Hz";
+                    this.textBoxRepeatFreq.Text = "50";
                     break;
                 case "2":
-                    this.textBoxRepeatFreq.Text = "100Hz";
+                    this.textBoxRepeatFreq.Text = "100";
                     break;
                 case "3":
-                    this.textBoxRepeatFreq.Text = "200Hz";
+                    this.textBoxRepeatFreq.Text = "200";
                     break;
                 case "4":
-                    this.textBoxRepeatFreq.Text = "500Hz";
+                    this.textBoxRepeatFreq.Text = "500";
                     break;
             }
-            AllChannels.RepeatFreq = (uint)trackBarRepeatFreq.Value;
             DLL.NetModulDll.SendCmdRepeatFreq(AllChannels.RepeatFreq);
+        }
+
+        private void trackBarSoundSpeed_Scroll(object sender, EventArgs e)
+        {
+            AllChannels.SoundSpeed = this.trackBarSoundSpeed.Value;
+            this.textBoxSoundSpeed.Text = AllChannels.SoundSpeed.ToString();
         }
         #endregion
 
@@ -172,6 +178,11 @@
                     AllForms.m_WaveForms[i].ChangeWaveFormXScale(2000);
                 }
             }
+        }
+
+        private void trackBar_Enter(object sender, EventArgs e)
+        {
+            AllForms.m_WaveForms[currChanNum].Focus();
         }
         #endregion
 
@@ -230,10 +241,7 @@
                 {
                     MessageBox.Show(ex.Message);
                 }
-                for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
-                {
-                    AllChannelsSet.UpDateSysParam(i);
-                }
+                AllChannelsSet.UpDateSysAllParam();
             }
         }
 
@@ -247,10 +255,7 @@
             {
                 MessageBox.Show(ex.Message);
             }
-            for (int i = 0; i < HSD_EMAT.totalChannelNum; i++)
-            {
-                AllChannelsSet.UpDateSysParam(i);
-            }
+            AllChannelsSet.UpDateSysAllParam();
         }
 
         //从xml文件中读取更新参数窗体与闸门窗体
@@ -264,7 +269,6 @@
         #endregion
 
         #region 读取与存储配置函数
-
 
         private void FindAllConfigFileName(string path)
         {
@@ -299,6 +303,8 @@
             AllChannels.m_Channels[channel].channelParam.range = trackBarRange.Value;
             AllChannels.RepeatFreq = (uint)this.trackBarRepeatFreq.Value;
             #endregion
+            AllChannels.RepeatFreq = (uint )this.trackBarRepeatFreq.Value;
+            AllChannels.SoundSpeed = this.trackBarSoundSpeed.Value;
         }
 
         private void UpdateTrackBarFromParam(int iChan)
@@ -314,21 +320,42 @@
             this.trackBarHighVoltage.Value = (int)AllChannels.m_Channels[iChan].channelParam.highVoltage;
             this.trackBarDigital.Value = (int)AllChannels.m_Channels[iChan].channelParam.digital;
             this.trackBarRange.Value = AllChannels.m_Channels[iChan].channelParam.range;
+            this.trackBarRepeatFreq.Value = (int)AllChannels.RepeatFreq;
+            this.trackBarSoundSpeed.Value = (int)AllChannels.SoundSpeed;
         }
 
         private void UpdateLableFromParam(int iChan)
-        { 
+        {
             //更新数据框显示
-            this.textBoxDigitalGainValue.Text = (this.trackBarDigitalGian.Value / 10).ToString();
-            this.textBoxAnalogGainValue.Text = (this.trackBarAnalogGain.Value / 10).ToString();
-            this.textBoxRange.Text = this.trackBarRange.Value.ToString();
-            this.textBoxSignFreqRatio.Text = (Convert.ToDouble(this.trackBarSignFreqRatio.Value) / 10).ToString();
-            this.textBoxDelayCount.Text = this.trackBarSendCmdDelayCount.Value.ToString();
-            this.textBoxPulNumber.Text = (this.trackBarPulNumber.Value + 1).ToString();
-            this.textBoxAveNumber.Text = Math.Pow(2, (double)(this.trackBarAveNumber.Value)).ToString();
-            this.textBoxFixNumber.Text = (this.trackBarFixNumber.Value + 1).ToString();
-            this.textBoxHighVoltage.Text = (300 + 50 * this.trackBarHighVoltage.Value).ToString();
-            this.textBoxDigital.Text = this.trackBarDigital.Value.ToString();
+            this.textBoxDigitalGainValue.Text = (AllChannels.m_Channels[iChan].channelParam.digitalGian / 10).ToString();
+            this.textBoxAnalogGainValue.Text = (AllChannels.m_Channels[iChan].channelParam.analogGain / 10).ToString();
+            this.textBoxRange.Text = AllChannels.m_Channels[iChan].channelParam.range.ToString();
+            this.textBoxSignFreqRatio.Text = (AllChannels.m_Channels[iChan].channelParam.freqRatio / 10).ToString();
+            this.textBoxDelayCount.Text = AllChannels.m_Channels[iChan].channelParam.delayCount.ToString();
+            this.textBoxPulNumber.Text = (AllChannels.m_Channels[iChan].channelParam.pulNumber + 1).ToString();
+            this.textBoxAveNumber.Text = Math.Pow(2, (double)(AllChannels.m_Channels[iChan].channelParam.aveNumber)).ToString();
+            this.textBoxFixNumber.Text = (AllChannels.m_Channels[iChan].channelParam.fixNumber + 1).ToString();
+            this.textBoxHighVoltage.Text = (300 + 50 * AllChannels.m_Channels[iChan].channelParam.highVoltage).ToString();
+            this.textBoxDigital.Text = AllChannels.m_Channels[iChan].channelParam.digital.ToString();
+            switch (AllChannels.RepeatFreq.ToString())
+            {
+                case "0":
+                    this.textBoxRepeatFreq.Text = "15";
+                    break;
+                case "1":
+                    this.textBoxRepeatFreq.Text = "50";
+                    break;
+                case "2":
+                    this.textBoxRepeatFreq.Text = "100";
+                    break;
+                case "3":
+                    this.textBoxRepeatFreq.Text = "200";
+                    break;
+                case "4":
+                    this.textBoxRepeatFreq.Text = "500";
+                    break;
+            }
+            this.textBoxSoundSpeed.Text = AllChannels.SoundSpeed.ToString();
         }
 
 
@@ -365,7 +392,7 @@
                 AllForms.m_GageForm.UpdateGageForm(i);
             }
             AllForms.m_GageForm.UpdateGageForm(currChanNum);
-            AllChannelsSet.UpDateSysParam(currChanNum);
+            AllChannelsSet.UpDateSysAllParam();
         }
 
         private void ParamSetForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -387,5 +414,7 @@
             Array.ConstrainedCopy(AllForms.m_MainForm.readDataBuf, (this.trackBarDataProcess.Value - 1) * 300, data, 0,300);
             AllForms.m_WaveForms[0].DrawLine(data);
         }
+
+
     }
 }

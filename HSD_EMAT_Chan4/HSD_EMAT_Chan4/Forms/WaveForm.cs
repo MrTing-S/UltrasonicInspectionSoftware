@@ -41,7 +41,7 @@ namespace HSD_EMAT_Chan4.Forms
             waveChart.DrawLine(data);
         }
 
-        public void DrawPoint(double data)
+        public void DrawPoint(double[] data)
         {
             ScanChart.DrawPoint(data);
         }

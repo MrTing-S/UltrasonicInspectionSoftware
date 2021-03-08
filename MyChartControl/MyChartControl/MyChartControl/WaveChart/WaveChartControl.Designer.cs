@@ -33,15 +33,16 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelVMark4 = new System.Windows.Forms.Label();
             this.labelVMark3 = new System.Windows.Forms.Label();
             this.labelVMark2 = new System.Windows.Forms.Label();
             this.labelVMark5 = new System.Windows.Forms.Label();
             this.labelVMark1 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +55,51 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(504, 241);
             this.panel1.TabIndex = 1;
+            // 
+            // chart1
+            // 
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 100F;
+            chartArea1.InnerPlotPosition.Width = 100F;
+            chartArea1.Name = "ChartArea1";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 100F;
+            chartArea1.Position.Width = 100F;
+            chartArea2.BackColor = System.Drawing.Color.Transparent;
+            chartArea2.InnerPlotPosition.Auto = false;
+            chartArea2.InnerPlotPosition.Height = 100F;
+            chartArea2.InnerPlotPosition.Width = 100F;
+            chartArea2.Name = "ChartArea2";
+            chartArea2.Position.Auto = false;
+            chartArea2.Position.Height = 100F;
+            chartArea2.Position.Width = 100F;
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.ChartAreas.Add(chartArea2);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1.1";
+            series2.ChartArea = "ChartArea2";
+            series2.Name = "Series2";
+            series3.ChartArea = "ChartArea2";
+            series3.Name = "Series3";
+            series4.ChartArea = "ChartArea1";
+            series4.Name = "Series1.2";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(504, 241);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            title1.Alignment = System.Drawing.ContentAlignment.TopRight;
+            title1.Name = "title1";
+            title2.Alignment = System.Drawing.ContentAlignment.TopRight;
+            title2.Name = "title2";
+            this.chart1.Titles.Add(title1);
+            this.chart1.Titles.Add(title2);
             // 
             // labelVMark4
             // 
@@ -105,48 +151,6 @@
             this.labelVMark1.TabIndex = 7;
             this.labelVMark1.Text = "0";
             // 
-            // chart1
-            // 
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 100F;
-            chartArea1.InnerPlotPosition.Width = 100F;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            chartArea2.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 100F;
-            chartArea2.InnerPlotPosition.Width = 100F;
-            chartArea2.Name = "ChartArea2";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea2";
-            series2.Name = "Series2";
-            series3.ChartArea = "ChartArea2";
-            series3.Name = "Series3";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(504, 241);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            title1.Alignment = System.Drawing.ContentAlignment.TopRight;
-            title1.Name = "title1";
-            title2.Alignment = System.Drawing.ContentAlignment.TopRight;
-            title2.Name = "title2";
-            this.chart1.Titles.Add(title1);
-            this.chart1.Titles.Add(title2);
-            // 
             // WaveChartControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -176,6 +180,6 @@
         private System.Windows.Forms.Label labelVMark2;
         private System.Windows.Forms.Label labelVMark5;
         private System.Windows.Forms.Label labelVMark1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        public  System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
